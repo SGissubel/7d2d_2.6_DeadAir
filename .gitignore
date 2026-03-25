@@ -1,0 +1,64 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.user
+*.userprefs
+
+# Logs
+*.log
+
+# Temp / cache
+Temp/
+Library/
+Obj/
+obj/
+[Bb]in/
+ExportedObj/
+Build/
+Builds/
+
+# Unity / asset bundle style outputs
+AssetBundles/
+Bundles/
+bundle/
+bundles/
+*.bundle
+*.assetbundle
+
+# Compiled code
+*.dll
+*.exe
+*.pdb
+
+# Archives
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+
+# Big media / source assets
+*.psd
+*.ai
+*.tif
+*.tiff
+*.mp4
+*.mov
+*.avi
+*.wav
+*.fbx
+*.blend
+
+# Game-generated / local config
+*.bak
+*.tmp
+
+# Optional: ignore images if you have lots of large art files
+# *.png
+# *.jpg
+# *.jpeg

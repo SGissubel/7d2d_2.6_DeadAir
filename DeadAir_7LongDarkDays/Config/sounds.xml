@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configs>
+
+  
+
+  <!-- ===================================================== -->
+  <!-- WORLD SOUND REACTIVITY (Mod v2.6)                     -->
+  <!-- Patch SOUND.XML (non-silenced only)                   -->
+  <!-- Robust: replace Noise node                            -->
+  <!-- - noise = zombie alert radius                         -->
+  <!-- - heat_map_strength = heat contribution               -->
+  <!-- - heat_map_time = 240s                                -->
+  <!-- ===================================================== -->
+
+  <!-- ===================== -->
+  <!-- PISTOLS / HANDGUNS     -->
+  <!-- ===================== -->
+
+  <!-- Pipe Pistol -->
+  <remove xpath="//SoundDataNode[@name='pipe_pistol_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='pipe_pistol_fire']">
+  	<Noise ID="0" noise="160" time="2" muffled_when_crouched="0.8" heat_map_strength="1.10" heat_map_time="240"/>
+  </append>
+
+  <!-- Pistol (note your node is capital P: Pistol_Fire) -->
+  <remove xpath="//SoundDataNode[@name='Pistol_Fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='Pistol_Fire']">
+    <Noise noise="160" heat_map_strength="1.10" heat_map_time="240" />
+  </append>
+
+  <!-- .44 Magnum -->
+  <remove xpath="//SoundDataNode[@name='44magnum_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='44magnum_fire']">
+    <Noise noise="190" heat_map_strength="1.20" heat_map_time="240" />
+  </append>
+
+  <!-- Desert Vulture -->
+  <remove xpath="//SoundDataNode[@name='desertvulture_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='desertvulture_fire']">
+    <Noise noise="190" heat_map_strength="1.20" heat_map_time="240" />
+  </append>
+
+
+  <!-- ===================== -->
+  <!-- SMGs                   -->
+  <!-- ===================== -->
+
+  <!-- Pipe SMG -->
+  <remove xpath="//SoundDataNode[@name='pipe_smg_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='pipe_smg_fire']">
+    <Noise noise="180" heat_map_strength="1.15" heat_map_time="240" />
+  </append>
+
+  <!-- SMG -->
+  <remove xpath="//SoundDataNode[@name='smg_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='smg_fire']">
+    <Noise noise="180" heat_map_strength="1.15" heat_map_time="240" />
+  </append>
+
+
+  <!-- ===================== -->
+  <!-- ARs / AUTOMATICS       -->
+  <!-- ===================== -->
+
+  <!-- Tactical AR -->
+  <remove xpath="//SoundDataNode[@name='tacticalar_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='tacticalar_fire']">
+    <Noise noise="210" heat_map_strength="1.20" heat_map_time="240" />
+  </append>
+
+  <!-- AK47 (main fire) -->
+  <remove xpath="//SoundDataNode[@name='ak47_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='ak47_fire']">
+    <Noise noise="220" heat_map_strength="1.25" heat_map_time="240" />
+  </append>
+
+  <!-- AK47 (end tail) - match main so bursts don’t partially revert -->
+  <remove xpath="//SoundDataNode[@name='ak47_fire_end']/Noise"/>
+  <append xpath="//SoundDataNode[@name='ak47_fire_end']">
+    <Noise noise="220" heat_map_strength="1.25" heat_map_time="240" />
+  </append>
+
+  <!-- M60 (main fire) -->
+  <remove xpath="//SoundDataNode[@name='m60_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='m60_fire']">
+    <Noise noise="260" heat_map_strength="1.35" heat_map_time="240" />
+  </append>
+
+  <!-- M60 (end tail) -->
+  <remove xpath="//SoundDataNode[@name='m60_fire_end']/Noise"/>
+  <append xpath="//SoundDataNode[@name='m60_fire_end']">
+    <Noise noise="260" heat_map_strength="1.35" heat_map_time="240" />
+  </append>
+
+
+  <!-- ===================== -->
+  <!-- SHOTGUNS               -->
+  <!-- ===================== -->
+
+  <!-- Pipe Shotgun -->
+  <remove xpath="//SoundDataNode[@name='pipe_shotgun_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='pipe_shotgun_fire']">
+    <Noise noise="280" heat_map_strength="1.45" heat_map_time="240" />
+  </append>
+
+  <!-- Pump Shotgun -->
+  <remove xpath="//SoundDataNode[@name='pump_shotgun_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='pump_shotgun_fire']">
+    <Noise noise="270" heat_map_strength="1.40" heat_map_time="240" />
+  </append>
+
+  <!-- Sawed Off Shotgun -->
+  <remove xpath="//SoundDataNode[@name='sawed_off_shotgun_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='sawed_off_shotgun_fire']">
+    <Noise noise="280" heat_map_strength="1.45" heat_map_time="240" />
+  </append>
+
+  <!-- Double Barrel (shotgundb_fire) -->
+  <remove xpath="//SoundDataNode[@name='shotgundb_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='shotgundb_fire']">
+    <Noise noise="280" heat_map_strength="1.45" heat_map_time="240" />
+  </append>
+
+  <!-- Auto Shotgun -->
+  <remove xpath="//SoundDataNode[@name='autoshotgun_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='autoshotgun_fire']">
+    <Noise noise="290" heat_map_strength="1.50" heat_map_time="240" />
+  </append>
+
+  <!-- Blunderbuss -->
+  <remove xpath="//SoundDataNode[@name='blunderbuss_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='blunderbuss_fire']">
+    <Noise noise="280" heat_map_strength="1.45" heat_map_time="240" />
+  </append>
+
+
+  <!-- ===================== -->
+  <!-- RIFLES / SNIPERS       -->
+  <!-- ===================== -->
+
+  <!-- Pipe Rifle -->
+  <remove xpath="//SoundDataNode[@name='pipe_rifle_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='pipe_rifle_fire']">
+    <Noise noise="240" heat_map_strength="1.30" heat_map_time="240" />
+  </append>
+
+  <!-- Hunting Rifle -->
+  <remove xpath="//SoundDataNode[@name='hunting_rifle_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='hunting_rifle_fire']">
+    <Noise noise="240" heat_map_strength="1.30" heat_map_time="240" />
+  </append>
+
+  <!-- Lever Action -->
+  <remove xpath="//SoundDataNode[@name='lever_action_rifle_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='lever_action_rifle_fire']">
+    <Noise noise="260" heat_map_strength="1.35" heat_map_time="240" />
+  </append>
+
+  <!-- Sniper Rifle -->
+  <remove xpath="//SoundDataNode[@name='sniperrifle_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='sniperrifle_fire']">
+    <Noise noise="260" heat_map_strength="1.35" heat_map_time="240" />
+  </append>
+
+  <!-- Sharpshooter -->
+  <remove xpath="//SoundDataNode[@name='sharpshooter_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='sharpshooter_fire']">
+    <Noise noise="260" heat_map_strength="1.35" heat_map_time="240" />
+  </append>
+
+
+  <!-- ===================== -->
+  <!-- ROCKET LAUNCHER        -->
+  <!-- ===================== -->
+
+  <!-- M136 Rocket Launcher -->
+  <remove xpath="//SoundDataNode[@name='m136_fire']/Noise"/>
+  <append xpath="//SoundDataNode[@name='m136_fire']">
+    <Noise noise="160" heat_map_strength="1.10" heat_map_time="240" />
+  </append>
+
+
+
+
+  <!-- ===================================================== -->
+  <!-- SOLDIER HELMET CLANG / BREAK SOUNDS                   -->
+  <!-- ===================================================== -->
+
+
+
+  <append xpath="/Sounds">
+
+    <!-- Helmet break: reuse same metal hit clips but give it a heavier pitch range -->
+    <SoundDataNode name="daHelmetBreak">
+      <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab" volume="10.2"/>
+      <Noise ID="0" noise="25" time="3" heat_map_strength="0.1" heat_map_time="60"/>
+      <AudioClip ClipName="@:Sounds/ImpactSurface/bullethitmetal1.wav"/>
+      <AudioClip ClipName="@:Sounds/ImpactSurface/bullethitmetal2.wav"/>
+      <AudioClip ClipName="@:Sounds/ImpactSurface/bullethitmetal3.wav"/>
+      <LowestPitch name="0.75"/>
+      <HighestPitch name="0.85"/>
+      <LocalCrouchVolumeScale value="1.0"/>
+      <CrouchNoiseScale value="0.5"/>
+      <NoiseScale value="1"/>
+      <MaxVoices value="3"/>
+      <MaxRepeatRate value="0.01"/>
+    </SoundDataNode>
+
+  </append>
+
+  <append xpath="/Sounds">
+
+    <SoundDataNode name="DeadAir_WoundHeartbeat">
+      <AudioSource name="@:Sounds/Prefabs/AudioSource_WeaponFire.prefab"/>
+      <NetworkAudioSource name="@:Sounds/Prefabs/AudioSource_WeaponFire_Network.prefab"/>
+      <Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+      <AudioClip ClipName="#@modfolder:Resources/deadairsounds.unity3d?heartbeat01"/>
+      <LocalCrouchVolumeScale value="0.3"/>
+      <CrouchNoiseScale value="0.5"/>
+      <NoiseScale value="1"/>
+      <MaxVoices value="5"/>
+      <MaxRepeatRate value="0.01"/>
+    </SoundDataNode>
+
+  </append>
+  
+  <append xpath="/Sounds">
+
+
+    <SoundDataNode name="DeadAir_FrustratedZombieScream">
+        <AudioSource name="@:Sounds/Prefabs/AudioSource_WeaponFire.prefab"/>
+        <AudioClip ClipName="#@modfolder:Resources/frustrated_zombie_scream.unity3d?frustrated_zombie_scream"/>
+        <Noise ID="3" noise="11"/>
+    </SoundDataNode>
+
+  </append>
+  
+</configs>

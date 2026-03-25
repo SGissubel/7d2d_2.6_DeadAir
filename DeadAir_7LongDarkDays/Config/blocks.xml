@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+
+  <!-- Make trader display cases lootable (keep same models, just add loot behavior) -->
+
+  <append xpath="/blocks/block[@name='cntDisplayCaseNoLootLeft']">
+    <property name="Class" value="Loot"/>
+    <!-- Reuse an existing loot list that already works in traders -->
+    <property name="LootList" value="cntGunRackLargeGuns01"/>
+  </append>
+
+  <append xpath="/blocks/block[@name='cntDisplayCaseNoLootMiddl02']">
+    <property name="Class" value="Loot"/>
+    <property name="LootList" value="cntGunRackLargeGuns01"/>
+  </append>
+
+  <append xpath="/blocks/block[@name='cntDisplayCaseNoLootRight']">
+    <property name="Class" value="Loot"/>
+    <property name="LootList" value="cntGunRackLargeGuns01"/>
+  </append>
+
+
+
+
+
+  <!-- ===== Pallet cartons ===== -->
+  <append xpath="/blocks/block[@name='palletCartonMilitaryCap']">
+      <property name="Class" value="Loot"/>
+      <property name="LootList" value="daPalletAmmo"/>
+  </append>
+
+  <append xpath="/blocks/block[@name='palletCartonMilitaryTile']">
+      <property name="Class" value="Loot"/>
+      <property name="LootList" value="daPalletAmmo"/>
+  </append>
+
+  <append xpath="/blocks/block[@name='palletCartonMilitaryTileCovered']">
+      <property name="Class" value="Loot"/>
+      <property name="LootList" value="daPalletAmmo"/>
+  </append>
+<set xpath="/blocks/block[@name='cntCardboardBox']/property[@name='LootList']/@value">daPalletAmmo</set>
+  <!-- ===== Mannequin ===== -->
+  <append xpath="/blocks/block[@name='decoMannequinMilitaryCommando']">
+      <property name="Class" value="Loot"/>
+      <property name="LootList" value="daMannequinArmor"/>
+      <property name="DowngradeBlock" value="decoMannequinMale"/>
+      <property name="DowngradeFX" value="impact_organic_on_metal,silencefiller"/>
+  </append>
+
+  <!-- ===== Pallet cartons ===== -->
+<!-- 
+  <append xpath="/blocks/block[@name='palletCartonMilitaryCap']">
+    <property name="Class" value="Loot"/>
+    <property name="LootList" value="daPalletAmmo"/>
+  </append>
+
+  <append xpath="/blocks/block[@name='palletCartonMilitaryTile']">
+    <property name="Class" value="Loot"/>
+    <property name="LootList" value="daPalletAmmo"/>
+  </append>
+
+  <append xpath="/blocks/block[@name='palletCartonMilitaryTileCovered']">
+    <property name="Class" value="Loot"/>
+    <property name="LootList" value="daPalletAmmo"/>
+  </append>
+
+  <append xpath="/blocks/block[@name='decoMannequinMilitaryCommando']">
+    <property name="Class" value="Loot"/>
+    <property name="LootList" value="daMannequinArmor"/>
+    <property name="LootedBlock" value="decoMannequin"/>
+  </append> -->
+
+
+
+
+
+  <!-- ===================================================== -->
+  <!-- DeadAir Weapon Repair Bench                           -->
+  <!-- ===================================================== -->
+  <append xpath="/blocks">
+      <block name="cntDeadAirWeaponRepairBench">
+          <property name="Class" value="Workstation"/>
+          <property class="Workstation">
+              <property name="Modules" value="tools,output"/>
+              <property name="ToolNames" value="1,2,3"/>
+              <property name="CraftingAreaRecipes" value="player,deadairWeaponRepairBench"/>
+          </property>
+          <property name="UnlockedBy" value="craftingWorkstations"/>
+
+          <property name="CreativeMode" value="Player"/>
+          <property name="DescriptionKey" value="cntDeadAirWeaponRepairBenchDesc"/>
+          <property name="DisplayType" value="blockMulti"/>
+          <property name="WorkstationIcon" value="ui_game_symbol_workbench"/>
+          <property name="Stacknumber" value="1"/>
+
+          <property name="Material" value="Mmetal"/>
+          <property name="Shape" value="ModelEntity"/>
+          <property name="Model" value="@:Entities/Crafting/woodWorkBenchPrefab.prefab"/>
+          <property name="ModelOffset" value="0,.5,0"/>
+          <property name="MultiBlockDim" value="2,2,1"/>
+          <property name="ImposterDontBlock" value="true"/>
+          <property name="WaterFlow" value="permitted"/>
+
+          <property name="Place" value="TowardsPlacerInverted"/>
+          <property name="OnlySimpleRotations" value="true"/>
+          <property name="IsTerrainDecoration" value="true"/>
+          <property name="StabilitySupport" value="false"/>
+
+          <property name="Weight" value="0"/>
+          <property name="EconomicValue" value="2200"/>
+          <property name="TraderStageTemplate" value="midTier1"/>
+
+          <property name="MaxDamage" value="800"/>
+          <property name="HeatMapStrength" value="5"/>
+          <property name="HeatMapTime" value="5000"/>
+          <property name="HeatMapFrequency" value="1000"/>
+          <property name="OpenSound" value="open_workbench"/>
+          <property name="CloseSound" value="close_workbench"/>
+          <property name="TakeDelay" value="15"/>
+
+          <property class="RepairItems">
+              <property name="resourceForgedIron" value="25"/>
+              <property name="resourceMechanicalParts" value="20"/>
+              <property name="resourceWood" value="50"/>
+          </property>
+
+          <drop event="Harvest" name="resourceScrapIron" count="200" tag="allHarvest,perkJunkMiner"/>
+          <drop event="Harvest" name="resourceWood" count="20" tag="allHarvest,lumberjackHarvest,perkJunkMiner"/>
+          <drop event="Harvest" name="terrStone" count="0" tool_category="Disassemble"/>
+          <drop event="Harvest" name="resourceForgedIron" count="10" tag="salvageHarvest"/>
+          <drop event="Harvest" name="resourceMechanicalParts" count="8" tag="salvageHarvest"/>
+          <drop event="Harvest" name="resourceWood" count="20" tag="salvageHarvest"/>
+          <drop event="Destroy" count="0"/>
+          <drop event="Fall" name="terrDestroyedWoodDebris" count="1" prob="0.75" stick_chance="1"/>
+
+          <property name="SortOrder1" value="B281"/>
+          <property name="SortOrder2" value="0300"/>
+          <property name="Group" value="Building,TCScience,advBuilding"/>
+          <property name="Tags" value="workstationSkill,twitch_workstation,deadairWeaponRepairBench"/>
+          <property name="FilterTags" value="MC_playerBlocks,SC_decor"/>
+          <property name="SoundPickup" value="workbench_grab"/>
+          <property name="SoundPlace" value="workbench_place"/>
+      </block>
+  </append>
+
+</configs>

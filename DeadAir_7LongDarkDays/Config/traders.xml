@@ -1,0 +1,5 @@
+<configs>
+
+  <remove xpath="//item[@name='medicalBandage']"/>
+
+</configs>

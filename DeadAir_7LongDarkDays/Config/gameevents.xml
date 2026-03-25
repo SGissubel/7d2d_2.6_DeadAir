@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+
+
+  <!-- Remove Parkour from demo_reset_player starting allocations -->
+  <!-- <set xpath="/gameevents/action_sequence[@name='demo_reset_player']/action[@class='ModifyProgression']/property[@name='progression_names']/@value">
+    attPerception,attStrength,attFortitude,attAgility,attIntellect,perkPackMule,perkArchery,perkGunslinger,perkDeepCuts,perkBoomstick,perkPummelPete,perkMiner69r,perkMotherLode,perkMachineGunner,perkPainTolerance,perkHealingFactor,perkRuleOneCardio,perkRunAndGun,perkMediumArmor,perkHiddenStrike,perkFromTheShadows
+  </set>
+
+  <set xpath="/gameevents/action_sequence[@name='demo_reset_player']/action[@class='ModifyProgression']/property[@name='values']/@value">
+    5,5,5,5,5,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+  </set> -->
+
+
+
+</configs>

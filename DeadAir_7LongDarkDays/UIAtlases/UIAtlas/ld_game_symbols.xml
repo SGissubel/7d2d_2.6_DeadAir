@@ -1,0 +1,61 @@
+<uiatlases>
+
+  <!-- Wound Infection (BUFF/HUD icon) -->
+  <atlas name="ldGameSymbols_woundinfection" texture="UIAtlas/ui_game_symbol_woundinfection.png" size="64,64">
+    <sprite name="ui_game_symbol_woundinfection" />
+  </atlas>
+
+  <!-- repair kit -->
+  <atlas name="ldGameSymbols_weaponRepairKit" texture="UIAtlas/weaponRepairKit.png" size="64,64">
+    <sprite name="weaponRepairKit" />
+  </atlas>
+
+  <!-- Wound Infection treatment -->
+  <atlas name="ldGameSymbols_woundinfectionTreatment" texture="UIAtlas/ui_game_symbol_infection_treatment.png" size="64,64">
+    <sprite name="ui_game_symbol_infection_treatment" />
+  </atlas>
+
+  <!-- Dirty Bandage -->
+  <atlas name="ldGameSymbols_dirtybandage" texture="UIAtlas/dirty_bandage_ui_pop_160.png" size="64,64">
+    <sprite name="dirty_bandage_ui_pop_160"/>
+  </atlas>
+
+  <!-- Charred Carnivore Meat -->
+  <atlas name="ldGameSymbols_charredCarnvireMeat" texture="ItemIconAtlas/charredCarnivoreMeat.png" size="64,64">
+    <sprite name="charredCarnivoreMeat" x="0" y="0" width="64" height="64"/>
+  </atlas>
+  <!-- Grilled Carnivore Meat -->
+  <atlas name="ldGameSymbols_grilledCarnvireMeat" texture="ItemIconAtlas/grilledCarnivoreMeat.png" size="64,64">
+    <sprite name="grilledCarnivoreMeat" x="0" y="0" width="64" height="64"/>
+  </atlas>
+  <!-- Boiled Carnivore Meat -->
+  <atlas name="ldGameSymbols_boiledCarnvireMeat" texture="ItemIconAtlas/boiledCarnivoreMeat.png" size="64,64">
+    <sprite name="boiledCarnivoreMeat" x="0" y="0" width="64" height="64"/>
+  </atlas>
+
+   <!-- Parasites -->
+  <atlas name="ldGameSymbols_parasites" texture="ItemIconAtlas/ui_game_symbol_parasites.png" size="64,64">
+    <sprite name="ui_game_symbol_parasites" x="0" y="0" width="64" height="64"/>
+  </atlas>
+
+   <!-- zombie rage -->
+  <atlas name="ldGameSymbols_rage" texture="ItemIconAtlas/ui_game_symbol_deadAirHeightRage2.png" size="64,64">
+    <sprite name="ui_game_symbol_deadAirHeightRage2" x="0" y="0" width="64" height="64"/>
+  </atlas>
+    
+   <!-- colon cleanse drank -->
+  <atlas name="ldGameSymbols_colonCleanse" texture="ItemIconAtlas/ui_game_symbol_colon_cleanse.png" size="64,64">
+    <sprite name="ui_game_symbol_colon_cleanse" x="0" y="0" width="64" height="64"/>
+  </atlas>
+  
+   <!-- parasite tonic -->
+  <atlas name="ldGameSymbols_parasiteTonic" texture="ItemIconAtlas/ui_game_symbol_parasiteTonic.png" size="64,64">
+    <sprite name="ui_game_symbol_parasiteTonic" x="0" y="0" width="64" height="64"/>
+  </atlas>
+   <!-- parasite tonic -->
+  <atlas name="ldGameSymbols_parasiteTea" texture="ItemIconAtlas/ui_game_symbol_parsiteTea.png" size="64,64">
+    <sprite name="ui_game_symbol_parsiteTea" x="0" y="0" width="64" height="64"/>
+  </atlas>
+
+
+</uiatlases>

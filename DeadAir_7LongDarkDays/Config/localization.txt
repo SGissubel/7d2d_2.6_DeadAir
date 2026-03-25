@@ -1,0 +1,131 @@
+Key,File,Type,UsedInMainMenu,NoTranslate,english,Context / Alternate Text,german,spanish,french,italian,japanese,koreana,polish,brazilian,russian,turkish,schinese,tchinese
+buffLD_ParasiteGutSensitiveName,UI,Buff,,,"Gut Sensitivity",,,,,,,,,,,,,
+buffLD_ParasiteGutSensitiveDesc,UI,Buff,,,"Your gut is recovering. Eating carnivore meat is riskier for a while.",,,,,,,,,,,,,
+
+buffLD_NauseaName,UI,Buff,,,"Nausea",,,,,,,,,,,,,
+buffLD_NauseaDesc,UI,Buff,,,"Your stomach is unsettled. Movement and stamina suffer, and you'll burn through food and water faster.",,,,,,,,,,,,,
+
+buffLD_FoodPoisoningName,UI,Buff,,,"Food Poisoning",,,,,,,,,,,,,
+buffLD_FoodPoisoningDesc,UI,Buff,,,"Spoiled or contaminated intake. Severe stamina loss and dehydration until it passes.",,,,,,,,,,,,,
+
+drugAntiparasiticTonicDesc,UI,Item,,,"A potent antiparasitic tonic. Cures parasites and helps you recover.",,,,,,,,,,,,,
+resourceWeaponRepairKitDesc,items,Item,False,False,"A field repair kit for firearms and bows. Restores limited durability in the field, but enables full refurbishing at a Weapon Repair Bench.",,,,,,,,,,,,,
+
+gunRifleT2LeverActionRifleName_44,items,Item,,,"Lever Action Rifle (.44)",,,,,,,,,,,,,
+gunRifleT2LeverActionRifleDesc_44,items,Item,,,"A classic lever-action rifle rechambered for .44. Hits hard with manageable recoil.",,,,,,,,,,,,,
+
+ldMsgNauseaStart,UI,Tooltip,,,"Nausea.",,,,,,,,,,,,,
+ldMsgNauseaWorse,UI,Tooltip,,,"Nausea worsens.",,,,,,,,,,,,,
+ldMsgFoodPoisoningStart,UI,Tooltip,,,"Food poisoning.",,,,,,,,,,,,,
+ldMsgFoodPoisoningWorse,UI,Tooltip,,,"Food poisoning worsens.",,,,,,,,,,,,,
+
+ldMsgParasitesStage01Start,UI,Tooltip,,,"Parasites: your body is not absorbing food and water properly.",,,,,,,,,,,,,
+ldMsgParasitesStage02Start,UI,Tooltip,,,"Parasites worsening: eating and drinking barely helps.",,,,,,,,,,,,,
+ldMsgParasitesStage03Start,UI,Tooltip,,,"Severe parasites: you cannot keep solid food down.",,,,,,,,,,,,,
+ldMsgParasitesStage03End,UI,Tooltip,,,"Parasites cleared.",,,,,,,,,,,,,
+
+ldMsgGutSensitiveStart,UI,Tooltip,,,"Your gut is sensitive. Carnivore meat is extra risky right now.",,,,,,,,,,,,,
+ldMsgGutSensitiveEnd,UI,Tooltip,,,"Gut sensitivity faded.",,,,,,,,,,,,,
+
+ldMsgParasitesStage01End,UI,Tooltip,,,"Parasites progressed.",,,,,,,,,,,,,
+ldMsgParasitesStage02End,UI,Tooltip,,,"Parasites worsened.",,,,,,,,,,,,,
+
+ldDescWoundInfectionTreatment,UI,ItemDesc,,,"A treatment bundle for wound infections. Requires a clean bandage plus honey or ethanol.",,,,,,,,,,,,,
+ldDescEthanol,DeadAir,ItemDesc,,,"Pure ethanol. It will disinfect in a pinch, but it is harsh on the body.",,,,,,,,,,,,,
+resourceEthanolDesc,DeadAir,ItemDesc,,,"Pure ethanol. It will disinfect in a pinch, but it is harsh on the body.",,,,,,,,,,,,,
+medicalFirstAidBandageDirty,DeadAir,Item,,,"Dirty Medical Bandage",,,,,,,,,,,,,
+
+ldBuffWoundInfectionName,UI,Buff,,,"Wound Infection",,,,,,,,,,,,,
+ldBuffWoundInfectionTooltip,UI,Buff,,,"A severe infection caused by contaminated wound care.",,,,,,,,,,,,,
+ldBuffWoundInfectionStage01Desc,UI,Buff,,,"Inflammation and weakness are setting in.",,,,,,,,,,,,,
+ldBuffWoundInfectionStage02Desc,UI,Buff,,,"Fever and pain intensify. Movement becomes difficult.",,,,,,,,,,,,,
+ldBuffWoundInfectionStage03Desc,UI,Buff,,,"Severe systemic infection. Your body is failing.",,,,,,,,,,,,,
+ldBuffWoundInfection04Tooltip,UI,Buff,,,"The infection overwhelms you.",,,,,,,,,,,,,
+
+ldBuffEthanolPoisoningName,UI,Buff,,,"Ethanol Poisoning",,,,,,,,,,,,,
+ldBuffEthanolPoisoningDesc,UI,Buff,,,"Your throat burns. Nausea hits in waves, dehydration spikes, and you can barely stand.",,,,,,,,,,,,,
+ldBuffEthanolBlurName,UI,Buff,,,"Vision Distortion",,,,,,,,,,,,,
+
+ldMsgDirtyBandageUsed,UI,Tooltip,,,"You wrap the wound… but the bandage feels filthy.",,,,,,,,,,,,,
+ldMsgEthanolPoisoning,UI,Tooltip,,,"You drink pure ethanol. Your stomach immediately revolts.",,,,,,,,,,,,,
+ldMsgWoundInfectionStage01,UI,Tooltip,,,"Wound Infection: The area is warm and tender.",,,,,,,,,,,,,
+ldMsgWoundInfectionStage02,UI,Tooltip,,,"Wound Infection: Fever rising. Movement becomes difficult.",,,,,,,,,,,,,
+ldMsgWoundInfectionStage03,UI,Tooltip,,,"Wound Infection: Severe. You feel yourself deteriorating.",,,,,,,,,,,,,
+ldMsgWoundInfectionCured,UI,Tooltip,,,"The wound looks cleaner. The infection begins to recede.",,,,,,,,,,,,,
+ldMsgWoundInfectionTreatmentApplied,UI,Tooltip,,,"You clean the wound and apply treatment.",,,,,,,,,,,,,
+
+medicalWoundInfectionTreatment,DeadAir,Item,,,"Wound Infection Treatment",,,,,,,,,,,,,
+ldTreatsWoundInfection,DeadAir,DisplayValue,,,"Treats Wound Infection",,,,,,,,,,,,,
+ldWoundInfectionCurePower,DeadAir,DisplayValue,,,"Treatment Strength",,,,,,,,,,,,,
+ldChanceOfInfection,DeadAir,DisplayValue,,,"Chance of Infection",,,,,,,,,,,,,
+ldDescDirtyBandage,DeadAir,ItemDesc,,,"A dirty medical bandage.\n\n{color=ff3b30}Chance of Infection: 35%{/color}",,,,,,,,,,,,,
+statStaminaRegen,ui_display,Item stat,,,"Stamina Regen",,,,,,,,,,,,,
+statStaminaRegenRunning,ui_display,Item stat,,,"Stamina Regen, Running",,,,,,,,,,,,,
+statStopsBleeding,ui_display,Item stat,,,"Stop Bleeding",,,,,,,,,,,,,
+
+buffDeadAirHeightRageActiveDesc,UI,Buff,,,"Zombies have entered a rage after losing reach on you.",,,,,,,,,,,,,
+
+buffLD_ParasitesStage01Name,UI,Buff,,,"Parasites",,,,,,,,,,,,,
+buffLD_ParasitesStage01Desc,UI,Buff,,,"You've contracted parasites. Hunger, thirst, and fatigue are becoming harder to manage. Left untreated, this condition will worsen.",,,,,,,,,,,,,
+
+buffLD_ParasitesStage02Name,UI,Buff,,,"Parasites Worsening",,,,,,,,,,,,,
+buffLD_ParasitesStage02Desc,UI,Buff,,,"The parasites are taking hold. Your body is struggling to absorb food and water, and your condition is deteriorating.",,,,,,,,,,,,,
+
+buffLD_ParasitesStage03Name,UI,Buff,,,"Severe Parasites",,,,,,,,,,,,,
+buffLD_ParasitesStage03Desc,UI,Buff,,,"The infestation has become severe. Hunger, thirst, weakness, and wasting will continue until treated.",,,,,,,,,,,,,
+
+drinkTeaParasiteCleanse,items,Item,,,"Parasite Cleanse Tea",,,,,,,,,,,,,
+drinkTeaParasiteCleanseDesc,items,ItemDesc,,,"A bitter medicinal tea brewed to purge intestinal parasites. Cures parasite infection and leaves the stomach sensitive for a time.",,,,,,,,,,,,,
+
+medicalAnthelminticTonic,items,Item,,,"Anthelmintic Tonic",,,,,,,,,,,,,
+medicalAnthelminticTonicDesc,items,ItemDesc,,,"A harsh improvised anti-parasitic treatment. Strong enough to clear even severe infestations, but recovery is still rough.",,,,,,,,,,,,,
+
+ldMsgParasitesCured,UI,Tooltip,,,"The parasites are gone, but your stomach still feels fragile.",,,,,,,,,,,,,
+
+buffLD_ParasitesTrackerName,UI,Buff,,,"Parasites",,,,,,,,,,,,,
+buffLD_ParasitesTrackerDesc,UI,Buff,,,"A parasitic infection is worsening inside your body. Severity will rise with further exposure and fall with treatment.",,,,,,,,,,,,,
+
+buffLD_ParasiteTeaCourseName,UI,Buff,,,"Parasite Cleanse Course",,,,,,,,,,,,,
+buffLD_ParasiteTeaCourseDesc,UI,Buff,,,"The medicinal tea is working through your system. It cannot be stacked; wait for the course to finish before drinking another.",,,,,,,,,,,,,
+
+ldMsgParasiteTeaWorking,UI,Tooltip,,,"You drink the cleanse tea and wait for it to take effect.",,,,,,,,,,,,,
+ldMsgParasiteTeaFinished,UI,Tooltip,,,"The tea runs its course and the parasites weaken.",,,,,,,,,,,,,
+
+foodRawMeatDoe,items,Item,,,"Raw Meat",,,,,,,,,,,,,
+foodRawMeatDoeDesc,items,ItemDesc,,,"Raw animal meat. Eating it uncooked can make you sick.",,,,,,,,,,,,,
+
+foodGrilledMeatHerbivore,items,Item,,,"Grilled Meat",,,,,,,,,,,,,
+foodGrilledMeatHerbivoreDesc,items,ItemDesc,,,"A cooked cut of meat. Smells good, tastes better.",,,,,,,,,,,,,
+
+foodCharredMeatHerbivore,items,Item,,,"Charred Meat",,,,,,,,,,,,,
+foodCharredMeatHerbivoreDesc,items,ItemDesc,,,"Blackened but edible. Better than starving.",,,,,,,,,,,,,
+
+foodBoiledMeatHerbivore,items,Item,,,"Boiled Meat",,,,,,,,,,,,,
+foodBoiledMeatHerbivoreDesc,items,ItemDesc,,,"Soft cooked meat prepared in boiling water.",,,,,,,,,,,,,
+
+cntDeadAirWeaponRepairBench,blocks,Block,False,False,"Weapon Repair Bench",,,,,,,,,,,,,
+cntDeadAirWeaponRepairBenchDesc,blocks,Block,False,False,"A dedicated bench for full weapon refurbishing and repair.",,,,,,,,,,,,,
+
+deadairWeaponBenchTitle,xui,Menu,,,"Weapon Repair Bench",,,,,,,,,,,,,
+deadairWeaponBenchSlotsHint,xui,Menu,,,"Place weapon, repair kit, and matching parts in the bench slots. Parts required scale with weapon quality (tier).",,,,,,,,,,,,,
+deadairWeaponBenchRepairBtn,xui,Menu,,,"Refurbish",,,,,,,,,,,,,
+deadairRepairNoBench,xui,Menu,,,"Weapon repair bench is not active.",,,,,,,,,,,,,
+deadairRepairBadSlots,xui,Menu,,,"Could not read bench tool storage.",,,,,,,,,,,,,
+deadairRepairNeedWeapon,xui,Menu,,,"Put a supported weapon in the first bench slot.",,,,,,,,,,,,,
+deadairRepairNeedKit,xui,Menu,,,"Put a Weapon Repair Kit in the second bench slot.",,,,,,,,,,,,,
+deadairRepairNotWeapon,xui,Menu,,,"The first slot must be a firearm or bow that uses the Weapon Repair Kit.",,,,,,,,,,,,,
+deadairRepairNeedParts,xui,Menu,,,"Put matching weapon parts (or mechanical parts) in the third bench slot.",,,,,,,,,,,,,
+deadairRepairWrongParts,xui,Menu,,,"The third slot must hold the correct parts for that weapon (or resourceMechanicalParts if no specific parts item exists).",,,,,,,,,,,,,
+deadairRepairNotEnoughParts,xui,Menu,,,"Not enough parts in the bench for this weapon's quality.",,,,,,,,,,,,,
+deadairRepairAlreadyFull,xui,Menu,,,"That weapon is already at full durability.",,,,,,,,,,,,,
+deadairRepairSuccess,xui,Menu,,,"Weapon refurbished.",,,,,,,,,,,,,
+deadairRepairUseBenchButton,xui,Menu,,,"Use the Refurbish button on the bench. Ingredients must be in the bench slots, not only your backpack.",,,,,,,,,,,,,
+
+drinkColonCleanseTonic,items,Item,,,"Colon Cleanse Tonic",,,,,,,,,,,,,
+drinkColonCleanseTonicDesc,items,ItemDesc,,,"A brutal herbal purge made from charcoal, flowers, and desert plants. Drink immediately after rinsing off to eliminate body odor. Does not remove the smell of meat carried in your pockets.",,,,,,,,,,,,,
+
+buffColonCleanseFresh,UI,Buff,,,"Colon Cleanse Fresh",,,,,,,,,,,,,
+buffColonCleanseFreshDesc,UI,Buff,,,"Your body odor has been purged. Any new smell you create will return normally.",,,,,,,,,,,,,
+
+
+buffLD_ParasitesName,Parasites,Buff,,,,

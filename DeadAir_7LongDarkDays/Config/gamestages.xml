@@ -1,0 +1,66 @@
+<configs>
+	
+	<!-- general idea is 150% more zombies but with the same loot chance hopefully-->
+	<set xpath="/gamestages/config/@lootBonusScale">6</set>
+	<set xpath="/gamestages/config/@lootBonusEvery">30</set>
+	<set xpath="/gamestages/config/@lootBonusMaxCount">60</set>
+	<set xpath="/gamestages/config/@lootWanderingBonusEvery">8</set> <!--Increases the amount of zombies required to reset the loot drop cooldown by 2.5x Vanillla = 3-->
+	<set xpath="/gamestages/config/@lootWanderingBonusScale">6</set> <!--decreases the zombie chance of loot drops modifier such that a 2.5x sized horde will still only give you roughly the same amount of lootbags as a vanilla horde. Vanilla = 15-->
+
+
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[01]/spawn/@num">13</set><!--2.5x rounded up to 13. Vanilla 5-->
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[02]/spawn/@num">25</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[03]/spawn/@num">10</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[04]/spawn/@num">23</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[05]/spawn/@num">10</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[06]/spawn/@num">18</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[07]/spawn/@num">20</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[08]/spawn/@num">13</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[09]/spawn/@num">15</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[10]/spawn/@num">23</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[11]/spawn/@num">15</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[12]/spawn/@num">8</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[13]/spawn/@num">18</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[14]/spawn/@num">15</set>
+	<!--White spaces like this are left to show missing gamestages, they were removed because their horde-type is something unusual and 2.5x them would be unbelievably hard at times-->
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[16]/spawn/@num">23</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[17]/spawn/@num">23</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[18]/spawn/@num">18</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[19]/spawn/@num">20</set>
+
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[21]/spawn/@num">25</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[22]/spawn/@num">20</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[23]/spawn/@num">18</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[24]/spawn/@num">23</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[25]/spawn/@num">25</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[26]/spawn/@num">18</set>
+
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[28]/spawn/@num">23</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[29]/spawn/@num">18</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[30]/spawn/@num">25</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[31]/spawn/@num">23</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[32]/spawn/@num">23</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[33]/spawn/@num">15</set>
+
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[35]/spawn/@num">23</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[36]/spawn/@num">20</set>
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[37]/spawn/@num">25</set> 
+
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[39]/spawn/@num">13</set> 
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[40]/spawn/@num">23</set> 
+ 
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[42]/spawn/@num">28</set> 
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[43]/spawn/@num">23</set> 
+
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[45]/spawn/@num">25</set> 
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[46]/spawn/@num">28</set> 
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[47]/spawn/@num">20</set> 
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[48]/spawn/@num">25</set> 
+	<set xpath="/gamestages/spawner[@name='WanderingHorde']/gamestage[49]/spawn/@num">20</set> 
+
+	<!-- <gamestage name="gsGunStore">
+    <spawn maxAlive="8" entitygroup="ZombiesGunStoreEarly"/>
+    <spawn maxAlive="18" entitygroup="ZombiesGunStoreLate"/>
+    <spawn maxAlive="28" entitygroup="ZombiesGunStoreLate"/>
+	</gamestage> -->
+</configs>

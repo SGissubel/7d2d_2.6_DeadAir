@@ -1,0 +1,2004 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+  <append xpath="/buffs">
+    <buff name="buffDeadAirScreamTest" hidden="false" duration="3">
+      <effect_group>
+
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ShowToolbeltMessage"
+                          message="SCREAM TEST"/>
+
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="PlaySound"
+                          sound="DeadAir_FrustratedZombieScream"
+                          play_in_head="true"/>
+
+      </effect_group>
+    </buff>
+  </append>
+  <remove xpath="/buffs/buff[@name='buffStatusCheck01']/effect_group/triggered_effect[@trigger='onSelfBuffStart' and @action='AddBuff' and @buff='buffNewbieCoat']"/>
+  <remove xpath="/buffs/buff[@name='buffNewbieCoat']/effect_group/passive_effect[@name='WaterChangeOT']"/>
+  <remove xpath="/buffs/buff[@name='buffNewbieCoat']/effect_group/passive_effect[@name='FoodChangeOT']"/>
+  <remove xpath="/buffs/buff[@name='buffNewbieCoat']/effect_group/passive_effect[@name='HealthChangeOT']"/>
+
+  <append xpath="/buffs/buff[@name='buffDukeNote']">
+    <effect_group>
+      <requirement_group op="or">
+        <requirement name="PlayerLevel" operation="GT" value="1"/>
+        <requirement name="CVarCompare" cvar=".dukeNoteRead" operation="Equals" value="1"/>
+      </requirement_group>
+      <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffDukeNote"/>
+    </effect_group>
+  </append>
+
+
+
+  <append xpath="/buffs">
+      <buff name="buffDeadAirHeightRage" icon="ui_game_symbol_rage" hidden="false">
+          <stack_type value="ignore"/>
+          <duration value="10"/>
+
+          <effect_group>
+              <passive_effect name="WalkSpeed" operation="perc_add" value=".50"/>
+              <passive_effect name="RunSpeed" operation="perc_add" value=".50"/>
+              <passive_effect name="BlockDamage" operation="perc_add" value=".20"/>
+          </effect_group>
+      </buff>
+  </append>
+
+  <append xpath="/buffs">
+    <buff name="buffDeadAirHeightRageActive" icon="ui_game_symbol_deadAirHeightRage2" hidden="false">
+        <stack_type value="ignore"/>
+        <duration value="20"/>
+
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="DeadAir_FrustratedZombieScream"/>
+            <effect_description desc_key="buffDeadAirHeightRageActiveDesc"/>
+        </effect_group>
+    </buff>
+</append>
+  
+  <!-- ===================================================== -->
+  <!-- ENVIRONMENT PRESSURE + FATIGUE RULES                   -->
+  <!-- ===================================================== -->
+
+  <!-- ===================================================== -->
+  <!-- OPTION B: Cold/Freezing kick in earlier                -->
+  <!-- Cold: coretemp < 65 and > 40                           -->
+  <!-- Freezing: coretemp <= 40                               -->
+  <!-- ===================================================== -->
+
+  <!-- Cold upper threshold (LT) -->
+  <set xpath="/buffs/buff[@name='buffStatusCheck01']/effect_group/triggered_effect[@action='AddOrRemoveBuff' and @buff='buffElementCold']/requirement[@name='CVarCompare' and @cvar='_coretemp' and @operation='LT']/@value">60</set>
+
+  <!-- Cold lower threshold (GT) -->
+  <set xpath="/buffs/buff[@name='buffStatusCheck0']/effect_group/triggered_effect[@action='AddOrRemoveBuff' and @buff='buffElementCold']/requirement[@name='CVarCompare' and @cvar='_coretemp' and @operation='GT']/@value">40</set>
+
+  <!-- Freezing threshold (LTE) -->
+  <set xpath="/buffs/buff[@name='buffStatusCheck01']/effect_group/triggered_effect[@action='AddOrRemoveBuff' and @buff='buffElementFreezing']/requirement[@name='CVarCompare' and @cvar='_coretemp' and @operation='LTE']/@value">40</set>
+
+
+  <!-- HOT -->
+  <append xpath="/buffs/buff[@name='buffElementHot']/effect_group">
+    <!-- Water drains faster in heat (+20/hour) -->
+    <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.00556"/>
+    <!-- Stamina capacity reduced -->
+    <passive_effect name="StaminaMax" operation="perc_add" value="-0.50"/>
+  </append>
+
+  <!-- SWELTERING -->
+  <append xpath="/buffs/buff[@name='buffElementSweltering']/effect_group">
+    <!-- Water drains much faster (+40/hour) -->
+    <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.01111"/>
+    <passive_effect name="StaminaMax" operation="perc_add" value="-0.65"/>
+    <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.35"/>
+  </append>
+
+
+  <!-- ========================================================= -->
+  <!-- REBALANCED BASE COLD / FREEZING / WET                     -->
+  <!-- ========================================================= -->
+  <set xpath="/buffs/buff[@name='buffElementCold']/effect_group/triggered_effect[@action='ModifyScreenEffect' and @trigger='onSelfBuffStart']/@intensity">0.12</set>
+  <set xpath="/buffs/buff[@name='buffElementFreezing']/effect_group/triggered_effect[@action='ModifyScreenEffect' and @trigger='onSelfBuffStart']/@intensity">0.55</set>
+
+
+  <!-- COLD -->
+  <append xpath="/buffs/buff[@name='buffElementCold']/effect_group">
+    <!-- Slower temp drift; cold should impair, not yo-yo -->
+    <passive_effect name="CoreTempChangeOT" operation="base_subtract" value="0.00056"/>
+
+    <!-- Capacity loss matters -->
+    <passive_effect name="StaminaMax" operation="perc_add" value="-0.10"/>
+    <passive_effect name="HealthMax" operation="perc_add" value="-0.05"/>
+
+    <passive_effect name="WalkSpeed" operation="perc_subtract" value=".06"/>
+    <passive_effect name="RunSpeed" operation="perc_subtract" value=".06"/>
+    <passive_effect name="JumpStrength" operation="perc_subtract" value=".04"/>
+
+    <!-- Mild survival pressure -->
+    <passive_effect name="FoodChangeOT" operation="base_subtract" value="0.00083"/>
+    <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.00042"/>
+    <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.00042"/>
+  </append>
+
+  <!-- FREEZING -->
+  <append xpath="/buffs/buff[@name='buffElementFreezing']/effect_group">
+    <!-- Stronger than cold, but not absurdly fast -->
+    <passive_effect name="CoreTempChangeOT" operation="base_subtract" value="0.00222"/>
+
+    <passive_effect name="StaminaMax" operation="perc_add" value="-0.28"/>
+    <passive_effect name="HealthMax" operation="perc_add" value="-0.18"/>
+
+    <passive_effect name="WalkSpeed" operation="perc_subtract" value=".18"/>
+    <passive_effect name="RunSpeed" operation="perc_subtract" value=".18"/>
+    <passive_effect name="JumpStrength" operation="perc_subtract" value=".12"/>
+
+    <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.00139"/>
+    <passive_effect name="FoodChangeOT" operation="base_subtract" value="0.00278"/>
+    <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.00167"/>
+  </append>
+
+  <!-- WET baseline -->
+  <append xpath="/buffs/buff[@name='buffElementWet']/effect_group[1]">
+    <!-- Wet matters immediately, but doesn't constantly vacuum stamina -->
+    <passive_effect name="CoreTempChangeOT" operation="base_subtract" value="0.00139"/>
+    <passive_effect name="StaminaMax" operation="perc_add" value="-0.08"/>
+    <passive_effect name="HealthMax" operation="perc_add" value="-0.04"/>
+  </append>
+
+  <!-- WET + COLD/FREEZING base escalation -->
+  <append xpath="/buffs/buff[@name='buffElementWet']">
+    <effect_group>
+      <requirement name="HasBuff" buff="buffElementCold,buffElementFreezing"/>
+      <passive_effect name="CoreTempChangeOT" operation="base_subtract" value="0.00222"/>
+      <passive_effect name="StaminaMax" operation="perc_add" value="-0.12"/>
+      <passive_effect name="HealthMax" operation="perc_add" value="-0.08"/>
+      <passive_effect name="WalkSpeed" operation="perc_subtract" value=".08"/>
+      <passive_effect name="RunSpeed" operation="perc_subtract" value=".08"/>
+      <passive_effect name="FoodChangeOT" operation="base_subtract" value="0.00222"/>
+      <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.00222"/>
+    </effect_group>
+  </append>
+
+  <!-- ========================================================= -->
+  <!-- DEADAIR SUPPLEMENTAL THERMAL BUFFS                        -->
+  <!-- Harmony will add/remove these dynamically                 -->
+  <!-- ========================================================= -->
+
+  <append xpath="/buffs">
+    <!-- Outdoor wet shock: mild -->
+    <buff name="buffDeadAirWetShockOutdoor1" hidden="true" icon="ui_game_symbol_snowflake">
+      <stack_type value="ignore"/>
+      <effect_group>
+        <passive_effect name="CoreTempChangeOT" operation="base_subtract" value="0.00111"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.08"/>
+        <passive_effect name="HealthMax" operation="perc_add" value="-0.05"/>
+      </effect_group>
+    </buff>
+
+    <!-- Outdoor wet shock: medium -->
+    <buff name="buffDeadAirWetShockOutdoor2" hidden="true" icon="ui_game_symbol_snowflake">
+      <stack_type value="ignore"/>
+      <effect_group>
+        <passive_effect name="CoreTempChangeOT" operation="base_subtract" value="0.00194"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.15"/>
+        <passive_effect name="HealthMax" operation="perc_add" value="-0.08"/>
+        <passive_effect name="WalkSpeed" operation="perc_subtract" value=".06"/>
+        <passive_effect name="RunSpeed" operation="perc_subtract" value=".06"/>
+      </effect_group>
+    </buff>
+
+    <!-- Outdoor wet shock: severe -->
+    <buff name="buffDeadAirWetShockOutdoor3" hidden="true" icon="ui_game_symbol_snowflake">
+      <stack_type value="ignore"/>
+      <effect_group>
+        <passive_effect name="CoreTempChangeOT" operation="base_subtract" value="0.00306"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.25"/>
+        <passive_effect name="HealthMax" operation="perc_add" value="-0.14"/>
+        <passive_effect name="WalkSpeed" operation="perc_subtract" value=".10"/>
+        <passive_effect name="RunSpeed" operation="perc_subtract" value=".10"/>
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.00139"/>
+      </effect_group>
+    </buff>
+
+    <!-- Sheltered but still wet: lingering chill -->
+    <buff name="buffDeadAirWetResidual1" hidden="true" icon="ui_game_symbol_snowflake">
+      <stack_type value="ignore"/>
+      <effect_group>
+        <passive_effect name="CoreTempChangeOT" operation="base_subtract" value="0.00056"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.05"/>
+      </effect_group>
+    </buff>
+
+    <buff name="buffDeadAirWetResidual2" hidden="true" icon="ui_game_symbol_snowflake">
+      <stack_type value="ignore"/>
+      <effect_group>
+        <passive_effect name="CoreTempChangeOT" operation="base_subtract" value="0.00111"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.10"/>
+        <passive_effect name="HealthMax" operation="perc_add" value="-0.05"/>
+      </effect_group>
+    </buff>
+
+    <!-- True emergency only: soaked + freezing + insufficient heat -->
+    <buff name="buffDeadAirColdEmergency" hidden="true" icon="ui_game_symbol_snowflake">
+      <stack_type value="ignore"/>
+      <effect_group>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.05"/>
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.00222"/>
+        <passive_effect name="WalkSpeed" operation="perc_subtract" value=".12"/>
+        <passive_effect name="RunSpeed" operation="perc_subtract" value=".12"/>
+      </effect_group>
+    </buff>
+
+  </append>
+
+  <!-- OPTIONAL: true emergency stamina drain only when soaked + freezing -->
+  <append xpath="/buffs/buff[@name='buffElementWet']">
+    <effect_group>
+      <requirement name="HasBuff" buff="buffElementFreezing"/>
+      <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.05"/>
+    </effect_group>
+  </append>
+
+
+  <!-- Fatigue trigger: coffee/blackstrap is the counter -->
+  <set xpath="/buffs/buff[@name='buffFatiguedTrigger']/effect_group/requirement[@name='!HasBuff']/@buff">buffCoffee,buffBlackStrapCoffee</set>
+
+  <!-- Remove vitamins magic -->
+  <remove xpath="/buffs/buff[@name='buffFatigued']/effect_group/triggered_effect[@action='RemoveBuff' and @buff='buffFatigued']/requirement[@name='HasBuff' and @buff='buffDrugVitamins']"/>
+
+  <!-- Coffee clears fatigue -->
+  <append xpath="/buffs/buff[@name='buffCoffee']/effect_group[3]">
+    <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFatigued"/>
+  </append>
+
+  <append xpath="/buffs/buff[@name='buffBlackStrapCoffee']/effect_group[3]">
+    <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFatigued"/>
+  </append>
+
+  <append xpath="/buffs">
+
+    <!-- ========================= -->
+    <!-- Parasites: Visible Tracker -->
+    <!-- ========================= -->
+    <buff name="buffLD_ParasitesTracker"
+          name_key="buffLD_ParasitesTrackerName"
+          description_key="buffLD_ParasitesTrackerDesc"
+          icon="ui_game_symbol_parasites"
+          icon_color="255,255,255">
+      <stack_type value="ignore"/>
+      <duration value="999999"/>
+      <update_rate value="1"/>
+      <effect_group>
+
+        <!-- Clamp severity -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$ldParasiteSeverity" operation="set" value="0">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="LT" value="0"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$ldParasiteSeverity" operation="set" value="100">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="GT" value="100"/>
+        </triggered_effect>
+
+        <!-- Legacy cleanup: kill old visible timed parasite buffs -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesStage01"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesStage02"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesStage03"/>
+
+        <!-- Stage 1: 1-33 -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffLD_ParasitesStage01Hidden">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="GTE" value="1"/>
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="LTE" value="33"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesStage02Hidden">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="GTE" value="1"/>
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="LTE" value="33"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesStage03Hidden">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="GTE" value="1"/>
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="LTE" value="33"/>
+        </triggered_effect>
+
+        <!-- Stage 2: 34-66 -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffLD_ParasitesStage02Hidden">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="GTE" value="34"/>
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="LTE" value="66"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesStage01Hidden">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="GTE" value="34"/>
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="LTE" value="66"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesStage03Hidden">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="GTE" value="34"/>
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="LTE" value="66"/>
+        </triggered_effect>
+
+        <!-- Stage 3: 67-100 -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffLD_ParasitesStage03Hidden">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="GTE" value="67"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesStage01Hidden">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="GTE" value="67"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesStage02Hidden">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="GTE" value="67"/>
+        </triggered_effect>
+
+        <!-- If fully cured, remove hidden stages -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesStage01Hidden">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="LTE" value="0"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesStage02Hidden">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="LTE" value="0"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesStage03Hidden">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="LTE" value="0"/>
+        </triggered_effect>
+
+        <!-- Remove tracker itself if fully cured -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLD_ParasitesTracker">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="LTE" value="0"/>
+        </triggered_effect>
+      </effect_group>
+
+      <display_value name="dInfectionChance" value="$ldParasiteSeverity"/>
+    </buff>
+
+    <!-- ========================= -->
+    <!-- Parasites: Hidden Stage 1 -->
+    <!-- ========================= -->
+    <buff name="buffLD_ParasitesStage01Hidden"
+          hidden="true"
+          icon="ui_game_symbol_parasites"
+          icon_color="255,255,255">
+      <stack_type value="ignore"/>
+      <duration value="999999"/>
+      <effect_group>
+        <passive_effect name="FoodMax" operation="perc_add" value="-0.10"/>
+        <passive_effect name="WaterMax" operation="perc_add" value="-0.10"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.12"/>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.20"/>
+        <passive_effect name="FoodChangeOT" operation="base_subtract" value="0.0030"/>
+        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.0030"/>
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.0010"/>
+
+        <triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" message_key="ldMsgParasitesStage01Start"/>
+      </effect_group>
+    </buff>
+
+    <!-- ========================= -->
+    <!-- Parasites: Hidden Stage 2 -->
+    <!-- ========================= -->
+    <buff name="buffLD_ParasitesStage02Hidden"
+          hidden="true"
+          icon="ui_game_symbol_parasites"
+          icon_color="255,165,0">
+      <stack_type value="ignore"/>
+      <duration value="999999"/>
+      <effect_group>
+        <passive_effect name="FoodMax" operation="perc_add" value="-0.18"/>
+        <passive_effect name="WaterMax" operation="perc_add" value="-0.18"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.18"/>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.30"/>
+        <passive_effect name="FoodChangeOT" operation="base_subtract" value="0.0045"/>
+        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.0045"/>
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.0020"/>
+        <passive_effect name="WalkSpeed" operation="perc_subtract" value=".05"/>
+        <passive_effect name="RunSpeed" operation="perc_subtract" value=".05"/>
+
+        <triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" message_key="ldMsgParasitesStage02Start"/>
+      </effect_group>
+    </buff>
+
+    <!-- ========================= -->
+    <!-- Parasites: Hidden Stage 3 -->
+    <!-- ========================= -->
+    <buff name="buffLD_ParasitesStage03Hidden"
+          hidden="true"
+          icon="ui_game_symbol_parasites"
+          icon_color="255,0,0">
+      <stack_type value="ignore"/>
+      <duration value="999999"/>
+      <effect_group>
+        <passive_effect name="FoodMax" operation="perc_add" value="-0.28"/>
+        <passive_effect name="WaterMax" operation="perc_add" value="-0.28"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.25"/>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.40"/>
+        <passive_effect name="FoodChangeOT" operation="base_subtract" value="0.0060"/>
+        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.0060"/>
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.0035"/>
+        <passive_effect name="WalkSpeed" operation="perc_subtract" value=".10"/>
+        <passive_effect name="RunSpeed" operation="perc_subtract" value=".10"/>
+
+        <triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" message_key="ldMsgParasitesStage03Start"/>
+      </effect_group>
+    </buff>
+
+    <!-- ========================= -->
+    <!-- Parasite Tea Course       -->
+    <!-- ========================= -->
+    <buff name="buffLD_ParasiteTeaCourse"
+          name_key="buffLD_ParasiteTeaCourseName"
+          description_key="buffLD_ParasiteTeaCourseDesc"
+          icon="ui_game_symbol_parasites"
+          icon_color="180,255,180">
+      <stack_type value="ignore"/>
+      <duration value="1200"/>
+      <effect_group>
+        <!-- reduce by one stage when course finishes -->
+        <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$ldParasiteSeverity" operation="subtract" value="34"/>
+
+        <!-- legacy cleanup -->
+        <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffLD_ParasitesStage01"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffLD_ParasitesStage02"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffLD_ParasitesStage03"/>
+
+        <!-- if this dose cures the player, add recovery -->
+        <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffLD_ParasiteGutSensitive">
+          <requirement name="CVarCompare" cvar="$ldParasiteSeverity" operation="LTE" value="34"/>
+        </triggered_effect>
+      </effect_group>
+    </buff>
+
+    <!-- ========================= -->
+    <!-- Gut Sensitivity           -->
+    <!-- ========================= -->
+    <buff name="buffLD_ParasiteGutSensitive"
+          name_key="buffLD_ParasiteGutSensitiveName"
+          description_key="buffLD_ParasiteGutSensitiveDesc"
+          icon="ui_game_symbol_parasites"
+          icon_color="180,180,255">
+      <stack_type value="replace"/>
+      <duration value="7200"/>
+      <effect_group>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.05"/>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.08"/>
+        <passive_effect name="FoodChangeOT" operation="base_subtract" value="0.0015"/>
+        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.0015"/>
+
+        <triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" message_key="ldMsgGutSensitiveStart"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="ShowToolbeltMessage" message_key="ldMsgGutSensitiveEnd"/>
+      </effect_group>
+    </buff>
+
+  </append>
+
+
+  <!-- ========================= -->
+  <!-- ETHANOL DRINKING: HORRIBLE -->
+  <!-- ========================= -->
+  <append xpath="/buffs">
+    <buff name="buffEthanolPoisoning" name_key="ldBuffEthanolPoisoningName" description_key="ldBuffEthanolPoisoningDesc"
+          icon="ui_game_symbol_biohazard" icon_color="255,0,0" stack_type="replace" duration="180">
+      <effect_group>
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.7"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.45"/>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.55"/>
+        <passive_effect name="Mobility" operation="base_add" value="-.15"/>
+        <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="player#painmd"/>
+        <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffWoundInfectionTreatmentMessage"/>
+      </effect_group>
+    </buff>
+  </append>
+
+  <append xpath="/buffs">
+    <buff name="buffWoundInfectionTreatmentMessage"
+        hidden="true"
+        remove_on_death="false"
+        duration="2"
+        stack_type="ignore">
+
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffStart" action="PinToolbeltMessage" message_key="ldMsgWoundInfectionTreatmentApplied"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="RemoveToolbeltMessage" message_key="ldMsgWoundInfectionTreatmentApplied"/>
+      </effect_group>
+    </buff>
+  </append>
+
+  <!-- ===================================================== -->
+  <!-- DEAD AIR: POOPY BUTT (DYSENTERY-LIKE)                  -->
+  <!-- - Toolbelt message on start                            -->
+  <!-- - Food & water drain over time                         -->
+  <!-- ===================================================== -->
+
+  <append xpath="/buffs/buff[@name='buffDysenteryCatchFood']/effect_group">
+    <triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" str="Looks like you got that poopy butt!"/>
+  </append>
+  
+
+
+  <!-- ===================================================== -->
+  <!-- SOLDIER HELMET SYSTEM (DeadAir)                       -->
+  <!-- - Ranged hits increment helmet "integrity" counter    -->
+  <!-- - Until broken: headshots are heavily reduced         -->
+  <!-- - Each hit: plays CLANG                               -->
+  <!-- - When threshold reached: helmet breaks -> normal dmg -->
+  <!-- ===================================================== -->
+
+  <!-- Tracks helmet "integrity" hits (hidden, persistent) -->
+  <append xpath="/buffs">
+    <buff name="buffDA_HelmetIntegrity" hidden="true" stack_type="ignore" duration="0">
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffStart" action="SetCVar" cvar="daHelmetHits" value="0"/>
+      </effect_group>
+    </buff>
+
+    <buff name="buffDA_HelmetBroken" hidden="true" stack_type="ignore" duration="0">
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffStart" action="SetCVar" cvar="daHelmetHits" value="0"/>
+      </effect_group>
+    </buff>
+  </append>
+
+
+
+
+
+  <append xpath="/buffs">
+
+    <!-- ===================================================== -->
+    <!-- PARASITE SYSTEM                                       -->
+    <!-- ===================================================== -->
+
+    <!-- Starter: used when parasites first begin -->
+    <buff name="buffLD_ParasitesCatch"
+          hidden="true"
+          stack_type="ignore"
+          duration="0.1"
+          icon="ui_game_symbol_parasites">
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="AddBuff"
+                          buff="buffLD_ParasitesMain">
+          <requirement name="!HasBuff" buff="buffLD_ParasitesMain"/>
+        </triggered_effect>
+      </effect_group>
+    </buff>
+
+    <!-- Tea treatment: 20% total cure over time -->
+    <buff name="buffLD_ParasiteTeaCourse"
+          hidden="true"
+          stack_type="ignore"
+          duration="100"
+          icon="ui_game_symbol_parasites"/>
+
+    <!-- Tonic treatment: 50% total cure over time -->
+    <buff name="buffLD_ParasiteTonicCourse"
+          hidden="true"
+          stack_type="ignore"
+          duration="50"
+          icon="ui_game_symbol_parasites"/>
+
+    <!-- Main hidden parasite handler -->
+    <buff name="buffLD_ParasitesMain"
+          hidden="true"
+          stack_type="ignore"
+          duration="0"
+          update_rate="1"
+          icon="ui_game_symbol_parasites">
+
+      <!-- Initial setup -->
+      <effect_group name="setup_cleanup">
+
+        <!-- Only set to 1 if starting fresh -->
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="ldParasiteCounter"
+                          operation="set"
+                          value="1">
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="LTE" value="0"/>
+        </triggered_effect>
+
+        <!-- Remove legacy parasite display/tracker buffs if any still exist -->
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="RemoveBuff"
+                          buff="buffLD_ParasitesTracker,
+                                buffLD_ParasitesStage01,
+                                buffLD_ParasitesStage02,
+                                buffLD_ParasitesStage03"/>
+
+        <!-- Full cleanup when system ends -->
+        <triggered_effect trigger="onSelfBuffRemove"
+                          action="RemoveBuff"
+                          buff="buffLD_ParasiteTeaCourse,
+                                buffLD_ParasiteTonicCourse,
+                                buffLD_Parasites01Untreated,
+                                buffLD_Parasites01GetBetter,
+                                buffLD_Parasites02Untreated,
+                                buffLD_Parasites02GetBetter,
+                                buffLD_Parasites03Untreated,
+                                buffLD_Parasites03GetBetter"/>
+
+        <triggered_effect trigger="onSelfBuffRemove"
+                          action="RemoveCVar"
+                          cvar="ldParasiteCounter,
+                                .ldParasiteDisplayPerc"/>
+      </effect_group>
+
+      <!-- Main loop -->
+      <effect_group name="main_loop">
+
+        <!-- Remove any leftover legacy display buffs every update -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffLD_ParasitesTracker,
+                                buffLD_ParasitesStage01,
+                                buffLD_ParasitesStage02,
+                                buffLD_ParasitesStage03"/>
+
+        <!-- Untreated parasites worsen slowly -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="ldParasiteCounter"
+                          operation="add"
+                          value="0.02">
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTeaCourse"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <!-- Tea heals slowly: 20% total over 100s -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="ldParasiteCounter"
+                          operation="add"
+                          value="-0.20">
+          <requirement name="HasBuff" buff="buffLD_ParasiteTeaCourse"/>
+        </triggered_effect>
+
+        <!-- Tonic heals faster: 50% total over 50s -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="ldParasiteCounter"
+                          operation="add"
+                          value="-1.00">
+          <requirement name="HasBuff" buff="buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <!-- Clamp floor -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="ldParasiteCounter"
+                          operation="set"
+                          value="0">
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="LT" value="0"/>
+        </triggered_effect>
+
+        <!-- Clamp cap -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="ldParasiteCounter"
+                          operation="set"
+                          value="100">
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GT" value="100"/>
+        </triggered_effect>
+
+        <!-- Push visible percentage into display cvar -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".ldParasiteDisplayPerc"
+                          operation="set"
+                          value="@ldParasiteCounter"/>
+
+        <!-- Remove system when fully cured -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffLD_ParasitesMain">
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="LTE" value="0"/>
+        </triggered_effect>
+      </effect_group>
+
+      <!-- Stage switching -->
+      <effect_group name="stage_switching">
+
+        <!-- ================================================== -->
+        <!-- STAGE 1 untreated : 0 < counter < 25               -->
+        <!-- ================================================== -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffLD_Parasites01GetBetter,
+                                buffLD_Parasites02Untreated,
+                                buffLD_Parasites02GetBetter,
+                                buffLD_Parasites03Untreated,
+                                buffLD_Parasites03GetBetter">
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GT" value="0"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="LT" value="25"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTeaCourse"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffLD_Parasites01Untreated">
+          <requirement name="!HasBuff" buff="buffLD_Parasites01Untreated"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GT" value="0"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="LT" value="25"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTeaCourse"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <!-- ================================================== -->
+        <!-- STAGE 1 getting better                             -->
+        <!-- ================================================== -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffLD_Parasites01Untreated,
+                                buffLD_Parasites02Untreated,
+                                buffLD_Parasites02GetBetter,
+                                buffLD_Parasites03Untreated,
+                                buffLD_Parasites03GetBetter">
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GT" value="0"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="LT" value="25"/>
+          <requirement name="HasBuff" buff="buffLD_ParasiteTeaCourse,buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffLD_Parasites01GetBetter">
+          <requirement name="!HasBuff" buff="buffLD_Parasites01GetBetter"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GT" value="0"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="LT" value="25"/>
+          <requirement name="HasBuff" buff="buffLD_ParasiteTeaCourse,buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <!-- ================================================== -->
+        <!-- STAGE 2 untreated : 25 <= counter < 50             -->
+        <!-- ================================================== -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffLD_Parasites01Untreated,
+                                buffLD_Parasites01GetBetter,
+                                buffLD_Parasites02GetBetter,
+                                buffLD_Parasites03Untreated,
+                                buffLD_Parasites03GetBetter">
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GTE" value="25"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="LT" value="50"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTeaCourse"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffLD_Parasites02Untreated">
+          <requirement name="!HasBuff" buff="buffLD_Parasites02Untreated"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GTE" value="25"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="LT" value="50"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTeaCourse"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <!-- ================================================== -->
+        <!-- STAGE 2 getting better                             -->
+        <!-- ================================================== -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffLD_Parasites01Untreated,
+                                buffLD_Parasites01GetBetter,
+                                buffLD_Parasites02Untreated,
+                                buffLD_Parasites03Untreated,
+                                buffLD_Parasites03GetBetter">
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GTE" value="25"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="LT" value="50"/>
+          <requirement name="HasBuff" buff="buffLD_ParasiteTeaCourse,buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffLD_Parasites02GetBetter">
+          <requirement name="!HasBuff" buff="buffLD_Parasites02GetBetter"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GTE" value="25"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="LT" value="50"/>
+          <requirement name="HasBuff" buff="buffLD_ParasiteTeaCourse,buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <!-- ================================================== -->
+        <!-- STAGE 3 untreated : 50+                            -->
+        <!-- ================================================== -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffLD_Parasites01Untreated,
+                                buffLD_Parasites01GetBetter,
+                                buffLD_Parasites02Untreated,
+                                buffLD_Parasites02GetBetter,
+                                buffLD_Parasites03GetBetter">
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GTE" value="50"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTeaCourse"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffLD_Parasites03Untreated">
+          <requirement name="!HasBuff" buff="buffLD_Parasites03Untreated"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GTE" value="50"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTeaCourse"/>
+          <requirement name="!HasBuff" buff="buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <!-- ================================================== -->
+        <!-- STAGE 3 getting better                             -->
+        <!-- ================================================== -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffLD_Parasites01Untreated,
+                                buffLD_Parasites01GetBetter,
+                                buffLD_Parasites02Untreated,
+                                buffLD_Parasites02GetBetter,
+                                buffLD_Parasites03Untreated">
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GTE" value="50"/>
+          <requirement name="HasBuff" buff="buffLD_ParasiteTeaCourse,buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffLD_Parasites03GetBetter">
+          <requirement name="!HasBuff" buff="buffLD_Parasites03GetBetter"/>
+          <requirement name="CVarCompare" cvar="ldParasiteCounter" operation="GTE" value="50"/>
+          <requirement name="HasBuff" buff="buffLD_ParasiteTeaCourse,buffLD_ParasiteTonicCourse"/>
+        </triggered_effect>
+
+      </effect_group>
+    </buff>
+
+    <!-- ===================================================== -->
+    <!-- VISIBLE STAGE BUFFS                                   -->
+    <!-- ===================================================== -->
+
+    <!-- Stage 1 untreated -->
+    <buff name="buffLD_Parasites01Untreated"
+          name_key="buffLD_ParasitesName"
+          description_key="buffLD_ParasitesStage01Desc"
+          icon="ui_game_symbol_parasites"
+          icon_color="255,255,255"
+          icon_blink="true"
+          stack_type="ignore"
+          duration="0">
+
+      <display_value_key value="{0:0}%"/>
+      <display_value value=".ldParasiteDisplayPerc"/>
+
+      <effect_group>
+        <passive_effect name="HealthMax" operation="perc_add" value="-0.10"/>
+        <passive_effect name="FoodMax" operation="perc_add" value="-0.10"/>
+        <passive_effect name="WaterMax" operation="perc_add" value="-0.10"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.10"/>
+
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.12"/>
+        <passive_effect name="FoodChangeOT" operation="base_subtract" value="0.0020"/>
+        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.0020"/>
+
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ShowToolbeltMessage"
+                          message_key="ldMsgParasitesStage01Start"/>
+      </effect_group>
+    </buff>
+
+    <!-- Stage 1 getting better -->
+    <buff name="buffLD_Parasites01GetBetter"
+          name_key="buffLD_ParasitesName"
+          description_key="buffLD_ParasitesStage01Desc"
+          icon="ui_game_symbol_parasites"
+          icon_color="180,255,180"
+          icon_blink="true"
+          stack_type="ignore"
+          duration="0">
+
+      <display_value_key value="{0:0}%"/>
+      <display_value value=".ldParasiteDisplayPerc"/>
+
+      <effect_group>
+        <passive_effect name="HealthMax" operation="perc_add" value="-0.10"/>
+        <passive_effect name="FoodMax" operation="perc_add" value="-0.10"/>
+        <passive_effect name="WaterMax" operation="perc_add" value="-0.10"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.10"/>
+
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.06"/>
+      </effect_group>
+    </buff>
+
+    <!-- Stage 2 untreated -->
+    <buff name="buffLD_Parasites02Untreated"
+          name_key="buffLD_ParasitesName"
+          description_key="buffLD_ParasitesStage02Desc"
+          icon="ui_game_symbol_parasites"
+          icon_color="255,128,0"
+          icon_blink="true"
+          stack_type="ignore"
+          duration="0">
+
+      <display_value_key value="{0:0}%"/>
+      <display_value value=".ldParasiteDisplayPerc"/>
+
+      <effect_group>
+        <passive_effect name="HealthMax" operation="perc_add" value="-0.20"/>
+        <passive_effect name="FoodMax" operation="perc_add" value="-0.20"/>
+        <passive_effect name="WaterMax" operation="perc_add" value="-0.20"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.20"/>
+
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.24"/>
+        <passive_effect name="FoodChangeOT" operation="base_subtract" value="0.0035"/>
+        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.0035"/>
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.0010"/>
+        <passive_effect name="WalkSpeed" operation="perc_subtract" value="0.04"/>
+        <passive_effect name="RunSpeed" operation="perc_subtract" value="0.04"/>
+
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ShowToolbeltMessage"
+                          message_key="ldMsgParasitesStage02Start"/>
+      </effect_group>
+    </buff>
+
+    <!-- Stage 2 getting better -->
+    <buff name="buffLD_Parasites02GetBetter"
+          name_key="buffLD_ParasitesName"
+          description_key="buffLD_ParasitesStage02Desc"
+          icon="ui_game_symbol_parasites"
+          icon_color="180,255,180"
+          icon_blink="true"
+          stack_type="ignore"
+          duration="0">
+
+      <display_value_key value="{0:0}%"/>
+      <display_value value=".ldParasiteDisplayPerc"/>
+
+      <effect_group>
+        <passive_effect name="HealthMax" operation="perc_add" value="-0.20"/>
+        <passive_effect name="FoodMax" operation="perc_add" value="-0.20"/>
+        <passive_effect name="WaterMax" operation="perc_add" value="-0.20"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.20"/>
+
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.12"/>
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.0005"/>
+      </effect_group>
+    </buff>
+
+    <!-- Stage 3 untreated -->
+    <buff name="buffLD_Parasites03Untreated"
+          name_key="buffLD_ParasitesName"
+          description_key="buffLD_ParasitesStage03Desc"
+          icon="ui_game_symbol_parasites"
+          icon_color="255,0,0"
+          icon_blink="true"
+          stack_type="ignore"
+          duration="0">
+
+      <display_value_key value="{0:0}%"/>
+      <display_value value=".ldParasiteDisplayPerc"/>
+
+      <effect_group>
+        <passive_effect name="HealthMax" operation="perc_add" value="-0.30"/>
+        <passive_effect name="FoodMax" operation="perc_add" value="-0.30"/>
+        <passive_effect name="WaterMax" operation="perc_add" value="-0.30"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.30"/>
+
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.40"/>
+        <passive_effect name="FoodChangeOT" operation="base_subtract" value="0.0060"/>
+        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.0060"/>
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.0035"/>
+        <passive_effect name="WalkSpeed" operation="perc_subtract" value="0.10"/>
+        <passive_effect name="RunSpeed" operation="perc_subtract" value="0.10"/>
+
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ShowToolbeltMessage"
+                          message_key="ldMsgParasitesStage03Start"/>
+      </effect_group>
+    </buff>
+
+    <!-- Stage 3 getting better -->
+    <buff name="buffLD_Parasites03GetBetter"
+          name_key="buffLD_ParasitesName"
+          description_key="buffLD_ParasitesStage03Desc"
+          icon="ui_game_symbol_parasites"
+          icon_color="180,255,180"
+          icon_blink="true"
+          stack_type="ignore"
+          duration="0">
+
+      <display_value_key value="{0:0}%"/>
+      <display_value value=".ldParasiteDisplayPerc"/>
+
+      <effect_group>
+        <passive_effect name="HealthMax" operation="perc_add" value="-0.30"/>
+        <passive_effect name="FoodMax" operation="perc_add" value="-0.30"/>
+        <passive_effect name="WaterMax" operation="perc_add" value="-0.30"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.30"/>
+
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.18"/>
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.0015"/>
+      </effect_group>
+    </buff>
+
+  </append>
+
+
+  
+  <append xpath="/buffs">
+
+    <!-- =============================== -->
+    <!-- PURE ETHANOL POISONING (MAIN)   -->
+    <!-- =============================== -->
+    <buff name="buffEthanolPoisoning"
+          name_key="ldBuffEthanolPoisoningName"
+          description_key="ldBuffEthanolPoisoningDesc"
+          icon="ui_game_symbol_ethanol" icon_color="255,0,0"
+          stack_type="replace"
+          duration="90"
+          update_rate="1"
+          tags="deathpenalty_injured">
+
+      <!-- Core punishment -->
+      <effect_group>
+        <!-- HARD dehydration: ~60 water/hour -->
+        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.01667"/>
+
+        <!-- HARD stamina drain + reduced stamina pool -->
+        <passive_effect name="StaminaChangeOT" operation="base_subtract" value="2.0"/>
+        <passive_effect name="StaminaMax" operation="perc_add" value="-0.40"/>
+
+        <!-- Mild health drain -->
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value="0.15"/>
+
+        <!-- Slight movement penalty baseline -->
+        <passive_effect name="Mobility" operation="base_add" value="-.10"/>
+      </effect_group>
+
+      <!-- Vomit / retch pulses -->
+      <effect_group name="vomit pulses">
+        <!-- init timer -->
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$ethanolVomitTimer" operation="set" value="12"/>
+
+        <!-- tick timer down -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$ethanolVomitTimer" operation="add" value="-1"/>
+
+        <!-- when timer hits 0: pulse effects -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="player#vomit">
+          <requirement name="CVarCompare" cvar="$ethanolVomitTimer" operation="LTE" value="0"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Stamina" operation="subtract" value="35">
+          <requirement name="CVarCompare" cvar="$ethanolVomitTimer" operation="LTE" value="0"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Water" operation="subtract" value="10">
+          <requirement name="CVarCompare" cvar="$ethanolVomitTimer" operation="LTE" value="0"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="subtract" value="3">
+          <requirement name="CVarCompare" cvar="$ethanolVomitTimer" operation="LTE" value="0"/>
+        </triggered_effect>
+
+        <!-- reset timer -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$ethanolVomitTimer" operation="set" value="12">
+          <requirement name="CVarCompare" cvar="$ethanolVomitTimer" operation="LTE" value="0"/>
+        </triggered_effect>
+
+        <!-- cleanup -->
+        <triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="$ethanolVomitTimer"/>
+      </effect_group>
+
+      <!-- Periodic blur (simple timer loop) -->
+      <effect_group name="periodic blur">
+        <!-- init timer -->
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$ethanolBlurTimer" operation="set" value="8"/>
+
+        <!-- tick -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$ethanolBlurTimer" operation="add" value="-1"/>
+
+        <!-- when timer hits 0, trigger blur and reset to a new random window -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffEthanolBlur">
+          <requirement name="CVarCompare" cvar="$ethanolBlurTimer" operation="LTE" value="0"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$ethanolBlurTimer" operation="set" value="randomint(6,16)">
+          <requirement name="CVarCompare" cvar="$ethanolBlurTimer" operation="LTE" value="0"/>
+        </triggered_effect>
+
+        <!-- cleanup -->
+        <triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="$ethanolBlurTimer"/>
+      </effect_group>
+
+    </buff>
+
+
+    <!-- =============================== -->
+    <!-- ETHANOL BLUR (CLONE OF CONC)    -->
+    <!-- =============================== -->
+    <buff name="buffEthanolBlur"
+          name_key="ldBuffEthanolBlurName"
+          icon="ui_game_symbol_ethanol"
+          icon_color="255,0,0"
+          hidden="true">
+
+      <damage_type value="Bashing"/>
+      <duration value="5"/>
+
+      <effect_group>
+        <!-- Blinks the ethanol poisoning icon (not concussion) -->
+        <passive_effect name="BuffBlink" operation="base_set" value="2" duration="0,4" tags="buffEthanolPoisoning"/>
+
+        <!-- Stumble / movement penalty during blur -->
+        <passive_effect name="RunSpeed" operation="perc_subtract" value="0.8,.2" duration="0,5"/>
+        <passive_effect name="WalkSpeed" operation="perc_subtract" value="0.8,.2" duration="0,5"/>
+        <passive_effect name="CrouchSpeed" operation="perc_subtract" value="0.8,.2" duration="0,5"/>
+        <passive_effect name="JumpStrength" operation="perc_subtract" value="0.8,.2" duration="0,5"/>
+
+        <!-- Screen blur -->
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="0.3" fade="1" effect_name="Blur"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Blur"/>
+
+        <!-- Audio cue (reuse stunned sound so it feels awful) -->
+        <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_stunned" play_in_head="true"/>
+        <triggered_effect trigger="onSelfEnteredGame" action="PlaySound" sound="buff_stunned" play_in_head="true"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="FadeOutSound" sound="buff_stunned" play_in_head="true"/>
+        <triggered_effect trigger="onSelfLeaveGame" action="StopSound" sound="buff_stunned" play_in_head="true"/>
+
+        <!-- Camera shake -->
+        <triggered_effect trigger="onSelfBuffStart" action="ShakeCamera" shake_speed="0.02" shake_amplitude="60" shake_time="10"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="ShakeCamera" shake_speed="0" shake_amplitude="0" shake_time="10"/>
+      </effect_group>
+
+    </buff>
+
+  </append>
+
+
+
+  <append xpath="/buffs">
+
+    <!-- ===================================================== -->
+    <!-- COLON CLEANSE: successful fresh state                 -->
+    <!-- ===================================================== -->
+    <buff name="buffColonCleanseFresh" icon="ui_game_symbol_purified_water">
+      <duration value="180"/>
+      <stack_type value="ignore"/>
+      <description_key value="buffColonCleanseFreshDesc"/>
+
+      <effect_group>
+        <!-- Internal state flag -->
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="colonCleanseActive" operation="set" value="1"/>
+
+        <!-- Reset BODY smell only -->
+        <!-- Replace bodySmell with your actual body odor cvar -->
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="smell" operation="set" value="0"/>
+
+        <!-- Optional small punishment so it doesn't feel free -->
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Food" operation="add" value="-3"/>
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Water" operation="add" value="-8"/>
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Stamina" operation="add" value="-15"/>
+
+        <!-- On expire, clear active state -->
+        <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="colonCleanseActive" operation="set" value="0"/>
+      </effect_group>
+    </buff>
+
+    <!-- ===================================================== -->
+    <!-- Optional side effects / cramps                        -->
+    <!-- ===================================================== -->
+    <buff name="buffColonCleanseCramps" icon="ui_game_symbol_dysentery" hidden="true">
+      <duration value="8"/>
+      <stack_type value="ignore"/>
+
+      <effect_group>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.25"/>
+      </effect_group>
+    </buff>
+
+    <buff name="buffColonCleanseReady" icon="ui_game_symbol_purified_water" hidden="true">
+      <duration value="45"/>
+      <stack_type value="ignore"/>
+    </buff>
+
+    <buff name="buffColonCleanseFresh" icon="ui_game_symbol_colon_cleanse">
+      <duration value="180"/>
+      <stack_type value="ignore"/>
+      <description_key value="buffColonCleanseFreshDesc"/>
+
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="colonCleanseActive" operation="set" value="1"/>
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="smell" operation="set" value="0"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="colonCleanseActive" operation="set" value="0"/>
+        <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffSmell"/>
+        <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffSmellGrace"/>
+      </effect_group>
+    </buff>
+
+    <buff name="buffColonCleanseCramps" icon="ui_game_symbol_dysentery" hidden="true">
+      <duration value="8"/>
+      <stack_type value="ignore"/>
+
+      <effect_group>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" duration="0,2" value="-0.45"/>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" duration="2,9999" value="-0.2"/>
+      </effect_group>
+    </buff>
+
+  </append>
+
+
+
+  <!-- ===================================================== -->
+  <!-- WOUND INFECTION SYSTEM                                -->
+  <!-- ===================================================== -->
+
+  <!-- STARTER: applied by dirty bandage item -->
+  <append xpath="/buffs">
+    <buff name="buffWoundInfectionCatch"
+          hidden="true"
+          stack_type="ignore"
+          duration="0.1"
+          icon="ui_game_symbol_woundinfection">
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="AddBuff"
+                          buff="buffWoundInfectionMain">
+          <requirement name="!HasBuff" buff="buffWoundInfectionMain"/>
+        </triggered_effect>
+      </effect_group>
+    </buff>
+  </append>
+
+  <!-- MAIN CONTROLLER -->
+  <append xpath="/buffs">
+    <buff name="buffWoundInfectionMain"
+          name_key="ldBuffWoundInfectionName"
+          hidden="true"
+          icon="ui_game_symbol_woundinfection">
+      <damage_type value="Infection"/>
+      <stack_type value="ignore"/>
+      <duration value="0"/>
+      <update_rate value="1"/>
+      <tags value="deathpenalty_injured"/>
+
+      <!-- setup / cleanup -->
+      <effect_group name="setup_cleanup">
+        <!-- Start at ~1% only if not already active -->
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="woundInfectionCounter"
+                          operation="set"
+                          value="252">
+          <requirement name="CVarCompare"
+                      cvar="woundInfectionCounter"
+                      operation="LTE"
+                      value="0"/>
+        </triggered_effect>
+
+        <!-- 7 hour max -->
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="$woundInfectionMaxDuration"
+                          operation="set"
+                          value="25200"/>
+
+        <!-- stage thresholds as percentages -->
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="$woundInfectionStage2Percent"
+                          operation="set"
+                          value="25"/>
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="$woundInfectionStage3Percent"
+                          operation="set"
+                          value="50"/>
+
+        <!-- divisor for UI display -->
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="$woundInfectionDisplayDivisor"
+                          operation="set"
+                          value="@$woundInfectionMaxDuration"/>
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="$woundInfectionDisplayDivisor"
+                          operation="divide"
+                          value="100"/>
+
+        <!-- convert stage percentages into actual counter thresholds -->
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="$woundInfectionStage2Duration"
+                          operation="set"
+                          value="@$woundInfectionStage2Percent"/>
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="$woundInfectionStage2Duration"
+                          operation="multiply"
+                          value="@$woundInfectionDisplayDivisor"/>
+
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="$woundInfectionStage3Duration"
+                          operation="set"
+                          value="@$woundInfectionStage3Percent"/>
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="$woundInfectionStage3Duration"
+                          operation="multiply"
+                          value="@$woundInfectionDisplayDivisor"/>
+
+        <!-- cleanup -->
+        <triggered_effect trigger="onSelfBuffRemove"
+                          action="RemoveCVar"
+                          cvar="woundInfectionCounter,
+                                .woundInfectionDisplayPerc,
+                                $woundInfectionMaxDuration,
+                                $woundInfectionDisplayDivisor,
+                                $woundInfectionStage2Percent,
+                                $woundInfectionStage3Percent,
+                                $woundInfectionStage2Duration,
+                                $woundInfectionStage3Duration,
+                                .dummyWI,
+                                .daWoundInfectionStage,
+                                .daWoundInfectionStagePrev,
+                                .daWoundInfectionMsgGate"/>
+
+        <triggered_effect trigger="onSelfBuffRemove"
+                          action="RemoveBuff"
+                          buff="buffWoundInfection01Untreated,
+                                buffWoundInfection01GetBetter,
+                                buffWoundInfection02Untreated,
+                                buffWoundInfection02GetBetter,
+                                buffWoundInfection03Untreated,
+                                buffWoundInfection03GetBetter,
+                                buffWoundInfection04,
+                                buffWoundInfectionGetsWorse,
+                                buffWoundInfectionFeverPulse,
+                                buffWoundInfectionTreatmentActive"/>
+      </effect_group>
+
+      <!-- main loop -->
+      <effect_group name="main_loop">
+        <!-- infection worsens only while NOT under treatment -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="woundInfectionCounter"
+                          operation="add"
+                          value="2">
+          <requirement name="!HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <!-- natural healing slightly resists untreated progression -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".dummyWI"
+                          operation="set"
+                          value="@$critHitNaturalHealingRate">
+          <requirement name="!HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".dummyWI"
+                          operation="divide"
+                          value="4">
+          <requirement name="!HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="woundInfectionCounter"
+                          operation="subtract"
+                          value="@.dummyWI">
+          <requirement name="!HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <!-- active treatment slowly reduces infection -->
+        <!-- 10% total over 120 sec = about 2520 total healing -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="woundInfectionCounter"
+                          operation="add"
+                          value="-21">
+          <requirement name="HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <!-- clamp floor -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="woundInfectionCounter"
+                          operation="set"
+                          value="0">
+          <requirement name="CVarCompare"
+                      cvar="woundInfectionCounter"
+                      operation="LT"
+                      value="0"/>
+        </triggered_effect>
+
+        <!-- cap max -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="woundInfectionCounter"
+                          operation="set"
+                          value="@$woundInfectionMaxDuration">
+          <requirement name="CVarCompare"
+                      cvar="woundInfectionCounter"
+                      operation="GT"
+                      value="@$woundInfectionMaxDuration"/>
+        </triggered_effect>
+
+        <!-- fully cured -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffWoundInfectionMain">
+          <requirement name="CVarCompare"
+                      cvar="woundInfectionCounter"
+                      operation="LTE"
+                      value="0"/>
+        </triggered_effect>
+      </effect_group>
+
+      <!-- damage spike -->
+      <effect_group name="damage_spike">
+        <triggered_effect trigger="onOtherAttackedSelf"
+                          action="AddBuff"
+                          buff="buffWoundInfectionGetsWorse"/>
+        <triggered_effect trigger="onOtherAttackedSelf"
+                          action="ModifyCVar"
+                          cvar="woundInfectionCounter"
+                          operation="add"
+                          value="50"/>
+        <triggered_effect trigger="onOtherAttackedSelf"
+                          action="ModifyCVar"
+                          cvar="woundInfectionCounter"
+                          operation="set"
+                          value="@$woundInfectionMaxDuration">
+          <requirement name="CVarCompare"
+                      cvar="woundInfectionCounter"
+                      operation="GT"
+                      value="@$woundInfectionMaxDuration"/>
+        </triggered_effect>
+      </effect_group>
+
+      <!-- display percentage -->
+      <effect_group name="display_values">
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".woundInfectionDisplayPerc"
+                          operation="set"
+                          value="@woundInfectionCounter"/>
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".woundInfectionDisplayPerc"
+                          operation="divide"
+                          value="@$woundInfectionDisplayDivisor"/>
+      </effect_group>
+
+      <!-- stage display switching -->
+      <effect_group name="stage_switching">
+
+        <!-- Stage 1 untreated -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffWoundInfection01GetBetter,
+                                buffWoundInfection02Untreated,
+                                buffWoundInfection02GetBetter,
+                                buffWoundInfection03Untreated,
+                                buffWoundInfection03GetBetter">
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GT" value="0"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionStage2Duration"/>
+          <requirement name="!HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffWoundInfection01Untreated">
+          <requirement name="!HasBuff" buff="buffWoundInfection01Untreated"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GT" value="0"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionStage2Duration"/>
+          <requirement name="!HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <!-- Stage 1 getting better -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffWoundInfection01Untreated,
+                                buffWoundInfection02Untreated,
+                                buffWoundInfection02GetBetter,
+                                buffWoundInfection03Untreated,
+                                buffWoundInfection03GetBetter">
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GT" value="0"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionStage2Duration"/>
+          <requirement name="HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffWoundInfection01GetBetter">
+          <requirement name="!HasBuff" buff="buffWoundInfection01GetBetter"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GT" value="0"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionStage2Duration"/>
+          <requirement name="HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <!-- Stage 2 untreated -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffWoundInfection01Untreated,
+                                buffWoundInfection01GetBetter,
+                                buffWoundInfection02GetBetter,
+                                buffWoundInfection03Untreated,
+                                buffWoundInfection03GetBetter">
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GTE" value="@$woundInfectionStage2Duration"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionStage3Duration"/>
+          <requirement name="!HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffWoundInfection02Untreated">
+          <requirement name="!HasBuff" buff="buffWoundInfection02Untreated"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GTE" value="@$woundInfectionStage2Duration"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionStage3Duration"/>
+          <requirement name="!HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <!-- Stage 2 getting better -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffWoundInfection01Untreated,
+                                buffWoundInfection01GetBetter,
+                                buffWoundInfection02Untreated,
+                                buffWoundInfection03Untreated,
+                                buffWoundInfection03GetBetter">
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GTE" value="@$woundInfectionStage2Duration"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionStage3Duration"/>
+          <requirement name="HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffWoundInfection02GetBetter">
+          <requirement name="!HasBuff" buff="buffWoundInfection02GetBetter"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GTE" value="@$woundInfectionStage2Duration"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionStage3Duration"/>
+          <requirement name="HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <!-- Stage 3 untreated -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffWoundInfection01Untreated,
+                                buffWoundInfection01GetBetter,
+                                buffWoundInfection02Untreated,
+                                buffWoundInfection02GetBetter,
+                                buffWoundInfection03GetBetter">
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GTE" value="@$woundInfectionStage3Duration"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionMaxDuration"/>
+          <requirement name="!HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffWoundInfection03Untreated">
+          <requirement name="!HasBuff" buff="buffWoundInfection03Untreated"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GTE" value="@$woundInfectionStage3Duration"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionMaxDuration"/>
+          <requirement name="!HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <!-- Stage 3 getting better -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="RemoveBuff"
+                          buff="buffWoundInfection01Untreated,
+                                buffWoundInfection01GetBetter,
+                                buffWoundInfection02Untreated,
+                                buffWoundInfection02GetBetter,
+                                buffWoundInfection03Untreated">
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GTE" value="@$woundInfectionStage3Duration"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionMaxDuration"/>
+          <requirement name="HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffWoundInfection03GetBetter">
+          <requirement name="!HasBuff" buff="buffWoundInfection03GetBetter"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GTE" value="@$woundInfectionStage3Duration"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionMaxDuration"/>
+          <requirement name="HasBuff" buff="buffWoundInfectionTreatmentActive"/>
+        </triggered_effect>
+
+        <!-- death at 100% -->
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffWoundInfection04">
+          <requirement name="CVarCompare"
+                      cvar="woundInfectionCounter"
+                      operation="GTE"
+                      value="@$woundInfectionMaxDuration"/>
+        </triggered_effect>
+      </effect_group>
+
+      <!-- stage tracking / one-time messages -->
+      <effect_group name="stage_tracking">
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".daWoundInfectionStage"
+                          operation="set"
+                          value="0"/>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".daWoundInfectionStage"
+                          operation="set"
+                          value="1">
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GT" value="0"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionStage2Duration"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".daWoundInfectionStage"
+                          operation="set"
+                          value="2">
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GTE" value="@$woundInfectionStage2Duration"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionStage3Duration"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".daWoundInfectionStage"
+                          operation="set"
+                          value="3">
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="GTE" value="@$woundInfectionStage3Duration"/>
+          <requirement name="CVarCompare" cvar="woundInfectionCounter" operation="LT" value="@$woundInfectionMaxDuration"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".daWoundInfectionStagePrev"
+                          operation="set"
+                          value="@.daWoundInfectionStage">
+          <requirement name="CVarCompare" cvar=".daWoundInfectionMsgGate" operation="Equals" value="0"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".daWoundInfectionMsgGate"
+                          operation="set"
+                          value="1">
+          <requirement name="CVarCompare" cvar=".daWoundInfectionMsgGate" operation="Equals" value="0"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ShowToolbeltMessage"
+                          message="Your infection is getting worse.">
+          <requirement name="CVarCompare" cvar=".daWoundInfectionStagePrev" operation="Equals" value="1"/>
+          <requirement name="CVarCompare" cvar=".daWoundInfectionStage" operation="Equals" value="2"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ShowToolbeltMessage"
+                          message="Your infection is getting much worse.">
+          <requirement name="CVarCompare" cvar=".daWoundInfectionStagePrev" operation="Equals" value="2"/>
+          <requirement name="CVarCompare" cvar=".daWoundInfectionStage" operation="Equals" value="3"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".daWoundInfectionStagePrev"
+                          operation="set"
+                          value="1">
+          <requirement name="CVarCompare" cvar=".daWoundInfectionStage" operation="Equals" value="1"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".daWoundInfectionStagePrev"
+                          operation="set"
+                          value="2">
+          <requirement name="CVarCompare" cvar=".daWoundInfectionStage" operation="Equals" value="2"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar=".daWoundInfectionStagePrev"
+                          operation="set"
+                          value="3">
+          <requirement name="CVarCompare" cvar=".daWoundInfectionStage" operation="Equals" value="3"/>
+        </triggered_effect>
+      </effect_group>
+    </buff>
+  </append>
+
+  <!-- HIDDEN treatment-state buff -->
+  <append xpath="/buffs">
+    <buff name="buffWoundInfectionTreatmentActive"
+          hidden="true"
+          stack_type="ignore"
+          duration="120">
+      <effect_group>
+        <!-- logic-only buff -->
+      </effect_group>
+    </buff>
+  </append>
+
+  <!-- visible stage buffs -->
+
+  <append xpath="/buffs">
+    <buff name="buffWoundInfection01Untreated"
+          name_key="ldBuffWoundInfectionName"
+          description_key="ldBuffWoundInfectionStage01Desc"
+          tooltip_key="ldBuffWoundInfectionTooltip"
+          icon="ui_game_symbol_woundinfection"
+          icon_color="255,255,255"
+          stack_type="ignore"
+          duration="0"
+          tags="deathpenalty_injured">
+
+      <display_value_key value="{0:0.0}%"/>
+      <display_value value=".woundInfectionDisplayPerc"/>
+
+      <effect_group>
+        <passive_effect name="BuffBlink"
+                        operation="base_set"
+                        value="2"
+                        duration="0,3"
+                        tags="buffWoundInfection01Untreated"/>
+        <passive_effect name="Mobility" operation="base_add" value="-.08"/>
+        <passive_effect name="JumpStrength" operation="perc_subtract" value="0.03"/>
+        <passive_effect name="HealthMaxBlockage" operation="base_add" value="6"/>
+      </effect_group>
+    </buff>
+  </append>
+
+  <append xpath="/buffs">
+    <buff name="buffWoundInfection01GetBetter"
+          name_key="ldBuffWoundInfectionName"
+          description_key="ldBuffWoundInfectionStage01Desc"
+          tooltip_key="ldBuffWoundInfectionTooltip"
+          icon="ui_game_symbol_woundinfection"
+          icon_color="180,255,180"
+          stack_type="ignore"
+          duration="0"
+          tags="deathpenalty_injured">
+
+      <display_value_key value="{0:0.0}%"/>
+      <display_value value=".woundInfectionDisplayPerc"/>
+
+      <effect_group>
+        <passive_effect name="Mobility" operation="base_add" value="-.05"/>
+        <passive_effect name="HealthMaxBlockage" operation="base_add" value="4"/>
+      </effect_group>
+    </buff>
+  </append>
+
+  <append xpath="/buffs">
+    <buff name="buffWoundInfection02Untreated"
+          name_key="ldBuffWoundInfectionName"
+          description_key="ldBuffWoundInfectionStage02Desc"
+          tooltip_key="ldBuffWoundInfectionTooltip"
+          icon="ui_game_symbol_woundinfection"
+          icon_color="255,128,0"
+          stack_type="ignore"
+          duration="0"
+          tags="deathpenalty_injured">
+
+      <display_value_key value="{0:0.0}%"/>
+      <display_value value=".woundInfectionDisplayPerc"/>
+
+      <effect_group>
+        <passive_effect name="BuffBlink"
+                        operation="base_set"
+                        value="2"
+                        duration="0,3"
+                        tags="buffWoundInfection02Untreated"/>
+        <passive_effect name="Mobility" operation="base_add" value="-.18"/>
+        <passive_effect name="JumpStrength" operation="perc_subtract" value="0.06"/>
+        <passive_effect name="HealthMaxBlockage" operation="base_add" value="14"/>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.20"/>
+      </effect_group>
+    </buff>
+  </append>
+
+  <append xpath="/buffs">
+    <buff name="buffWoundInfection02GetBetter"
+          name_key="ldBuffWoundInfectionName"
+          description_key="ldBuffWoundInfectionStage02Desc"
+          tooltip_key="ldBuffWoundInfectionTooltip"
+          icon="ui_game_symbol_woundinfection"
+          icon_color="180,255,180"
+          stack_type="ignore"
+          duration="0"
+          tags="deathpenalty_injured">
+
+      <display_value_key value="{0:0.0}%"/>
+      <display_value value=".woundInfectionDisplayPerc"/>
+
+      <effect_group>
+        <passive_effect name="Mobility" operation="base_add" value="-.12"/>
+        <passive_effect name="HealthMaxBlockage" operation="base_add" value="10"/>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.10"/>
+      </effect_group>
+    </buff>
+  </append>
+
+  <append xpath="/buffs">
+    <buff name="buffWoundInfection03Untreated"
+          name_key="ldBuffWoundInfectionName"
+          description_key="ldBuffWoundInfectionStage03Desc"
+          tooltip_key="ldBuffWoundInfectionTooltip"
+          icon="ui_game_symbol_woundinfection"
+          icon_color="255,0,0"
+          icon_blink="true"
+          stack_type="ignore"
+          duration="0"
+          tags="deathpenalty_injured">
+
+      <display_value_key value="{0:0.0}%"/>
+      <display_value value=".woundInfectionDisplayPerc"/>
+
+      <effect_group>
+        <passive_effect name="BuffBlink"
+                        operation="base_set"
+                        value="2"
+                        duration="0,3"
+                        tags="buffWoundInfection03Untreated"/>
+        <passive_effect name="Mobility" operation="base_add" value="-.35"/>
+        <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"/>
+        <passive_effect name="HealthMaxBlockage" operation="base_add" value="28"/>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.32"/>
+        <passive_effect name="AttributeLevel" operation="base_subtract" value="1"/>
+
+        <triggered_effect trigger="onSelfBuffStart" action="RefreshPerks"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="RefreshPerks"/>
+
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="$wiHeartbeatTimer"
+                          operation="set"
+                          value="10"/>
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyCVar"
+                          cvar="$wiFeverPulseTimer"
+                          operation="set"
+                          value="14"/>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="$wiHeartbeatTimer"
+                          operation="add"
+                          value="-1"/>
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="$wiFeverPulseTimer"
+                          operation="add"
+                          value="-1"/>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="PlaySound"
+                          sound="DeadAir_WoundHeartbeat">
+          <requirement name="CVarCompare"
+                      cvar="$wiHeartbeatTimer"
+                      operation="LTE"
+                      value="0"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="$wiHeartbeatTimer"
+                          operation="set"
+                          value="randomint(7,12)">
+          <requirement name="CVarCompare"
+                      cvar="$wiHeartbeatTimer"
+                      operation="LTE"
+                      value="0"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="AddBuff"
+                          buff="buffWoundInfectionFeverPulse">
+          <requirement name="CVarCompare"
+                      cvar="$wiFeverPulseTimer"
+                      operation="LTE"
+                      value="0"/>
+          <requirement name="!HasBuff"
+                      buff="buffWoundInfectionFeverPulse"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate"
+                          action="ModifyCVar"
+                          cvar="$wiFeverPulseTimer"
+                          operation="set"
+                          value="randomint(10,18)">
+          <requirement name="CVarCompare"
+                      cvar="$wiFeverPulseTimer"
+                      operation="LTE"
+                      value="0"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffRemove"
+                          action="RemoveBuff"
+                          buff="buffWoundInfectionFeverPulse"/>
+        <triggered_effect trigger="onSelfBuffRemove"
+                          action="RemoveCVar"
+                          cvar="$wiHeartbeatTimer,$wiFeverPulseTimer"/>
+      </effect_group>
+    </buff>
+  </append>
+
+  <append xpath="/buffs">
+    <buff name="buffWoundInfection03GetBetter"
+          name_key="ldBuffWoundInfectionName"
+          description_key="ldBuffWoundInfectionStage03Desc"
+          tooltip_key="ldBuffWoundInfectionTooltip"
+          icon="ui_game_symbol_woundinfection"
+          icon_color="180,255,180"
+          stack_type="ignore"
+          duration="0"
+          tags="deathpenalty_injured">
+
+      <display_value_key value="{0:0.0}%"/>
+      <display_value value=".woundInfectionDisplayPerc"/>
+
+      <effect_group>
+        <passive_effect name="Mobility" operation="base_add" value="-.22"/>
+        <passive_effect name="HealthMaxBlockage" operation="base_add" value="18"/>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.16"/>
+        <passive_effect name="AttributeLevel" operation="base_subtract" value="1"/>
+        <triggered_effect trigger="onSelfBuffStart" action="RefreshPerks"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="RefreshPerks"/>
+      </effect_group>
+    </buff>
+  </append>
+
+  <append xpath="/buffs">
+    <buff name="buffWoundInfectionGetsWorse"
+          hidden="true"
+          duration="1.1"
+          icon="ui_game_symbol_woundinfection"
+          icon_color="255,128,0">
+      <stack_type value="ignore"/>
+      <effect_group>
+        <passive_effect name="BuffBlink"
+                        operation="base_add"
+                        value="2"
+                        tags="buffWoundInfection01Untreated,
+                              buffWoundInfection02Untreated,
+                              buffWoundInfection03Untreated"/>
+      </effect_group>
+    </buff>
+  </append>
+
+  <append xpath="/buffs">
+    <buff name="buffWoundInfectionFeverPulse"
+          hidden="true"
+          stack_type="ignore"
+          duration="2">
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ShakeCamera"
+                          shake_speed="0.02"
+                          shake_amplitude="20"
+                          shake_time="2"/>
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyScreenEffect"
+                          intensity="0.10"
+                          fade="1"
+                          effect_name="Blur"/>
+        <triggered_effect trigger="onSelfBuffRemove"
+                          action="ModifyScreenEffect"
+                          intensity="0"
+                          fade="1"
+                          effect_name="Blur"/>
+      </effect_group>
+    </buff>
+  </append>
+
+  <append xpath="/buffs">
+    <buff name="buffWoundInfection04"
+          tooltip_key="ldBuffWoundInfection04Tooltip"
+          icon="ui_game_symbol_woundinfection"
+          icon_color="255,0,0">
+      <damage_type value="Infection"/>
+      <stack_type value="ignore"/>
+      <duration value="0.1"/>
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffStart"
+                          action="ModifyStats"
+                          stat="Health"
+                          operation="subtract"
+                          value="99999999"/>
+        <triggered_effect trigger="onSelfDied"
+                          action="ModifyCVar"
+                          cvar="woundInfectionCounter"
+                          operation="set"
+                          value="1"/>
+      </effect_group>
+    </buff>
+  </append>
+
+</configs>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+
+  <!-- Force respawn type to random only -->
+  <!-- <set xpath="/gameplay/player/@respawn_type">Random</set> -->
+
+  <!-- <append xpath="/entity_classes/entity_class[@name='zombieSoldier']/effect_groups">
+    <passive_effect name="DamageModifier" operation="perc_add" value="-0.20" tags="shotgun">
+      <requirement name="!HasBuff" buff="buffDA_HelmetBroken" invert="true" />
+    </passive_effect>
+  </append>
+  <append xpath="/entity_classes/entity_class[@name='zombieSoldierFeral']/effect_groups">
+    <passive_effect name="DamageModifier" operation="perc_add" value="-0.30" tags="shotgun">
+      <requirement name="!HasBuff" buff="buffDA_HelmetBroken" invert="true" />
+    </passive_effect>
+  </append>
+  <append xpath="/entity_classes/entity_class[@name='zombieSoldierRadiated']/effect_groups">
+    <passive_effect name="DamageModifier" operation="perc_add" value="-0.40" tags="shotgun">
+      <requirement name="!HasBuff" buff="buffDA_HelmetBroken" invert="true" />
+    </passive_effect>
+  </append>
+  <append xpath="/entity_classes/entity_class[@name='zombieSoldierInfernal']/effect_groups">
+    <passive_effect name="DamageModifier" operation="perc_add" value="-0.50" tags="shotgun">
+      <requirement name="!HasBuff" buff="buffDA_HelmetBroken" invert="true" />
+    </passive_effect>
+  </append>
+  <append xpath="/entity_classes/entity_class[@name='zombieDemolition']/effect_groups">
+  <passive_effect name="DamageModifier" operation="perc_add" value="-0.20" tags="shotgun">
+      <requirement name="!HasBuff" buff="buffDA_HelmetBroken" invert="true" />
+    </passive_effect>
+  </append> -->
+
+</configs>

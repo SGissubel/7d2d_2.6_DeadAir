@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+
+    <!-- This controls the DLL name -->
+    <AssemblyName>DeadAir_7LongDarkDays</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- CHANGE THESE PATHS to your local 7D2D install -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>../../7DaysToDie.app/Contents/Resources/Data/Managed/Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="UnityEngine">
+      <HintPath>../../7DaysToDie.app/Contents/Resources/Data/Managed/UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Harmony: usually comes from Mods/0_TFP_Harmony -->
+    <Reference Include="0Harmony">
+      <HintPath>../0_TFP_Harmony/0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>../../7DaysToDie.app/Contents/Resources/Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>../../7DaysToDie.app/Contents/Resources/Data/Managed/UnityEngine.AnimationModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+  </ItemGroup>
+<ItemGroup>
+  <Compile Remove="Patches/PoiWanderersPatch.cs" />
+  <Compile Remove="Patches/PoiAmbushBehindYouPatch.cs" />
+  <Compile Remove="Patches/SupplyDropHordePatch.cs" />
+</ItemGroup>
+</Project>

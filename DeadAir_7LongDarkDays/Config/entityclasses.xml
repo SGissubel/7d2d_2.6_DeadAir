@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+
+	<set xpath="/entity_classes/entity_class[@name='animalBossGrace']/property[@name='MoveSpeedAggro']/@value">0.9, 1.0</set>
+	<set xpath="/entity_classes/entity_class[@name='animalZombieBoar']/property[@name='MoveSpeedAggro']/@value">1.05, 1.1</set>
+
+  <!-- Optional: make aggro just a touch more relentless without changing overall character -->
+  <set xpath="/entity_classes/entity_class[@name='animalZombieBear']/property[@name='MoveSpeedAggro']/@value">2.0,2.1</set>
+
+  <!-- Small mobility bump only; leave jump alone for first validation pass -->
+  <set xpath="/entity_classes/entity_class[@name='animalDireWolf']/property[@name='MoveSpeedAggro']/@value">1.15,1.25</set>
+  <set xpath="/entity_classes/entity_class[@name='animalDireWolf']/property[@name='JumpMaxDistance']/@value">7,8</set>
+
+
+  <append xpath="/entity_classes">
+    <entity_class name="zombieSoldierLegacyDA" extends="zombieSoldier">
+      <property name="UserSpawnType" value="Menu"/>
+      <property name="Tags" value="entity,zombie,walker,allbiome,zombieSoldierLegacyDA"/>
+      <property name="Mesh" value="@:Entities/Zombies/Soldier/ZSoldierLegacy.prefab"/>
+    </entity_class>
+  </append>
+  <!-- ===================================================== -->
+  <!-- PLAYER BASE FOOD/WATER DRAIN (final values)            -->
+  <!-- Water: 20/hour (0.00556)                               -->
+  <!-- Food:  14/hour (0.00389)                               -->
+  <!-- ===================================================== -->
+  <append xpath="/entity_classes">
+
+    <entity_class name="zombieDeadAirTestDummy"
+                  extends="zombieSoldier">
+
+      <property name="MoveSpeed" value="0"/>
+
+      <effect_group>
+        <passive_effect name="Mobility" operation="base_set" value="0"/>
+      </effect_group>
+
+    </entity_class>
+
+  </append>
+  <set xpath="/entity_classes/entity_class[@name='playerMale']/effect_group[@name='food/water balancing']/passive_effect[@name='WaterChangeOT' and not(@tags)]/@value">0.00556</set>
+  <set xpath="/entity_classes/entity_class[@name='playerMale']/effect_group[@name='food/water balancing']/passive_effect[@name='FoodChangeOT' and not(@tags)]/@value">0.00389</set>
+
+  <!-- Exertion drains -->
+  <set xpath="/entity_classes/entity_class[@name='playerMale']/effect_group[@name='food/water balancing']/passive_effect[@name='WaterLossPerStaminaPointGained']/@value">0.006</set>
+  <set xpath="/entity_classes/entity_class[@name='playerMale']/effect_group[@name='food/water balancing']/passive_effect[@name='FoodLossPerStaminaPointGained']/@value">0.0055</set>
+
+
+  <!-- ===================================================== -->
+  <!-- Ensure the always-on tracker runs                      -->
+  <!-- (appends to existing Buffs list)                        -->
+  <!-- ===================================================== -->
+  <append xpath="/entity_classes/entity_class[@name='playerMale']/property[@name='Buffs']/@value">,buffLD_ConsumptionTracker</append>
+
+
+  <!-- ===================================================== -->
+  <!-- HARVEST SWAPS: foodRawMeat -> per-animal raw meat       -->
+  <!-- (This MUST happen before the count tuning below works) -->
+  <!-- ===================================================== -->
+
+  <!-- CARNIVORES -->
+  <set xpath="/entity_classes/entity_class[@name='animalBear']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeat']/@name">foodRawMeatBear</set>
+  <set xpath="/entity_classes/entity_class[@name='animalBearSmall']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeat']/@name">foodRawMeatBear</set>
+
+  <set xpath="/entity_classes/entity_class[@name='animalWolf']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeat']/@name">foodRawMeatWolf</set>
+  <set xpath="/entity_classes/entity_class[@name='animalMountainLion']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeat']/@name">foodRawMeatMountainLion</set>
+  <set xpath="/entity_classes/entity_class[@name='animalSnake']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeat']/@name">foodRawMeatSnake</set>
+
+  <!-- HERBIVORES -->
+  <set xpath="/entity_classes/entity_class[@name='animalBoar']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeat']/@name">foodRawMeatBoar</set>
+  <set xpath="/entity_classes/entity_class[@name='animalStag']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeat']/@name">foodRawMeatStag</set>
+  <set xpath="/entity_classes/entity_class[@name='animalDoe']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeat']/@name">foodRawMeatDoe</set>
+  <set xpath="/entity_classes/entity_class[@name='animalRabbit']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeat']/@name">foodRawMeatRabbit</set>
+  <set xpath="/entity_classes/entity_class[@name='animalChicken']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeat']/@name">foodRawMeatChicken</set>
+
+
+  <!-- ===================================================== -->
+  <!-- YIELD TUNING: risk/reward                               -->
+  <!-- Carnivores more meat, herbivores slightly reduced       -->
+  <!-- ===================================================== -->
+
+  <!-- CARNIVORES -->
+  <set xpath="/entity_classes/entity_class[@name='animalBear']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeatBear']/@count">26</set>
+  <set xpath="/entity_classes/entity_class[@name='animalBearSmall']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeatBear']/@count">22</set>
+  <set xpath="/entity_classes/entity_class[@name='animalWolf']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeatWolf']/@count">18</set>
+  <set xpath="/entity_classes/entity_class[@name='animalMountainLion']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeatMountainLion']/@count">18</set>
+  <set xpath="/entity_classes/entity_class[@name='animalSnake']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeatSnake']/@count">10</set>
+
+  <!-- HERBIVORES -->
+  <set xpath="/entity_classes/entity_class[@name='animalDoe']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeatDoe']/@count">12</set>
+  <set xpath="/entity_classes/entity_class[@name='animalStag']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeatStag']/@count">15</set>
+  <set xpath="/entity_classes/entity_class[@name='animalBoar']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeatBoar']/@count">12</set>
+  <set xpath="/entity_classes/entity_class[@name='animalRabbit']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeatRabbit']/@count">4</set>
+  <set xpath="/entity_classes/entity_class[@name='animalChicken']/drop[@event='Harvest' and @tag='butcherHarvest' and @name='foodRawMeatChicken']/@count">4</set>
+
+
+  <!-- ===================================================== -->
+  <!-- WORLD SOUND REACTIVITY (Mod v2.6)                     -->
+  <!-- Zombies hear better (primarily affects world zombies) -->
+  <!-- ===================================================== -->
+
+  <!-- ===================================================== -->
+  <!-- ZOMBIE HEARING BUFF (Mod v2.6)                        -->
+  <!-- - Sleepers sense/wake from lower noise                 -->
+  <!-- - Awake zombies seek noise from farther                -->
+  <!-- ===================================================== -->
+
+  <!-- ===================== -->
+  <!-- SLEEPER REACTIVITY     -->
+  <!-- ===================== -->
+
+  <!-- "I hear something" threshold (lower = more sensitive) -->
+  <set xpath="/entity_classes/entity_class[@name='zombieTemplateMale']/property[@name='SleeperNoiseToSense']/@value">2,6</set>
+  <!-- <set xpath="/entity_classes/entity_class[@name='zombieTemplateFemale']/property[@name='SleeperNoiseToSense']/@value">2,6</set> -->
+
+  <!-- Chance to play the sensing audio (optional, but makes them feel more reactive) -->
+  <set xpath="/entity_classes/entity_class[@name='zombieTemplateMale']/property[@name='SleeperNoiseToSenseSoundChance']/@value">0.65</set>
+  <!-- <set xpath="/entity_classes/entity_class[@name='zombieTemplateFemale']/property[@name='SleeperNoiseToSenseSoundChance']/@value">0.65</set> -->
+
+  <!-- Wake threshold (lower = wakes easier) -->
+  <set xpath="/entity_classes/entity_class[@name='zombieTemplateMale']/property[@name='SleeperNoiseToWake']/@value">7,10</set>
+  <!-- <set xpath="/entity_classes/entity_class[@name='zombieTemplateFemale']/property[@name='SleeperNoiseToWake']/@value">7,10</set> -->
+
+
+  <!-- ===================== -->
+  <!-- AWAKE NOISE RESPONSE   -->
+  <!-- ===================== -->
+
+  <!-- How far they’ll try to investigate noise -->
+  <set xpath="/entity_classes/entity_class[@name='zombieTemplateMale']/property[@name='AINoiseSeekDist']/@value">14</set>
+  <!-- <set xpath="/entity_classes/entity_class[@name='zombieTemplateFemale']/property[@name='AINoiseSeekDist']/@value">14</set> -->
+
+  <!-- Mild overall sense multiplier -->
+  <set xpath="/entity_classes/entity_class[@name='zombieTemplateMale']/property[@name='AIFeralSense']/@value">1.7</set>
+  <!-- <set xpath="/entity_classes/entity_class[@name='zombieTemplateFemale']/property[@name='AIFeralSense']/@value">1.7</set> -->
+
+
+
+
+
+  <!-- ===================================================== -->
+  <!-- SOLDIER ZOMBIE - OLD SCHOOL HELMET BEHAVIOR           -->
+  <!-- - While helmet NOT broken: head damage heavily reduced -->
+  <!-- - Ranged hits add to daHelmetHits (clang each time)    -->
+  <!-- - At threshold: apply buffDA_HelmetBroken              -->
+  <!-- ===================================================== -->
+
+  <append xpath="/entity_classes/entity_class[@name='zombieSoldier']/property[@name='Tags']/@value">,deadairSoldierArmor</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieSoldierFeral']/property[@name='Tags']/@value">,deadairSoldierArmor</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieSoldierRadiated']/property[@name='Tags']/@value">,deadairSoldierArmor</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieSoldierInfernal']/property[@name='Tags']/@value">,deadairSoldierArmor</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieDemolition']/property[@name='Tags']/@value">,deadairSoldierArmor</append>
+
+  <append xpath="/entity_classes/entity_class[@name='playerMale']/effect_group">
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.20">
+      <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
+      <requirement name="HoldingItemHasTags" tags="shotgun"/>
+    </passive_effect>
+
+    <!-- shotgun vs soldier head: extra reduction -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.10" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
+      <requirement name="HoldingItemHasTags" tags="shotgun"/>
+    </passive_effect>
+    <!-- handgun penalty vs helmet targets -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.25" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
+      <requirement name="HoldingItemHasTags" tags="gun,pistol" match_all_tags="true"/>
+    </passive_effect>
+
+    <!-- rifle penalty vs helmet targets -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.40" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
+      <requirement name="HoldingItemHasTags" tags="gun,rifle" match_all_tags="true"/>
+    </passive_effect>
+      <!-- bow headshots vs soldier -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.12" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
+      <requirement name="HoldingItemHasTags" tags="bow"/>
+    </passive_effect>
+
+    <!-- crossbow headshots vs soldier -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.12" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
+      <requirement name="HoldingItemHasTags" tags="crossbow"/>
+    </passive_effect>
+
+    <!-- melee headshots vs soldier -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.20" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
+      <requirement name="HoldingItemHasTags" tags="melee"/>
+    </passive_effect>
+  </append>
+
+
+
+  <!-- 3) Increment helmet hits on ranged damage; clang; break at threshold -->
+  <append xpath="/entity_classes/entity_class[@name='zombieSoldier']">
+    <effect_group name="DeadAir_HelmetSystem">
+      <!-- CLANG on ranged damage while intact -->
+      <triggered_effect trigger="onOtherDamagedSelf" action="PlaySound" target="self" sound="bullethitmetal">
+        <requirement name="RequirementDamageSource" value="ranged" />
+        <requirement name="RequirementCompareCVar" cvar="daHelmetBroken" operation="Equals" value="1" invert="true" />
+      </triggered_effect>
+
+      <!-- Break helmet at 3 hits -->
+      <!-- <triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="daHelmetBroken" operation="set" value="1">
+        <requirement name="RequirementDamageSource" value="ranged" />
+        <requirement name="RequirementCompareCVar" cvar="daHelmetHits" operation="GTE" value="5" />
+        <requirement name="RequirementCompareCVar" cvar="daHelmetBroken" operation="Equals" value="1" invert="true" />
+      </triggered_effect> -->
+
+    </effect_group>
+  </append>
+  <append xpath="/entity_classes/entity_class[@name='zombieDemolition']">
+    <effect_group name="DeadAir_HelmetSystem">
+
+      <!-- CLANG on ranged damage while intact -->
+      <triggered_effect trigger="onOtherDamagedSelf" action="PlaySound" target="self" sound="bullethitmetal">
+        <requirement name="RequirementDamageSource" value="ranged" />
+        <requirement name="RequirementCompareCVar" cvar="daHelmetBroken" operation="Equals" value="1" invert="true" />
+      </triggered_effect>
+
+      <!-- Break helmet at 3 hits -->
+      <!-- <triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="daHelmetBroken" operation="set" value="1">
+        <requirement name="RequirementDamageSource" value="ranged" />
+        <requirement name="RequirementCompareCVar" cvar="daHelmetHits" operation="GTE" value="5" />
+        <requirement name="RequirementCompareCVar" cvar="daHelmetBroken" operation="Equals" value="1" invert="true" />
+      </triggered_effect> -->
+
+    </effect_group>
+  </append>
+ 
+
+
+
+  <!-- ===================================================== -->
+  <!-- WIGHT - MAKE THEM A REAL LATE GAME THREAT AGAIN       -->
+  <!-- ===================================================== -->
+  <append xpath="/entity_classes/entity_class[@name='zombieWightFeral']">
+  
+    <effect_group name="DeadAir_WightFormidable">
+
+      <!-- Make wights tankier without relying on a Health property existing -->
+      <passive_effect name="HealthMax" operation="perc_add" value="0.40" />
+
+      <!-- Make them hit structures harder (if BlockDamage property doesn't exist locally) -->
+      <passive_effect name="BlockDamage" operation="perc_add" value="0.35" />
+
+      <!-- Harder to control -->
+      <!-- <passive_effect name="StunResist" operation="perc_add" value="0.50" /> -->
+      <!-- <passive_effect name="KnockdownResist" operation="perc_add" value="0.35" /> -->
+
+      <!-- Rage more often -->
+      <triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffFeralRage" />
+
+    </effect_group>
+  </append>
+ 
+  <!-- <append xpath="/entity_classes">
+    <entity_class name="zombieSoldierLegacyTest" extends="zombieSoldier">
+      <property name="UserSpawnType" value="Menu"/>
+      <property name="Tags" value="entity,zombie,walker,allbiome,zombieSoldierLegacyTest"/>
+      <property name="Mesh" value="#Entities/Zombies?Zombies/zombieStandardSoldierRagdoll.prefab"/>
+      <property name="AvatarController" value="AvatarZombie01Controller"/>
+    </entity_class>
+  </append> -->
+
+</configs>
