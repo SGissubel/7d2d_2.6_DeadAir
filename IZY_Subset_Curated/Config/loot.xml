@@ -1,37 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configs>
-			<item name="IZYgunT145TACSMGMAC10"/>
-			<item name="IZYgunT2Pistol45M1911A1"/>
-			<item name="IZYgunT3Pistol45USP45"/>
-			<item name="IZYgunT445TACSMGKrissSuperV"/>
-			<item name="IZYgunT3MarksmanRifleMMRM1Carbine45"/>
-			<item name="IZYgunT4MarksmanRifle45MMRKrissVectorCarbine"/>
-		<item name="IZYgunT2Pistol45M1911A1"/>
-		<item name="IZYgunT3Pistol45USP45"/>
-			<item name="ammo45ACPBulletBall" count="5,6" loot_stage_count_mod="0.01"/>
-			<item name="ammo45ACPBulletBall" count="9,18" loot_stage_count_mod="0.01"/>
-			<item name="ammo45ACPBulletBall" count="22,32" loot_stage_count_mod="0.01"/>
-			<item name="IZYgunT0SMGPIPEsubmachinegun"/>
-			<item name="IZYgunT3BULLPUPHellionVHS2"/>
-		<item name="IZYgunT3BULLPUPHellionVHS2"/>
-			<item name="ammo556mmBulletBall" count="6,7" loot_stage_count_mod="0.01"/>
-			<item name="ammo556mmBulletBall" count="10,15" loot_stage_count_mod="0.01"/>
-			<item name="ammo556mmBulletBall" count="22,30" loot_stage_count_mod="0.01"/>
-			<item name="IZYgunT2ARSTG44N"/>
-			<item name="IZYgunT1SNIPERRIFLE762Mosinnagant"/>
-			<item name="IZYgunT3MarksManRifle762HKPSG1"/>
-		<item name="IZYgunT1SNIPERRIFLE762Mosinnagant"/>
-		<item name="IZYgunT2ARSTG44N"/>
-		<item name="IZYgunT3MarksManRifle762HKPSG1"/>
-			<item name="IZYgunT2TradshotgunLeveractionShotgunModel1887"/>
-			<item name="IZYgunT4TACshotgunM1014"/>
-		<item name="IZYgunT2TradshotgunLeveractionShotgunModel1887"/>
-		<item name="IZYgunT4TACshotgunM1014"/>
-			<item name="IZYgunT2LGLChinalakeGrenadeLauncher"/>
-			<item name="IZYgunT2LGLChinalakeGrenadeLauncher"/>
-		<item name="ammo25mmGrenadeTraining" count="2,4"/>
-		<item name="ammo25mmGrenadeHE" prob="0.8" count="1,3"/>
-		<item name="ammo25mmGrenadeFRAGS" prob="0.8" count="1,3"/>
-		<item name="IZYMeleeT4SpearPoleAxe"/>
-		<item name="IZYMeleeT4SpearPoleAxe"/>
+
+	<!-- ========================================================= -->
+	<!-- Direct inserts into confirmed vanilla ranged weapon tiers -->
+	<!-- ========================================================= -->
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupWeaponsT0_Ranged']">
+		<item name="IZYgunT0SMGPIPEsubmachinegun" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupWeaponsT1_Ranged']">
+		<item name="IZYgunT145TACSMGMAC10" loot_prob_template="veryLow"/>
+		<item name="IZYgunT1SNIPERRIFLE762Mosinnagant" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupWeaponsT2_Ranged']">
+		<item name="IZYgunT2Pistol45M1911A1" loot_prob_template="veryLow"/>
+		<item name="IZYgunT2ARSTG44N" loot_prob_template="veryLow"/>
+		<item name="IZYgunT2TradshotgunLeveractionShotgunModel1887" loot_prob_template="veryLow"/>
+		<item name="IZYgunT2LGLChinalakeGrenadeLauncher" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupWeaponsT3_Ranged']">
+		<item name="IZYgunT3Pistol45USP45" loot_prob_template="veryLow"/>
+		<item name="IZYgunT3MarksmanRifleMMRM1Carbine45" loot_prob_template="veryLow"/>
+		<item name="IZYgunT3BULLPUPHellionVHS2" loot_prob_template="veryLow"/>
+		<item name="IZYgunT3MarksManRifle762HKPSG1" loot_prob_template="veryLow"/>
+		<item name="IZYgunT3BattleRifleHKG3" loot_prob_template="veryLow"/>
+		<item name="IZYgunT4TACshotgunM1014" loot_prob_template="veryLow"/>
+		<item name="IZYgunT4SMGCZScorpionEVO3" loot_prob_template="veryLow"/>
+		<item name="IZYgunT4ARCabineHK416" loot_prob_template="veryLow"/>
+		<item name="IZYgunT445TACSMGKrissSuperV" loot_prob_template="veryLow"/>
+		<item name="IZYgunT4MarksmanRifle45MMRKrissVectorCarbine" loot_prob_template="veryLow"/>
+	</append>
+
+	<!-- ========================================================= -->
+	<!-- Direct inserts into confirmed vanilla ammo groups         -->
+	<!-- ========================================================= -->
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupAmmoPileSmall']">
+		<item name="ammo45ACPBulletBall" count="5,6" loot_stage_count_mod="0.01" loot_prob_template="veryLow"/>
+		<item name="ammo556mmBulletBall" count="6,7" loot_stage_count_mod="0.01" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupAmmoPileMed']">
+		<item name="ammo45ACPBulletBall" count="9,18" loot_stage_count_mod="0.01" loot_prob_template="low"/>
+		<item name="ammo556mmBulletBall" count="10,15" loot_stage_count_mod="0.01" loot_prob_template="low"/>
+		<item name="ammoShotgunShellPremium" count="8,20" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupAmmoPileLarge']">
+		<item name="ammo45ACPBulletBall" count="22,32" loot_stage_count_mod="0.01" loot_prob_template="low"/>
+		<item name="ammo556mmBulletBall" count="22,30" loot_stage_count_mod="0.01" loot_prob_template="low"/>
+		<item name="ammoShotgunShellPremium" count="15,40" loot_prob_template="low"/>
+		<item name="ammo25mmGrenadeTraining" count="2,4" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupAmmoMunitions']">
+		<item name="ammo25mmGrenadeTraining" count="2,4" loot_prob_template="low"/>
+		<item name="ammo25mmGrenadeHE" count="1,3" loot_prob_template="veryLow"/>
+		<item name="ammo25mmGrenadeFRAGS" count="1,3" loot_prob_template="veryLow"/>
+	</append>
+
+	<!-- ========================================================= -->
+	<!-- Confirmed vanilla weapon containers / groups              -->
+	<!-- ========================================================= -->
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupGunRack']">
+		<item name="IZYgunT2Pistol45M1911A1" loot_prob_template="veryLow"/>
+		<item name="IZYgunT2ARSTG44N" loot_prob_template="veryLow"/>
+		<item name="IZYgunT2TradshotgunLeveractionShotgunModel1887" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupAmmoRackDisplay']">
+		<item name="ammo45ACPBulletBall" count="9,18" loot_stage_count_mod="0.01" loot_prob_template="low"/>
+		<item name="ammo556mmBulletBall" count="10,15" loot_stage_count_mod="0.01" loot_prob_template="low"/>
+		<item name="ammoShotgunShellPremium" count="10,24" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupGunSafeSecure']">
+		<item name="IZYgunT3Pistol45USP45" loot_prob_template="veryLow"/>
+		<item name="IZYgunT3MarksmanRifleMMRM1Carbine45" loot_prob_template="veryLow"/>
+		<item name="IZYgunT3BULLPUPHellionVHS2" loot_prob_template="veryLow"/>
+		<item name="IZYgunT3MarksManRifle762HKPSG1" loot_prob_template="veryLow"/>
+		<item name="IZYgunT3BattleRifleHKG3" loot_prob_template="veryLow"/>
+		<item name="IZYgunT4TACshotgunM1014" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupMilitaryFootlocker01']">
+		<item name="ammo45ACPBulletBall" count="9,18" loot_stage_count_mod="0.01" loot_prob_template="veryLow"/>
+		<item name="ammo556mmBulletBall" count="10,15" loot_stage_count_mod="0.01" loot_prob_template="veryLow"/>
+		<item name="ammoShotgunShellPremium" count="8,20" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupMilitaryFootlocker02']">
+		<item name="IZYgunT145TACSMGMAC10" loot_prob_template="veryLow"/>
+		<item name="IZYgunT2Pistol45M1911A1" loot_prob_template="veryLow"/>
+		<item name="IZYgunT2ARSTG44N" loot_prob_template="veryLow"/>
+		<item name="IZYgunT2TradshotgunLeveractionShotgunModel1887" loot_prob_template="veryLow"/>
+		<item name="IZYgunT1SNIPERRIFLE762Mosinnagant" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupPoliceCar01']">
+		<item name="ammo45ACPBulletBall" count="5,6" loot_stage_count_mod="0.01" loot_prob_template="veryLow"/>
+		<item name="ammo556mmBulletBall" count="6,7" loot_stage_count_mod="0.01" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupPoliceCar03']">
+		<item name="IZYgunT2Pistol45M1911A1" loot_prob_template="veryLow"/>
+		<item name="IZYgunT3Pistol45USP45" loot_prob_template="veryLow"/>
+		<item name="IZYgunT145TACSMGMAC10" loot_prob_template="veryLow"/>
+		<item name="IZYgunT3BULLPUPHellionVHS2" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupAirDrop03']">
+		<item name="IZYgunT3Pistol45USP45" loot_prob_template="veryLow"/>
+		<item name="IZYgunT3BULLPUPHellionVHS2" loot_prob_template="veryLow"/>
+		<item name="IZYgunT3MarksManRifle762HKPSG1" loot_prob_template="veryLow"/>
+		<item name="ammo45ACPBulletBall" count="22,32" loot_stage_count_mod="0.01" loot_prob_template="veryLow"/>
+		<item name="ammo556mmBulletBall" count="22,30" loot_stage_count_mod="0.01" loot_prob_template="veryLow"/>
+		<item name="ammoShotgunShellPremium" count="15,40" loot_prob_template="veryLow"/>
+	</append>
+
+	<!-- ========================================================= -->
+	<!-- Melee item placed directly, no custom group dependency    -->
+	<!-- ========================================================= -->
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupWeaponsT3_Ranged']">
+		<item name="IZYMeleeT4SpearPoleAxe" loot_prob_template="veryLow"/>
+	</append>
+
+	<append xpath="/lootcontainers/lootgroup[@name='groupAirDrop03']">
+		<item name="IZYMeleeT4SpearPoleAxe" loot_prob_template="veryLow"/>
+	</append>
+
 </configs>

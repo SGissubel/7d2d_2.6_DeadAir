@@ -2,60 +2,51 @@
 <configs>
 
   <!-- ===================================== -->
-  <!-- BANDAGES: MOST CLEAN -> DIRTY (except airdropMedicine) -->
+  <!-- BANDAGES: MOST CLEAN -> DIRTY         -->
   <!-- ===================================== -->
 
-  <!-- helper pattern: remove clean bandage entry in each group, add dirty (weight 4) + clean (weight 1) -->
-  <!-- groupQuestMedical -->
   <remove xpath="//lootgroup[@name='groupQuestMedical']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupQuestMedical']">
     <item name="medicalFirstAidBandageDirty" prob="4"/>
     <item name="medicalFirstAidBandage" prob="1"/>
   </append>
 
-  <!-- survivalMedical -->
   <remove xpath="//lootgroup[@name='survivalMedical']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='survivalMedical']">
     <item name="medicalFirstAidBandageDirty" prob="4"/>
     <item name="medicalFirstAidBandage" prob="1"/>
   </append>
 
-  <!-- groupMedicalAll -->
   <remove xpath="//lootgroup[@name='groupMedicalAll']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupMedicalAll']">
     <item name="medicalFirstAidBandageDirty" prob="4"/>
     <item name="medicalFirstAidBandage" prob="1"/>
   </append>
 
-  <!-- groupMedicalUncommon -->
   <remove xpath="//lootgroup[@name='groupMedicalUncommon']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupMedicalUncommon']">
     <item name="medicalFirstAidBandageDirty" prob="4"/>
     <item name="medicalFirstAidBandage" prob="1"/>
   </append>
 
-  <!-- groupZpackNurseB -->
   <remove xpath="//lootgroup[@name='groupZpackNurseB']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupZpackNurseB']">
     <item name="medicalFirstAidBandageDirty" prob="4"/>
     <item name="medicalFirstAidBandage" prob="1"/>
   </append>
 
-  <!-- groupZpackLab01 -->
   <remove xpath="//lootgroup[@name='groupZpackLab01']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupZpackLab01']">
     <item name="medicalFirstAidBandageDirty" prob="4"/>
     <item name="medicalFirstAidBandage" prob="1"/>
   </append>
 
-  <!-- groupZpackSoldier01 -->
   <remove xpath="//lootgroup[@name='groupZpackSoldier01']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupZpackSoldier01']">
     <item name="medicalFirstAidBandageDirty" prob="4"/>
     <item name="medicalFirstAidBandage" prob="1"/>
   </append>
 
-  <!-- Reinforced/Hardened chests -->
   <remove xpath="//lootgroup[@name='groupReinforcedChestT1_03']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupReinforcedChestT1_03']">
     <item name="medicalFirstAidBandageDirty" prob="4"/>
@@ -80,11 +71,8 @@
     <item name="medicalFirstAidBandage" prob="1"/>
   </append>
 
-  <!-- airdropMedicine: LEAVE CLEAN ONES (no changes) -->
-
-
   <!-- ===================================== -->
-  <!-- BEER: 50/50 beer vs ethanol (no double-spawn per roll) -->
+  <!-- BEER: 50/50 beer vs ethanol           -->
   <!-- ===================================== -->
 
   <remove xpath="//lootgroup[@name='groupDrinksUncommon']/item[@name='drinkJarBeer']"/>
@@ -123,10 +111,8 @@
     <item name="resourceEthanol" prob="1"/>
   </append>
 
-
   <!-- ===================================== -->
-  <!-- ETHANOL: ADD TO SELECT MEDICAL GROUPS -->
-  <!-- (so it isn't only coming from booze sources) -->
+  <!-- ETHANOL: add to select medical groups -->
   <!-- ===================================== -->
 
   <append xpath="//lootgroup[@name='survivalMedical']">
@@ -157,11 +143,9 @@
     <item name="resourceEthanol" prob="1"/>
   </append>
 
+  <!-- Trader display case -->
   <append xpath="/lootcontainers">
-    <lootcontainer name="daTraderDisplayCaseGuns" count="1,2" size="6,4"
-      sound_open="UseActions/open_cooler" sound_close="UseActions/close_chest">
-
-      <!-- Keep it simple at first: ammo + parts -->
+    <lootcontainer name="daTraderDisplayCaseGuns" count="1,2" size="6,4" sound_open="UseActions/open_cooler" sound_close="UseActions/close_chest">
       <item name="ammo9mmBulletBall" count="10,60" prob="0.6"/>
       <item name="ammo762mmBulletBall" count="10,60" prob="0.6"/>
       <item name="resourceGunPowder" count="10,50" prob="0.5"/>
@@ -170,56 +154,27 @@
     </lootcontainer>
   </append>
 
-  <!-- <remove xpath="//item[@name='medicalBandage']"/> -->
-  <remove xpath="//lootgroups[@name='groupZpackNurseA']/item[@name='medicalBandage']"/>
-  <!-- <remove xpath="//lootgroup[@name='groupLiquorBonus']/item[@name='drinkJarBeer']"/> -->
-
-
-
-  <!-- Remove helmet filter mod entries anywhere they appear as direct <item name="..."> -->
-  <remove xpath="//item[@name='modArmorWaterPurifier']"/>
+  <!-- Remove bandage / purifier entries -->
+  <remove xpath="//lootgroup[@name='groupZpackNurseA']/item[@name='medicalBandage']"/>
   <remove xpath="//item[@name='modArmorWaterPurifier']"/>
 
-    <!-- DeadAir: Mannequin (armor/cloth) -->
+  <!-- DeadAir mannequin -->
   <append xpath="/lootcontainers">
-      <lootcontainer name="daMannequinArmor"
-                    count="1"
-                    size="4,3"
-                    sound_open="open_clothes_rack"
-                    sound_close="close_clothes_rack"
-                    destroy_on_close="empty">
-          <item name="armorParts" count="5" prob="1"/>
-          <item name="resourceCloth" count="5,25" prob="0.25"/>
-          <item name="resourceLeather" count="2,12" prob="0.15"/>
-          <item name="resourceScrapIron" count="2,15" prob="0.15"/>
-      </lootcontainer>
+    <lootcontainer name="daMannequinArmor" count="1" size="4,3" sound_open="open_clothes_rack" sound_close="close_clothes_rack" destroy_on_close="empty">
+      <item name="armorParts" count="5" prob="1"/>
+      <item name="resourceCloth" count="5,25" prob="0.25"/>
+      <item name="resourceLeather" count="2,12" prob="0.15"/>
+      <item name="resourceScrapIron" count="2,15" prob="0.15"/>
+    </lootcontainer>
   </append>
-  
-  <!-- <append xpath="/lootcontainers">
-      <lootcontainer name="daPalletAmmo"
-                    count="1"
-                    size="4,3"
-                    sound_open="UseActions/crate_iron_open"
-                    sound_close="UseActions/crate_iron_close"
-                    destroy_on_close="empty">
-              <lootgroup name="groupDeadAirLooseAmmo" count="1">
-                <item name="ammo9mmBulletBall" count="1,6" prob="0.20"/>
-                <item name="ammo762mmBulletBall" count="1,5" prob="0.20"/>
-                <item name="ammo44MagnumBulletBall" count="1,4" prob="0.15"/>
-                <item name="ammoShotgunShell" count="1,4" prob="0.15"/>
-                <item name="ammo556mmBulletBall" count="1,5" prob="0.15"/>
-                <item name="ammo45ACPBulletBall" count="1,5" prob="0.15"/>
-              </lootgroup>
-      </lootcontainer>
-  </append> -->
+
   <append xpath="/lootcontainers">
     <lootcontainer name="daPalletAmmo" count="1" size="4,3" sound_open="UseActions/open_cardboard" sound_close="UseActions/close_cardboard">
-        <item name="ammo9mmBulletBall" count="10" prob="1"/>
+      <item name="ammo9mmBulletBall" count="10" prob="1"/>
     </lootcontainer>
-</append>
+  </append>
 
-
-
+  <!-- Airdrop adjustments -->
   <set xpath="/lootcontainers/lootcontainer[@name='airDrop']/@size">9,4</set>
   <set xpath="/lootcontainers/lootgroup[@name='groupAirDrop02']/@count">all</set>
   <set xpath="/lootcontainers/lootgroup[@name='airdropfood']/item[@group='cannedfood']/@count">2,4</set>
@@ -244,10 +199,9 @@
     <item group="groupQuestT3Firearms"/>
     <item group="groupQuestTimedCharges"/>
   </append>
+
   <append xpath="/lootcontainers/lootgroup[@name='groupAirDrop']">
     <item group="groupAirDrop03" count="1"/>
   </append>
-
-
 
 </configs>

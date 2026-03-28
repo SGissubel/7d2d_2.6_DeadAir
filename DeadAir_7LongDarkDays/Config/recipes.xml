@@ -6,16 +6,17 @@
   <remove xpath="/recipes/recipe[@name='foodGrilledMeat']"/>
   <remove xpath="/recipes/recipe[@name='foodBoiledMeat']"/>
 
-  <!-- ===================================================== -->
-  <!-- HERBIVORE -> normal cooked meats (unchanged logic)     -->
-  <!-- ===================================================== -->
-  <!-- (Keep your existing herbivore blocks as-is) -->
+  <!-- Update clean bandage crafting -->
+  <remove xpath="/recipes/recipe[@name='medicalFirstAidBandage']"/>
 
+  <remove xpath="//recipe[@name='medicalBandage']"/>
+  <remove xpath="//recipe[@name='modArmorWaterPurifier']"/>
 
-  <!-- ===================================================== -->
-  <!-- CARNIVORE -> carnivore cooked variants (with reductions) -->
-  <!-- ===================================================== -->
   <append xpath="/recipes">
+
+    <!-- ===================================================== -->
+    <!-- CARNIVORE -> carnivore cooked variants                -->
+    <!-- ===================================================== -->
 
     <!-- CHARRED -->
     <recipe name="foodCharredMeatCarnivore" count="1" craft_area="campfire" tags="perkMasterChef">
@@ -46,7 +47,6 @@
       </effect_group>
     </recipe>
 
-
     <!-- GRILLED -->
     <recipe name="foodGrilledMeatCarnivore" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
       <ingredient name="foodRawMeatBear" count="5"/>
@@ -75,7 +75,6 @@
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatSnake"/>
       </effect_group>
     </recipe>
-
 
     <!-- BOILED -->
     <recipe name="foodBoiledMeatCarnivore" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
@@ -110,116 +109,69 @@
       </effect_group>
     </recipe>
 
-  </append>
-
-  <!-- ===================================================== -->
-  <!-- Weapons Repair Kit recipe (workbench)                  -->
-  <!-- ===================================================== -->
-  <append xpath="/recipes">
+    <!-- Weapons Repair Kit -->
     <recipe name="resourceWeaponRepairKit" count="1" craft_area="workbench" tags="perkMasterChef">
       <ingredient name="resourceForgedIron" count="1"/>
       <ingredient name="resourceDuctTape" count="1"/>
       <ingredient name="resourceMechanicalParts" count="2"/>
       <ingredient name="resourceOil" count="1"/>
     </recipe>
-  </append>
 
-  <!-- Update clean bandage crafting: require ethanol -->
-  <!-- If your base game already has a recipe for medicalFirstAidBandage, remove it first -->
-  <remove xpath="/recipes/recipe[@name='medicalFirstAidBandage']"/>
-
-  <append xpath="/recipes">
+    <!-- Bandages -->
     <recipe name="medicalFirstAidBandage" count="1">
       <ingredient name="resourceCloth" count="2"/>
       <ingredient name="resourceEthanol" count="1"/>
     </recipe>
-  </append>
 
-  <!-- Pocket sterilize dirty -> clean -->
-  <append xpath="/recipes">
     <recipe name="medicalFirstAidBandage" count="1">
       <ingredient name="medicalFirstAidBandageDirty" count="1"/>
       <ingredient name="resourceEthanol" count="1"/>
     </recipe>
-  </append>
 
-
-  <!-- Treatment via CLEAN bandage + honey -->
-  <append xpath="/recipes">
+    <!-- Wound infection treatment -->
     <recipe name="medicalWoundInfectionTreatment" count="1">
       <ingredient name="medicalFirstAidBandage" count="1"/>
       <ingredient name="foodHoney" count="1"/>
     </recipe>
-  </append>
 
-  <!-- Treatment via CLEAN bandage + ethanol -->
-  <append xpath="/recipes">
     <recipe name="medicalWoundInfectionTreatment" count="1">
       <ingredient name="medicalFirstAidBandage" count="1"/>
       <ingredient name="resourceEthanol" count="1"/>
     </recipe>
-  </append>
 
-  
+    <!-- Weapon Repair Bench -->
+    <recipe name="cntDeadAirWeaponRepairBench" count="1" craft_area="workbench">
+      <ingredient name="resourceForgedIron" count="25"/>
+      <ingredient name="resourceMechanicalParts" count="20"/>
+      <ingredient name="resourceElectricParts" count="8"/>
+      <ingredient name="resourceScrapPolymers" count="10"/>
+      <ingredient name="resourceDuctTape" count="5"/>
+    </recipe>
 
-  <remove xpath="//recipe[@name='medicalBandage']"/>
-  <remove xpath="//recipe[@name='modArmorWaterPurifier']"/>
+    <recipe name="resourceWeaponRepairKit" count="1" craft_area="deadairWeaponRepairBench">
+      <ingredient name="resourceForgedIron" count="1"/>
+      <ingredient name="resourceDuctTape" count="1"/>
+      <ingredient name="resourceMechanicalParts" count="2"/>
+      <ingredient name="resourceOil" count="1"/>
+    </recipe>
 
-
-
-  <!-- ===================================================== -->
-  <!-- Build the Weapon Repair Bench                         -->
-  <!-- ===================================================== -->
-  <append xpath="/recipes">
-      <recipe name="cntDeadAirWeaponRepairBench" count="1" craft_area="workbench">
-          <ingredient name="resourceForgedIron" count="25"/>
-          <ingredient name="resourceMechanicalParts" count="20"/>
-          <ingredient name="resourceElectricParts" count="8"/>
-          <ingredient name="resourceScrapPolymers" count="10"/>
-          <ingredient name="resourceDuctTape" count="5"/>
-      </recipe>
-  </append>
-
-  <append xpath="/recipes">
-      <recipe name="resourceWeaponRepairKit" count="1" craft_area="deadairWeaponRepairBench">
-          <ingredient name="resourceForgedIron" count="1"/>
-          <ingredient name="resourceDuctTape" count="1"/>
-          <ingredient name="resourceMechanicalParts" count="2"/>
-          <ingredient name="resourceOil" count="1"/>
-      </recipe>
-  </append>
-
-
-
-
-  <!-- ====================================== -->
-  <!-- Parasite Cleanse Tea                   -->
-  <!-- ====================================== -->
-  <append xpath="/recipes">
+    <!-- Parasite Cleanse Tea -->
     <recipe name="drinkTeaParasiteCleanse" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="learnable">
       <ingredient name="drinkJarBoiledWater" count="1"/>
       <ingredient name="foodCropMushrooms" count="2"/>
       <ingredient name="resourceCropChrysanthemumPlant" count="2"/>
       <ingredient name="foodHoney" count="1"/>
     </recipe>
-  </append>
 
-  <!-- ====================================== -->
-  <!-- Anthelmintic Tonic                     -->
-  <!-- ====================================== -->
-  <append xpath="/recipes">
+    <!-- Anthelmintic Tonic -->
     <recipe name="medicalAnthelminticTonic" count="1" craft_area="chemistryStation" tags="learnable">
       <ingredient name="resourceAcid" count="2"/>
       <ingredient name="foodCropMushroomsRadiated" count="4"/>
       <ingredient name="foodHoney" count="1"/>
       <ingredient name="drinkJarBoiledWater" count="1"/>
     </recipe>
-  </append>
 
-
-
-  <append xpath="/recipes">
-
+    <!-- Colon Cleanse Tonic -->
     <recipe name="drinkColonCleanseTonic" count="1" craft_area="campfire" tags="learnable">
       <ingredient name="drinkJarBoiledWater" count="1"/>
       <ingredient name="resourceCropGoldenrodPlant" count="2"/>

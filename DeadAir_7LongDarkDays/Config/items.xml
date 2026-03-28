@@ -432,7 +432,7 @@
   <!-- ===================================================== -->
   <!-- All guns and bows use Weapons Repair Kit              -->
   <!-- ===================================================== -->
-
+<!-- 
   <remove xpath="/items/item[@name='gunHandgunT1Pistol']/property[@name='RepairTools']"/>
   <append xpath="/items/item[@name='gunHandgunT1Pistol']">
       <property name="RepairTools" value="resourceWeaponRepairKit"/>
@@ -521,10 +521,10 @@
   <remove xpath="/items/item[@name='gunBowT3CompoundCrossbow']/property[@name='RepairTools']"/>
   <append xpath="/items/item[@name='gunBowT3CompoundCrossbow']">
       <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
+  </append> -->
 
   <!-- Level Action - 44 magnum ammo -->
-
+<!-- 
   <insertAfter xpath="/items/item[@name='gunRifleT2LeverActionRifle']/property[@name='UnlockedBy']">
     <property name="DescriptionKey" value="gunRifleT2LeverActionRifleDesc_44"/>
   </insertAfter>
@@ -534,7 +534,7 @@
   </set>
   <set xpath="/items/item[@name='gunRifleT2LeverActionRifle']/effect_group[@name='gunRifleT2LeverActionRifle']/passive_effect[@name='EntityDamage' and @operation='base_add' and @tags='perkDeadEye']/@value">
     65
-  </set>
+  </set> -->
 
 
   <!-- PURE ETHANOL (Beer-like feel, but horrible effects) -->

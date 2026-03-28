@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configs>
-		<item name="IZYgunT2Pistol45M1911A1" quality="1,5"/>
-		<item name="IZYgunT3Pistol45USP45" quality="1,5"/>
-		<item name="IZYgunT145TACSMGMAC10" quality="1,5"/>
-		<item name="IZYgunT445TACSMGKrissSuperV" quality="1,5" prob="0.5"/>
-		<item name="IZYgunT3MarksmanRifleMMRM1Carbine45" quality="1,5"/>
-		<item name="IZYgunT4MarksmanRifle45MMRKrissVectorCarbine" quality="1,5" prob="0.5"/>
-		<item name="ammo45ACPBulletBall" count="30,100"/>
-		<item name="ammo45ACPHighpower" count="20,60"/>
-		<item name="ammo45ACPArmorpiecing" count="20,60"/>
-		<item name="ammo45ACPEnhanced" count="10,30"/>
-		<item name="ammo45ACPBulletBall" count="30,100"/>
-		<item name="ammo45ACPHighpower" count="20,60"/>
-		<item name="ammo45ACPArmorpiecing" count="20,60"/>
-		<item name="IZYgunT0SMGPIPEsubmachinegun" quality="1,5"/>
-		<item name="IZYgunT4SMGCZScorpionEVO3" quality="1,5" prob="0.5"/>
-		<item name="IZYgunT4ARCabineHK416" quality="1,5" prob="0.5"/>
-		<item name="IZYgunT3BULLPUPHellionVHS2" quality="1,5"/>
-		<item name="ammo556mmBulletBall" count="50,120"/>
-		<item name="ammo556mmHIpower" count="30,60"/>
-		<item name="ammo556mmArmorPiercing" count="30,60"/>
-		<item name="ammo556mmBulletBall" count="50,120"/>
-		<item name="ammo556mmArmorPiercing" count="30,60"/>
-		<item name="ammo556mmHIpower" count="30,60"/>
-		<item name="IZYgunT2ARSTG44N" quality="1,5"/>
-		<item name="IZYgunT3BattleRifleHKG3" quality="1,5"/>
-		<item name="IZYgunT1SNIPERRIFLE762Mosinnagant" quality="1,5"/>
-		<item name="IZYgunT3MarksManRifle762HKPSG1" quality="1,5"/>
-		<item name="IZYgunT2TradshotgunLeveractionShotgunModel1887" quality="1,5"/>
-		<!--<item name="IZYgunT4TACshotgunM1014" quality="1,5" prob="0.5"/>	-->
+	<append xpath="/traders/trader_item_groups">
+		<trader_item_group name="groupIZYSubsetHugh">
+			<item name="IZYgunT2Pistol45M1911A1" quality="1,5"/>
+			<item name="IZYgunT3Pistol45USP45" quality="1,5"/>
+			<item name="IZYgunT145TACSMGMAC10" quality="1,5"/>
+			<item name="IZYgunT445TACSMGKrissSuperV" quality="1,5" prob="0.5"/>
+			<item name="IZYgunT3MarksmanRifleMMRM1Carbine45" quality="1,5"/>
+			<item name="IZYgunT4MarksmanRifle45MMRKrissVectorCarbine" quality="1,5" prob="0.5"/>
+			<item name="ammo45ACPBulletBall" count="30,100"/>
+			<item name="ammo45ACPHighpower" count="20,60"/>
+			<item name="ammo45ACPArmorpiecing" count="20,60"/>
+			<item name="ammo45ACPEnhanced" count="10,30"/>
+			<item name="IZYgunT0SMGPIPEsubmachinegun" quality="1,5"/>
+			<item name="IZYgunT4SMGCZScorpionEVO3" quality="1,5" prob="0.5"/>
+			<item name="IZYgunT4ARCabineHK416" quality="1,5" prob="0.5"/>
+			<item name="IZYgunT3BULLPUPHellionVHS2" quality="1,5"/>
+			<item name="ammo556mmBulletBall" count="50,120"/>
+			<item name="ammo556mmHIpower" count="30,60"/>
+			<item name="ammo556mmArmorPiercing" count="30,60"/>
+			<item name="IZYgunT2ARSTG44N" quality="1,5"/>
+			<item name="IZYgunT3BattleRifleHKG3" quality="1,5"/>
+			<item name="IZYgunT1SNIPERRIFLE762Mosinnagant" quality="1,5"/>
+			<item name="IZYgunT3MarksManRifle762HKPSG1" quality="1,5"/>
+			<item name="IZYgunT2TradshotgunLeveractionShotgunModel1887" quality="1,5"/>
+			<item name="IZYgunT4TACshotgunM1014" quality="1,5" prob="0.5"/>
 			<item name="ammoShotgunShellPremium" count="15,60"/>
-		<item name="IZYgunT2LGLChinalakeGrenadeLauncher" quality="1,5"/>
-		<item name="ammo25mmGrenadeTraining" count="6,16"/>
-		<item name="ammo25mmGrenadeHE" count="4,12"/>
-		<item name="ammo25mmGrenadeFRAGS" count="4,12"/>
-		<item name="ammo25mmGrenadeTraining" count="6,16"/>
-		<item name="ammo25mmGrenadeHE" count="4,12"/>
-		<item name="ammo25mmGrenadeFRAGS" count="4,12"/>
-		<item name="IZYMeleeT4SpearPoleAxe" quality="1,5" prob="0.5"/>
+			<item name="IZYgunT2LGLChinalakeGrenadeLauncher" quality="1,5"/>
+			<item name="ammo25mmGrenadeTraining" count="6,16"/>
+			<item name="ammo25mmGrenadeHE" count="4,12"/>
+			<item name="ammo25mmGrenadeFRAGS" count="4,12"/>
+			<item name="IZYMeleeT4SpearPoleAxe" quality="1,5" prob="0.5"/>
+		</trader_item_group>
+	</append>
+
+	<append xpath="/traders/trader_info[@id='7']/trader_items[1]">
+		<item group="groupIZYSubsetHugh" unique_only="true" count="6,10"/>
+	</append>
 </configs>

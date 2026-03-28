@@ -4,21 +4,15 @@
   <remove xpath="/windows/window[@name='windowEntering']/rect/label[@name='MessageContent']"/>
   <remove xpath="/windows/window[@name='windowEntering']/rect/label[@name='TextContent']"/>
   <remove xpath="/windows/window[@name='windowLocation']"/>
-  <!-- Cleanly replace our custom bench windows if they already exist -->
 
   <remove xpath="/windows/window[@name='windowDeadAirWeaponBenchCraftingList']"/>
   <remove xpath="/windows/window[@name='windowDeadAirWeaponBenchCraftingQueue']"/>
   <remove xpath="/windows/window[@name='windowDeadAirWeaponBenchCraftingInfo']"/>
   <remove xpath="/windows/window[@name='windowDeadAirWeaponBenchOutput']"/>
-  <remove xpath="/windows/window[@name='windowWeaponRepairInputs']"/>
+  <remove xpath="/windows/window[@name='windowDeadAirWeaponBenchInputs']"/>
 
   <append xpath="/windows">
 
-    <!-- ===================================================== -->
-    <!-- DEAD AIR: bench-local crafting list clone             -->
-    <!-- Keep real CraftingListInfo/RecipeList tree intact     -->
-    <!-- Collapse visuals instead of deleting controller nodes -->
-    <!-- ===================================================== -->
     <window name="windowDeadAirWeaponBenchCraftingList"
             width="1"
             height="1"
@@ -27,21 +21,21 @@
             cursor_area="false">
 
       <panel name="header"
-            height="1"
-            depth="1"
-            pos="-10000,-10000"
-            disableautobackground="true">
+             height="1"
+             depth="1"
+             pos="-10000,-10000"
+             disableautobackground="true">
         <sprite pos="4,-5" depth="2" name="windowIcon" style="icon32px" sprite="Craft_Icon_Basics" visible="false"/>
         <label style="header.name" text="basics" text_key="xuiBasics" visible="false"/>
       </panel>
 
       <panel name="content"
-            width="1"
-            height="1"
-            depth="1"
-            pos="-10000,-10000"
-            on_scroll="true"
-            disableautobackground="true">
+             width="1"
+             height="1"
+             depth="1"
+             pos="-10000,-10000"
+             on_scroll="true"
+             disableautobackground="true">
 
         <rect depth="2" name="categorySelector" width="1" height="1" pos="-10000,-10000">
           <sprite name="backgroundMain"
@@ -92,14 +86,14 @@
           <panel pos="104,0" width="200" disableautobackground="true" visible="false">
             <sprite depth="4" name="searchIcon" style="icon30px" pos="0,-22" sprite="ui_game_symbol_search" pivot="center"/>
             <textfield depth="5"
-                      name="searchInput"
-                      pos="22,-7"
-                      width="140"
-                      height="30"
-                      virtual_keyboard_prompt="vkPromptSearchTerm"
-                      search_field="true"
-                      close_group_on_tab="true"
-                      clear_button="true"/>
+                       name="searchInput"
+                       pos="22,-7"
+                       width="140"
+                       height="30"
+                       virtual_keyboard_prompt="vkPromptSearchTerm"
+                       search_field="true"
+                       close_group_on_tab="true"
+                       clear_button="true"/>
           </panel>
 
           <panel pos="286,0" width="104" height="43" disableautobackground="true" visible="false">
@@ -122,10 +116,7 @@
         </grid>
       </panel>
     </window>
-    <!-- ===================================================== -->
-    <!-- DEAD AIR: bench-local crafting queue clone            -->
-    <!-- ===================================================== -->
-    <!-- Crafting queue kept for recipe logic but hidden (was mistaken for repair slots) -->
+
     <window name="windowDeadAirWeaponBenchCraftingQueue"
             width="1"
             height="1"
@@ -149,152 +140,145 @@
       </rect>
     </window>
 
-    <!-- ===================================================== -->
-    <!-- DEAD AIR: bench-local crafting info clone             -->
-    <!-- Keep full controller-bearing skeleton intact          -->
-    <!-- Collapse most generic visuals to tiny/off-panel       -->
-    <!-- ===================================================== -->
     <window name="windowDeadAirWeaponBenchCraftingInfo"
-        width="1"
-        height="1"
-        controller="CraftingInfoWindow"
-        panel="Center"
-        cursor_area="false">
+            width="603"
+            height="302"
+            controller="CraftingInfoWindow"
+            style="crafting.info.window"
+            panel="Center"
+            cursor_area="true">
 
-    <panel name="header"
-          height="1"
-          depth="1"
-          pos="-10000,-10000"
-          disableautobackground="true">
-      <sprite depth="2" name="windowIcon" style="icon32px" pos="4,-5" sprite="{itemgroupicon}" visible="false"/>
-      <label style="header.name" text="{itemname}" visible="false"/>
+      <panel name="header"
+             height="1"
+             depth="1"
+             pos="-10000,-10000"
+             disableautobackground="true">
+        <sprite depth="2" name="windowIcon" style="icon32px" pos="4,-5" sprite="{itemgroupicon}" visible="false"/>
+        <label style="header.name" text="{itemname}" visible="false"/>
 
-      <rect pos="350,0" name="requiredToolOverlay" visible="false">
-        <sprite size="24,24" depth="2" name="requiredToolCheckmark" pos="0,-8" sprite="ui_game_symbol_check" color="[red]"/>
-        <label depth="2" pos="35,-8" name="requiredToolText" width="200" height="32" text="Required" text_key="xuiRequired" font_size="32" upper_case="true" justify="left"/>
-      </rect>
-    </panel>
+        <rect pos="350,0" name="requiredToolOverlay" visible="false">
+          <sprite size="24,24" depth="2" name="requiredToolCheckmark" pos="0,-8" sprite="ui_game_symbol_check" color="[red]"/>
+          <label depth="2" pos="35,-8" name="requiredToolText" width="200" height="32" text="Required" text_key="xuiRequired" font_size="32" upper_case="true" justify="left"/>
+        </rect>
+      </panel>
 
-    <rect name="contentCraftingInfo"
-          width="1"
-          height="1"
-          depth="1"
-          pos="-10000,-10000">
+      <rect name="contentCraftingInfo"
+            width="1"
+            height="1"
+            depth="1"
+            pos="-10000,-10000">
 
-      <sprite depth="5"
-              name="backgroundMain"
-              sprite="menu_empty3px"
-              width="1"
-              height="1"
-              pos="-10000,-10000"
-              color="0,0,0,0"
-              type="sliced"
-              fillcenter="false" />
-
-      <rect depth="1" pos="-10000,-10000" name="preview" width="1" height="1">
-        <sprite depth="8"
+        <sprite depth="5"
                 name="backgroundMain"
                 sprite="menu_empty3px"
-                pos="-3,3"
+                width="1"
+                height="1"
+                pos="-10000,-10000"
+                color="0,0,0,0"
+                type="sliced"
+                fillcenter="false" />
+
+        <rect depth="1" pos="-10000,-10000" name="preview" width="1" height="1">
+          <sprite depth="8"
+                  name="backgroundMain"
+                  sprite="menu_empty3px"
+                  pos="-3,3"
+                  width="1"
+                  height="1"
+                  color="0,0,0,0"
+                  type="sliced"
+                  fillcenter="false" />
+          <sprite depth="1" color="0,0,0,0" type="sliced" globalopacity="true" />
+          <sprite depth="12" name="itemPreview" width="110" height="110" atlas="ItemIconAtlas" sprite="{itemicon}" color="{itemicontint}" pos="74,-58" pivot="center" foregroundlayer="true"/>
+          <sprite depth="8" name="itemtypeicon" width="32" height="32" sprite="ui_game_symbol_{itemtypeicon}" pos="2,-2" foregroundlayer="true" visible="{hasitemtypeicon}" color="{itemtypeicontint}" />
+          <sprite depth="3" name="durabilityBackground" height="20" width="85" color="48,48,48,255" type="sliced" pos="31,-113" visible="{hasdurability}"/>
+          <filledsprite depth="4" name="durabilityBar" height="20" width="85" color="{durabilitycolor}" type="filled" pos="31,-113" fill="{durabilityfill}" visible="{hasdurability}" />
+          <label depth="12" name="durabilityValue" pos="0,-104" width="145" height="32" text="{durabilitytext}" font_size="30" justify="{durabilityjustify}" effect="outline" visible="false"/>
+          <sprite depth="3" name="clockIcon" size="24,24" sprite="ui_game_symbol_clock" pos="25,-142" type="sliced" color="[iconColor]" foregroundlayer="true" />
+          <label depth="3" name="craftingTime" width="100" height="32" pos="55,-143" text="{craftingtime}" font_size="26" color="[beige]"/>
+          <button depth="12" name="addQualityButton" style="icon22px, press" pos="132,-123" sprite="ui_game_symbol_arrow_menu" flip="Horizontally" pivot="center" sound="[paging_click]" visible="{hasdurability}" disabledcolor="[lightGrey]" enabled="{enableaddquality}" />
+          <button depth="12" name="subtractQualityButton" style="icon22px, press" pos="14,-123" sprite="ui_game_symbol_arrow_menu" pivot="center" sound="[paging_click]" visible="{hasdurability}" disabledcolor="[lightGrey]" enabled="{enablesubtractquality}" />
+        </rect>
+
+        <sprite depth="8"
+                name="backgroundMain2"
+                sprite="menu_empty3px"
+                pos="-10000,-10000"
                 width="1"
                 height="1"
                 color="0,0,0,0"
                 type="sliced"
                 fillcenter="false" />
-        <sprite depth="1" color="0,0,0,0" type="sliced" globalopacity="true" />
-        <sprite depth="12" name="itemPreview" width="110" height="110" atlas="ItemIconAtlas" sprite="{itemicon}" color="{itemicontint}" pos="74,-58" pivot="center" foregroundlayer="true"/>
-        <sprite depth="8" name="itemtypeicon" width="32" height="32" sprite="ui_game_symbol_{itemtypeicon}" pos="2,-2" foregroundlayer="true" visible="{hasitemtypeicon}" color="{itemtypeicontint}" />
-        <sprite depth="3" name="durabilityBackground" height="20" width="85" color="48,48,48,255" type="sliced" pos="31,-113" visible="{hasdurability}"/>
-        <filledsprite depth="4" name="durabilityBar" height="20" width="85" color="{durabilitycolor}" type="filled" pos="31,-113" fill="{durabilityfill}" visible="{hasdurability}" />
-        <label depth="12" name="durabilityValue" pos="0,-104" width="145" height="32" text="{durabilitytext}" font_size="30" justify="{durabilityjustify}" effect="outline" visible="false"/>
-        <sprite depth="3" name="clockIcon" size="24,24" sprite="ui_game_symbol_clock" pos="25,-142" type="sliced" color="[iconColor]" foregroundlayer="true" />
-        <label depth="3" name="craftingTime" width="100" height="32" pos="55,-143" text="{craftingtime}" font_size="26" color="[beige]"/>
-        <button depth="12" name="addQualityButton" style="icon22px, press" pos="132,-123" sprite="ui_game_symbol_arrow_menu" flip="Horizontally" pivot="center" sound="[paging_click]" visible="{hasdurability}" disabledcolor="[lightGrey]" enabled="{enableaddquality}" />
-        <button depth="12" name="subtractQualityButton" style="icon22px, press" pos="14,-123" sprite="ui_game_symbol_arrow_menu" pivot="center" sound="[paging_click]" visible="{hasdurability}" disabledcolor="[lightGrey]" enabled="{enablesubtractquality}" />
-      </rect>
 
-      <sprite depth="8"
-              name="backgroundMain2"
-              sprite="menu_empty3px"
+        <grid name="itemActions"
+              rows="4"
+              cols="1"
               pos="-10000,-10000"
-              width="1"
-              height="1"
-              color="0,0,0,0"
-              type="sliced"
-              fillcenter="false" />
+              width="148"
+              cell_width="147"
+              cell_height="42"
+              controller="ItemActionList">
+          <rect depth="1" name="actions" width="147" height="225">
+            <sprite color="0,0,0,0" type="sliced" height="45" />
+            <rect name="recipeCraftCountControl" width="120" height="210" pos="27,0" controller="RecipeCraftCount">
+              <button depth="2" name="countDown" style="icon30px, press, held" pos="-10,-20" sprite="ui_game_symbol_arrow_left" pivot="center" sound="[paging_click]" disabledcolor="[lightGrey]" enabled="{enablecountdown}"/>
+              <textfield name="count_input" depth="2" pos="7,-6" width="40" height="28" character_limit="4" validation="integer" virtual_keyboard_prompt="vkPromptCount" />
+              <button depth="2" name="countUp" style="icon30px, press, held" pos="64,-20" sprite="ui_game_symbol_arrow_right" pivot="center" sound="[paging_click]" disabledcolor="[lightGrey]" enabled="{enablecountup}"/>
+              <button depth="2" name="countMax" style="icon30px, press" pos="96,-20" sprite="ui_game_symbol_arrow_max" pivot="center" sound="[paging_click]" disabledcolor="[lightGrey]" enabled="{enablecountup}"/>
+            </rect>
+          </rect>
+          <item_action_entry />
+          <item_action_entry />
+          <item_action_entry />
+        </grid>
 
-      <grid name="itemActions"
-            rows="4"
-            cols="1"
-            pos="-10000,-10000"
-            width="148"
-            cell_width="147"
-            cell_height="42"
-            controller="ItemActionList">
-        <rect depth="1" name="actions" width="147" height="225">
-          <sprite color="0,0,0,0" type="sliced" height="45" />
-          <rect name="recipeCraftCountControl" width="120" height="210" pos="27,0" controller="RecipeCraftCount">
-            <button depth="2" name="countDown" style="icon30px, press, held" pos="-10,-20" sprite="ui_game_symbol_arrow_left" pivot="center" sound="[paging_click]" disabledcolor="[lightGrey]" enabled="{enablecountdown}"/>
-            <textfield name="count_input" depth="2" pos="7,-6" width="40" height="28" character_limit="4" validation="integer" virtual_keyboard_prompt="vkPromptCount" />
-            <button depth="2" name="countUp" style="icon30px, press, held" pos="64,-20" sprite="ui_game_symbol_arrow_right" pivot="center" sound="[paging_click]" disabledcolor="[lightGrey]" enabled="{enablecountup}"/>
-            <button depth="2" name="countMax" style="icon30px, press" pos="96,-20" sprite="ui_game_symbol_arrow_max" pivot="center" sound="[paging_click]" disabledcolor="[lightGrey]" enabled="{enablecountup}"/>
+        <rect depth="2" name="searchControls" width="1" height="1" pos="-10000,-10000">
+          <sprite depth="1" color="0,0,0,0" type="sliced" globalopacity="true" />
+          <button depth="4" name="ingredientsButton" style="icon30px, press" pos="22,-22" sprite="ui_game_symbol_resource" pivot="center" tooltip_key="ingredient" sound="[paging_click]" selected="true" visible="false"/>
+          <button depth="4" name="descriptionButton" style="icon30px, press" pos="65,-22" sprite="ui_game_symbol_book" pivot="center" tooltip_key="lblBookDesc" sound="[paging_click]" visible="false"/>
+          <button depth="4" name="showunlocksButton" style="icon30px, press" pos="108,-22" sprite="ui_game_symbol_unlock" pivot="center" tooltip_key="xuiSkillUnlocks" sound="[paging_click]" visible="{showunlockedbytab}" />
+        </rect>
+
+        <rect depth="1" pos="-10000,-10000" name="description" width="1" height="1" visible="{showdescription}">
+          <sprite depth="3"
+                  name="descriptionBg"
+                  sprite="menu_empty3px"
+                  pos="-3,0"
+                  width="1"
+                  height="1"
+                  color="0,0,0,0"
+                  type="sliced"
+                  fillcenter="false" />
+          <rect visible="true">
+            <sprite depth="1" color="0,0,0,0" type="sliced" globalopacity="true" height="1" />
+            <label depth="3" name="descriptionText" pos="6,-5" text="{itemdescription}" width="440" height="294" parse_actions="true" />
           </rect>
         </rect>
-        <item_action_entry />
-        <item_action_entry />
-        <item_action_entry />
-      </grid>
 
-      <rect depth="2" name="searchControls" width="1" height="1" pos="-10000,-10000">
-        <sprite depth="1" color="0,0,0,0" type="sliced" globalopacity="true" />
-        <button depth="4" name="ingredientsButton" style="icon30px, press" pos="22,-22" sprite="ui_game_symbol_resource" pivot="center" tooltip_key="ingredient" sound="[paging_click]" selected="true" visible="false"/>
-        <button depth="4" name="descriptionButton" style="icon30px, press" pos="65,-22" sprite="ui_game_symbol_book" pivot="center" tooltip_key="lblBookDesc" sound="[paging_click]" visible="false"/>
-        <button depth="4" name="showunlocksButton" style="icon30px, press" pos="108,-22" sprite="ui_game_symbol_unlock" pivot="center" tooltip_key="xuiSkillUnlocks" sound="[paging_click]" visible="{showunlockedbytab}" />
-      </rect>
+        <rect depth="1" pos="-10000,-10000" name="ingredients" width="1" height="1" visible="{showingredients}">
+          <grid rows="6" width="447" height="231" cell_height="50" cell_width="447" controller="IngredientList" arrangement="vertical">
+            <ingredient_header name="0"/>
+            <ingredient_row name="1"/>
+            <ingredient_row name="2"/>
+            <ingredient_row name="3"/>
+            <ingredient_row name="4"/>
+            <ingredient_row name="5"/>
+          </grid>
+        </rect>
 
-      <rect depth="1" pos="-10000,-10000" name="description" width="1" height="1" visible="{showdescription}">
-        <sprite depth="3"
-                name="descriptionBg"
-                sprite="menu_empty3px"
-                pos="-3,0"
-                width="1"
-                height="1"
-                color="0,0,0,0"
-                type="sliced"
-                fillcenter="false" />
-        <rect visible="true">
-          <sprite depth="1" color="0,0,0,0" type="sliced" globalopacity="true" height="1" />
-          <label depth="3" name="descriptionText" pos="6,-5" text="{itemdescription}" width="440" height="294" parse_actions="true" />
+        <rect depth="1" pos="-10000,-10000" name="unlockedBy" width="1" height="1" visible="{showunlockedby}">
+          <grid rows="6" width="447" height="231" cell_height="50" cell_width="447" controller="UnlockByList" arrangement="vertical">
+            <unlocked_by_header name="0"/>
+            <unlocked_by_row name="1"/>
+            <unlocked_by_row name="2"/>
+            <unlocked_by_row name="3"/>
+            <unlocked_by_row name="4"/>
+            <unlocked_by_row name="5"/>
+          </grid>
         </rect>
       </rect>
+    </window>
 
-      <rect depth="1" pos="-10000,-10000" name="ingredients" width="1" height="1" visible="{showingredients}">
-        <grid rows="6" width="447" height="231" cell_height="50" cell_width="447" controller="IngredientList" arrangement="vertical">
-          <ingredient_header name="0"/>
-          <ingredient_row name="1"/>
-          <ingredient_row name="2"/>
-          <ingredient_row name="3"/>
-          <ingredient_row name="4"/>
-          <ingredient_row name="5"/>
-        </grid>
-      </rect>
-
-      <rect depth="1" pos="-10000,-10000" name="unlockedBy" width="1" height="1" visible="{showunlockedby}">
-        <grid rows="6" width="447" height="231" cell_height="50" cell_width="447" controller="UnlockByList" arrangement="vertical">
-          <unlocked_by_header name="0"/>
-          <unlocked_by_row name="1"/>
-          <unlocked_by_row name="2"/>
-          <unlocked_by_row name="3"/>
-          <unlocked_by_row name="4"/>
-          <unlocked_by_row name="5"/>
-        </grid>
-      </rect>
-    </rect>
-  </window>
-
-    <!-- ===================================================== -->
-    <!-- DEAD AIR: bench-local output clone                    -->
-    <!-- ===================================================== -->
     <window name="windowDeadAirWeaponBenchOutput"
             width="228"
             height="198"
@@ -344,9 +328,6 @@
       </rect>
     </window>
 
-    <!-- ===================================================== -->
-    <!-- DEAD AIR: visible custom instruction panel            -->
-    <!-- ===================================================== -->
     <window name="windowDeadAirWeaponBenchInputs"
             width="390"
             height="210"
@@ -366,8 +347,14 @@
                 type="sliced"
                 fillcenter="false"/>
 
-        <label depth="3" pos="10,-8" width="370" height="18" font_size="14" color="[lightGrey]"
-               text_key="deadairWeaponBenchSlotsHint" justify="left"/>
+        <label depth="3"
+               pos="10,-8"
+               width="370"
+               height="18"
+               font_size="14"
+               color="[lightGrey]"
+               text_key="deadairWeaponBenchSlotsHint"
+               justify="left"/>
 
         <grid name="inventory"
               rows="1"
@@ -403,5 +390,4 @@
     </window>
 
   </append>
-
 </configs>

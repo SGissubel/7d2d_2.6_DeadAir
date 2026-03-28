@@ -5,7 +5,7 @@
 	<set xpath="/entity_classes/entity_class[@name='animalZombieBoar']/property[@name='MoveSpeedAggro']/@value">1.05, 1.1</set>
 
   <!-- Optional: make aggro just a touch more relentless without changing overall character -->
-  <set xpath="/entity_classes/entity_class[@name='animalZombieBear']/property[@name='MoveSpeedAggro']/@value">2.0,2.1</set>
+  <!-- <set xpath="/entity_classes/entity_class[@name='animalZombieBear']/property[@name='MoveSpeedAggro']/@value">2.0,2.1</set> -->
 
   <!-- Small mobility bump only; leave jump alone for first validation pass -->
   <set xpath="/entity_classes/entity_class[@name='animalDireWolf']/property[@name='MoveSpeedAggro']/@value">1.15,1.25</set>

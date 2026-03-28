@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addnew>
-<append xpath="/item_modifiers/item_modifier[@name='modArmorNightVision']">
+<configs>
+	<append xpath="/item_modifiers/item_modifier[@name='modArmorNightVision']">
 		<effect_group tiered="false">
 			<requirement name="IsEquipped"/>
 			<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" transform_path="IR_Light_FPV"/>
@@ -11,229 +11,633 @@
 			<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="HavingNVG"/>
 		</effect_group>
 	</append>
-<item_modifier name="modGunFlashlight" installable_tags="sideAttachments" modifier_tags="sideAttachment" blocked_tags="noMods" type="attachment">
-		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-		<property name="UnlockedBy" value="modGunFlashlightSchematic"/>
-		<property name="TraderStageTemplate" value="modsTier1"/>
-		<property name="LightValue" value=".5"/>
-		<property name="Material" value="Mplastics"/>
+	<append xpath="/item_modifiers">
+		<item_modifier name="modGunFlashlight" installable_tags="sideAttachments" modifier_tags="sideAttachment" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="UnlockedBy" value="modGunFlashlightSchematic"/>
+			<property name="TraderStageTemplate" value="modsTier1"/>
+			<property name="LightValue" value=".5"/>
+			<property name="Material" value="Mplastics"/>
+
+			<item_property_overrides name="gunHandgunT1Pistol">
+				<property name="SideOffset" value="0,.0198,.0475"/>
+				<property name="SideScale" value=".75,.75,.75"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunShotgunT1DoubleBarrel">
+				<property name="SideOffset" value="0,-.03,.066"/>
+				<property name="SideScale" value=".4,.4,.4"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunShotgunT2PumpShotgun">
+				<property name="SideOffset" value="0,0,.41"/>
+				<property name="SideScale" value="1.12,1.12,1.12"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunMGT1AK47">
+				<property name="SideOffset" value="0,0,.28"/>
+				<property name="SideScale" value="1,1,1"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunMGT2TacticalAR">
+				<property name="SideOffset" value="0,0.0,0.23"/>
+				<property name="SideScale" value="1,1,1"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunMGT3M60">
+				<property name="SideOffset" value="-.0386,.0382,.3519"/>
+				<property name="SideRotation" value="0,0,-90"/>
+				<property name="SideScale" value="1,1,1"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunHandgunT2Magnum44">
+				<property name="SideOffset" value="0,.0621,.095"/>
+				<property name="SideScale" value=".75,.75,.75"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunHandgunT3SMG5">
+				<property name="SideOffset" value="0,.0065,0"/>
+				<property name="SideScale" value="1.5,1.5,1.5"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunRifleT1HuntingRifle">
+				<property name="SideOffset" value="0,.0061,.2455"/>
+				<property name="SideScale" value="1,1,1"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunRifleT2LeverActionRifle">
+				<property name="SideOffset" value="0,-.0025,.175"/>
+				<property name="SideScale" value="1.12,1.12,1.12"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunExplosivesT3RocketLauncher">
+				<property name="SideOffset" value=".037,-.1,.16"/>
+				<property name="SideScale" value="1,1,1"/>
+				<property name="SideRotation" value="0,0,20"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunBowT1IronCrossbow">
+				<property name="SideOffset" value="0,-.038,.32"/>
+				<property name="SideScale" value="1,1,1"/>
+				<property name="SideRotation" value="0,0,0"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunBowT3CompoundCrossbow">
+				<property name="SideOffset" value="0,0,.32"/>
+				<property name="SideScale" value="1,1,1"/>
+			</item_property_overrides>
+
+			<!-- visible attachment: flashlight -->
+			<effect_group tiered="false" name="external attachment prefab (old way)">
+				<requirement name="!HoldingItemHasTags" tags="attachmentsIncluded"/>
+					<triggered_effect trigger="onSelfHoldingItemCreated" action="AttachPrefabToHeldItem" prefab="@:Other/Items/Mods/Sides/side_attachment_flashlightPrefab.prefab" parent_transform="Attachments/Side"/>
+					<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="Side" transform_path="lightSource"/>
+					<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="Side" transform_path="lightSource"/>
+					<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="Side" transform_path="lightSource"/>
+			</effect_group>
+			<effect_group tiered="false" name="internal attachment prefab (A19)">
+				<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
+					<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="flashlight"/>
+					<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource"/>
+					<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource"/>
+					<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource"/>
+			</effect_group>
+			<effect_group tiered="false" name="internal attachment prefab (A19)">
+				<requirement name="!HasBuff" buff="IZYRangeWPmeleeKick"/>
+				<requirement name="HasBuff" buff="buffCrouching"/>
+				<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
+					<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="flashlight"/>
+					<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource_IZY"/>
+					<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource_IZY"/>
+					<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource_IZY"/>
+					<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource_IZY2"/>
+					<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource_IZY2"/>
+					<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource_IZY2"/>
+					<triggered_effect trigger="onSelfItemActivate" action="PlaySound" silent_on_equip="true" target="self" sound="flashlight_toggle" play_in_head="false"/>
+					<triggered_effect trigger="onSelfItemDeactivate" action="PlaySound" silent_on_equip="true" target="self" sound="flashlight_toggle" play_in_head="false"/>
+			</effect_group>
+		</item_modifier>
+	</append>
+	<append xpath="/item_modifiers">
+		<item_modifier name="modGunLaserSight" installable_tags="sideAttachments" modifier_tags="sideAttachment" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="UnlockedBy" value="modGunLaserSightSchematic"/>
+			<property name="TraderStageTemplate" value="modsTier2"/>
+
+			<item_property_overrides name="*">
+				<property name="CrosshairOnAim" value="true"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunHandgunT1Pistol">
+				<property name="SideOffset" value="0,.0148,.0479"/>
+				<property name="SideScale" value="1,1,1"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunRifleT0PipeRifle">
+				<property name="SideOffset" value="0,.0148,.0479"/>
+				<property name="SideScale" value="1,1,1"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunShotgunT2PumpShotgun">
+				<property name="SideOffset" value="0,0,.41"/>
+				<property name="SideScale" value="1.12,1.12,1.12"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunShotgunT1DoubleBarrel">
+				<property name="SideOffset" value="0,-.055,.07"/>
+				<property name="SideScale" value=".4,.4,.4"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunMGT1AK47">
+				<property name="SideOffset" value="0,0,.31"/>
+				<property name="SideScale" value="1,1,1"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunMGT2TacticalAR">
+				<property name="SideOffset" value="0,0.021,0.258"/>
+				<property name="SideScale" value="1,1,1"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunMGT3M60">
+				<property name="SideOffset" value="-.0386,.0382,.3735"/>
+				<property name="SideRotation" value="0,0,-90"/>
+				<property name="SideScale" value="1,1,1"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunHandgunT2Magnum44">
+				<property name="SideOffset" value="0,.065,.14"/>
+				<property name="SideScale" value=".75,.75,.75"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunHandgunT3SMG5">
+				<property name="SideOffset" value="0,.0108,.0148"/>
+				<property name="SideScale" value="1.25,1.25,1.25"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunRifleT2LeverActionRifle">
+				<property name="SideOffset" value="0,.003,.1674"/>
+				<property name="SideScale" value="1,1,1"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunExplosivesT3RocketLauncher">
+				<property name="SideOffset" value=".037,-.1,.19"/>
+				<property name="SideScale" value="1,1,1"/>
+				<property name="SideRotation" value="0,0,20"/>
+			</item_property_overrides>
+
+			<item_property_overrides name="gunBowT1IronCrossbow">
+				<property name="SideOffset" value="0,-.038,.32"/>
+				<property name="SideScale" value="1,1,1"/>
+				<property name="SideRotation" value="0,0,0"/>
+			</item_property_overrides>
+			<item_property_overrides name="gunHandgunT3DesertVulture ">
+				<property name="SideOffset" value="0,0,.32"/>
+				<property name="SideScale" value="1,1,1"/>
+			</item_property_overrides>
+
+			<!-- visible attachment: gunlaser -->
+			<effect_group tiered="false" name="external attachment prefab (old way)">
+				<requirement name="!HoldingItemHasTags" tags="attachmentsIncluded"/>
+					<triggered_effect trigger="onSelfHoldingItemCreated" action="AttachPrefabToHeldItem" prefab="@:Other/Items/Mods/Sides/side_attachment_laserPrefab.prefab" parent_transform="Attachments/Side" local_rotation="0,0,0"/>
+					<triggered_effect trigger="onSelfItemActivate" action="SetTransformChildrenActive" active="true" parent_transform="Side" transform_path="gun_laser"/>
+					<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformChildrenActive" active="false" parent_transform="Side" transform_path="gun_laser"/>
+					<triggered_effect trigger="onSelfEquipStop" action="SetTransformChildrenActive" active="false" parent_transform="Side" transform_path="gun_laser"/>
+			</effect_group>
+			<effect_group tiered="false" name="internal attachment prefab (A19)">
+				<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
+					<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="gunlaser"/>
+
+					<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="gunlaser/gunlaser"/>
+					<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser/gunlaser"/>
+					<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser/gunlaser"/>
+			</effect_group>
+			
+			<effect_group tiered="false" name="internal attachment prefab (A19)">
+				<requirement name="!HasBuff" buff="IZYRangeWPmeleeKick"/>
+				<requirement name="HasBuff" buff="buffCrouching"/>
+				<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
+					<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="gunlaser"/>
+
+					<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="gunlaser/gunlaser_IZY"/>
+					<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser/gunlaser_IZY"/>
+					<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser/gunlaser_IZY"/>
+					<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="gunlaser2/gunlaser_IZY2"/>
+					<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser2/gunlaser_IZY2"/>
+					<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser2/gunlaser_IZY2"/>
+					<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="gunlaser2/gunlaser_IZY_2"/>
+					<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser2/gunlaser_IZY_2"/>
+					<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser2/gunlaser_IZY_2"/>
+					<triggered_effect trigger="onSelfItemActivate" action="PlaySound" silent_on_equip="true" target="self" sound="flashlight_toggle" play_in_head="false"/>
+					<triggered_effect trigger="onSelfItemDeactivate" action="PlaySound" silent_on_equip="true" target="self" sound="flashlight_toggle" play_in_head="false"/>
+			</effect_group>
+
+			<effect_group tiered="false" name="mod effects">
+				<passive_effect name="SpreadMultiplierHip" operation="perc_add" value="-.2"/>
+				<passive_effect name="WeaponHandling" operation="perc_add" value=".2"/>
+			</effect_group>
+			
+			
+			
+		</item_modifier>
+	</append>
+
+	<!--	Longbarrel		-->
+	
+	<append xpath="/item_modifiers/item_modifier[@name='modGunBarrelExtender']">
+			
+	</append>
+
+		<!--	MAGAZINE-DRUM 	-->
+		
+	<append xpath="/item_modifiers/item_modifier[@name='modGunDrumMagazineExtender']">
+			
+	</append>
+
+		<!--	MAGAZINE-EXT 	-->
+		
+	<append xpath="/item_modifiers/item_modifier[@name='modGunMagazineExtender']">
+
+		
+	</append>
+
+			<!--	FORGRIP 	-->
+	<append xpath="/item_modifiers/item_modifier[@name='modGunForegrip']">
+		
+
+		
+	</append>
+
+		<!--	RET-STOCK 	-->
+		
+	<append xpath="/item_modifiers/item_modifier[@name='modGunRetractingStock']">
+	
+			
+	</append>
+
+		<!--	FLASHLIGHT 	-->
+		
+	<append xpath="/item_modifiers/item_modifier[@name='modGunFlashlight']">
+	
+			
+	</append>
+
+		<!--	LASER   	-->
+		
+	<append xpath="/item_modifiers/item_modifier[@name='modGunLaserSight']">
+	
+			
+	</append>
+
+		<!--	REFLEXSIGHT 	-->
+		
+	<append xpath="/item_modifiers/item_modifier[@name='modGunReflexSight']">
 
 		<item_property_overrides name="gunHandgunT1Pistol">
-			<property name="SideOffset" value="0,.0198,.0475"/>
-			<property name="SideScale" value=".75,.75,.75"/>
+			<property name="ScopeCameraOffset" value="-.0016,-.0205,.012"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
 		</item_property_overrides>
-
-		<item_property_overrides name="gunShotgunT1DoubleBarrel">
-			<property name="SideOffset" value="0,-.03,.066"/>
-			<property name="SideScale" value=".4,.4,.4"/>
-		</item_property_overrides>
-
-		<item_property_overrides name="gunShotgunT2PumpShotgun">
-			<property name="SideOffset" value="0,0,.41"/>
-			<property name="SideScale" value="1.12,1.12,1.12"/>
-		</item_property_overrides>
-
-		<item_property_overrides name="gunMGT1AK47">
-			<property name="SideOffset" value="0,0,.28"/>
-			<property name="SideScale" value="1,1,1"/>
-		</item_property_overrides>
-
-		<item_property_overrides name="gunMGT2TacticalAR">
-			<property name="SideOffset" value="0,0.0,0.23"/>
-			<property name="SideScale" value="1,1,1"/>
-		</item_property_overrides>
-
-		<item_property_overrides name="gunMGT3M60">
-			<property name="SideOffset" value="-.0386,.0382,.3519"/>
-			<property name="SideRotation" value="0,0,-90"/>
-			<property name="SideScale" value="1,1,1"/>
-		</item_property_overrides>
-
+		
 		<item_property_overrides name="gunHandgunT2Magnum44">
-			<property name="SideOffset" value="0,.0621,.095"/>
-			<property name="SideScale" value=".75,.75,.75"/>
+			<property name="ScopeCameraOffset" value="-.0004,-.033,-.03"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
 		</item_property_overrides>
-
+		
+		<item_property_overrides name="gunHandgunT3DesertVulture">
+			<property name="ScopeCameraOffset" value="-.0016,-.0415,.04"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
 		<item_property_overrides name="gunHandgunT3SMG5">
-			<property name="SideOffset" value="0,.0065,0"/>
-			<property name="SideScale" value="1.5,1.5,1.5"/>
+			<property name="ScopeCameraOffset" value=".0102,-.0522,-.01"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
 		</item_property_overrides>
-
+		
+		<item_property_overrides name="gunShotgunT2PumpShotgun">
+			<property name="ScopeCameraOffset" value="0,-.031,.02"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunShotgunT3AutoShotgun">
+			<property name="ScopeCameraOffset" value=".0115,-.0348,.09"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
 		<item_property_overrides name="gunRifleT1HuntingRifle">
-			<property name="SideOffset" value="0,.0061,.2455"/>
-			<property name="SideScale" value="1,1,1"/>
+			<property name="ScopeCameraOffset" value="-.0001,.018,.2"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
 		</item_property_overrides>
-
+		
 		<item_property_overrides name="gunRifleT2LeverActionRifle">
-			<property name="SideOffset" value="0,-.0025,.175"/>
-			<property name="SideScale" value="1.12,1.12,1.12"/>
+			<property name="ScopeCameraOffset" value=".0003,-.0045,0"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
 		</item_property_overrides>
-
-		<item_property_overrides name="gunExplosivesT3RocketLauncher">
-			<property name="SideOffset" value=".037,-.1,.16"/>
-			<property name="SideScale" value="1,1,1"/>
-			<property name="SideRotation" value="0,0,20"/>
+		
+		<item_property_overrides name="gunRifleT3SniperRifle">
+			<property name="ScopeCameraOffset" value="-.0039,-.033,.09"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
 		</item_property_overrides>
-
-		<item_property_overrides name="gunBowT1IronCrossbow">
-			<property name="SideOffset" value="0,-.038,.32"/>
-			<property name="SideScale" value="1,1,1"/>
-			<property name="SideRotation" value="0,0,0"/>
+		
+		<item_property_overrides name="gunMGT1AK47">
+			<property name="ScopeCameraOffset" value="-.0077,-.0503,.08"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
 		</item_property_overrides>
-
-		<item_property_overrides name="gunBowT3CompoundCrossbow">
-			<property name="SideOffset" value="0,0,.32"/>
-			<property name="SideScale" value="1,1,1"/>
+		
+		<item_property_overrides name="gunMGT2TacticalAR">
+			<property name="ScopeCameraOffset" value="-.0016,-.0118,.04"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
 		</item_property_overrides>
-
-		<!-- visible attachment: flashlight -->
-		<effect_group tiered="false" name="external attachment prefab (old way)">
-			<requirement name="!HoldingItemHasTags" tags="attachmentsIncluded"/>
-				<triggered_effect trigger="onSelfHoldingItemCreated" action="AttachPrefabToHeldItem" prefab="@:Other/Items/Mods/Sides/side_attachment_flashlightPrefab.prefab" parent_transform="Attachments/Side"/>
-				<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="Side" transform_path="lightSource"/>
-				<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="Side" transform_path="lightSource"/>
-				<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="Side" transform_path="lightSource"/>
-		</effect_group>
-		<effect_group tiered="false" name="internal attachment prefab (A19)">
-			<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
-				<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="flashlight"/>
-				<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource"/>
-				<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource"/>
-				<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource"/>
-		</effect_group>
-		<effect_group tiered="false" name="internal attachment prefab (A19)">
-			<requirement name="!HasBuff" buff="IZYRangeWPmeleeKick"/>
-			<requirement name="HasBuff" buff="buffCrouching"/>
-			<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
-				<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="flashlight"/>
-				<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource_IZY"/>
-				<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource_IZY"/>
-				<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource_IZY"/>
-				<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource_IZY2"/>
-				<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource_IZY2"/>
-				<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="flashlight_lightSource_IZY2"/>
-				<triggered_effect trigger="onSelfItemActivate" action="PlaySound" silent_on_equip="true" target="self" sound="flashlight_toggle" play_in_head="false"/>
-				<triggered_effect trigger="onSelfItemDeactivate" action="PlaySound" silent_on_equip="true" target="self" sound="flashlight_toggle" play_in_head="false"/>
-		</effect_group>
-	</item_modifier>
-<item_modifier name="modGunLaserSight" installable_tags="sideAttachments" modifier_tags="sideAttachment" blocked_tags="noMods" type="attachment">
-		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-		<property name="UnlockedBy" value="modGunLaserSightSchematic"/>
-		<property name="TraderStageTemplate" value="modsTier2"/>
-
-		<item_property_overrides name="*">
-			<property name="CrosshairOnAim" value="true"/>
+		
+		<item_property_overrides name="gunMGT3M60">
+			<property name="ScopeCameraOffset" value=".001,-.039,.08"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
 		</item_property_overrides>
+		
+	</append>
+	
+	
+	<append xpath="/item_modifiers/item_modifier[@name='modGunReflexSightA']">
 
 		<item_property_overrides name="gunHandgunT1Pistol">
-			<property name="SideOffset" value="0,.0148,.0479"/>
-			<property name="SideScale" value="1,1,1"/>
+			<property name="ScopeCameraOffset" value="-.0016,-.0205,-.05"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
 		</item_property_overrides>
-
-		<item_property_overrides name="gunRifleT0PipeRifle">
-			<property name="SideOffset" value="0,.0148,.0479"/>
-			<property name="SideScale" value="1,1,1"/>
-		</item_property_overrides>
-
-		<item_property_overrides name="gunShotgunT2PumpShotgun">
-			<property name="SideOffset" value="0,0,.41"/>
-			<property name="SideScale" value="1.12,1.12,1.12"/>
-		</item_property_overrides>
-
-		<item_property_overrides name="gunShotgunT1DoubleBarrel">
-			<property name="SideOffset" value="0,-.055,.07"/>
-			<property name="SideScale" value=".4,.4,.4"/>
-		</item_property_overrides>
-
-		<item_property_overrides name="gunMGT1AK47">
-			<property name="SideOffset" value="0,0,.31"/>
-			<property name="SideScale" value="1,1,1"/>
-		</item_property_overrides>
-
-		<item_property_overrides name="gunMGT2TacticalAR">
-			<property name="SideOffset" value="0,0.021,0.258"/>
-			<property name="SideScale" value="1,1,1"/>
-		</item_property_overrides>
-
-		<item_property_overrides name="gunMGT3M60">
-			<property name="SideOffset" value="-.0386,.0382,.3735"/>
-			<property name="SideRotation" value="0,0,-90"/>
-			<property name="SideScale" value="1,1,1"/>
-		</item_property_overrides>
-
+		
 		<item_property_overrides name="gunHandgunT2Magnum44">
-			<property name="SideOffset" value="0,.065,.14"/>
-			<property name="SideScale" value=".75,.75,.75"/>
+			<property name="ScopeCameraOffset" value="-.0004,-.0345,-.06"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
 		</item_property_overrides>
-
+		
+		<item_property_overrides name="gunHandgunT3DesertVulture">
+			<property name="ScopeCameraOffset" value="-.0011,-.0378,-.02"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
 		<item_property_overrides name="gunHandgunT3SMG5">
-			<property name="SideOffset" value="0,.0108,.0148"/>
-			<property name="SideScale" value="1.25,1.25,1.25"/>
+			<property name="ScopeCameraOffset" value=".0102,-.046,-.03"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
 		</item_property_overrides>
-
+		
+		<item_property_overrides name="gunShotgunT2PumpShotgun">
+			<property name="ScopeCameraOffset" value="0,-.0302,.02"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunShotgunT3AutoShotgun">
+			<property name="ScopeCameraOffset" value=".0115,-.0376,.09"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunRifleT1HuntingRifle">
+			<property name="ScopeCameraOffset" value="-.0001,.016,.14"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
 		<item_property_overrides name="gunRifleT2LeverActionRifle">
-			<property name="SideOffset" value="0,.003,.1674"/>
-			<property name="SideScale" value="1,1,1"/>
+			<property name="ScopeCameraOffset" value=".0003,-.0014,0"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunRifleT3SniperRifle">
+			<property name="ScopeCameraOffset" value="-.0037,-.0325,.09"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunMGT1AK47">
+			<property name="ScopeCameraOffset" value="-.0076,-.0465,.05"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunMGT2TacticalAR">
+			<property name="ScopeCameraOffset" value="-.0016,-.0067,.04"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunMGT3M60">
+			<property name="ScopeCameraOffset" value=".001,-.0425,.08"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+	</append>
+	
+	<append xpath="/item_modifiers/item_modifier[@name='modGunReflexSightB']">
+
+		<item_property_overrides name="gunHandgunT1Pistol">
+			<property name="ScopeCameraOffset" value="-.0017,-.0335,-.15"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunHandgunT2Magnum44">
+			<property name="ScopeCameraOffset" value="-.0004,-.033,-.1"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunHandgunT3DesertVulture">
+			<property name="ScopeCameraOffset" value="-.0012,-.0485,-.07"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunHandgunT3SMG5">
+			<property name="ScopeCameraOffset" value=".0104,-.047,-.01"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunShotgunT2PumpShotgun">
+			<property name="ScopeCameraOffset" value="0,-.029,.02"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunShotgunT3AutoShotgun">
+			<property name="ScopeCameraOffset" value=".0115,-.0352,.09"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunRifleT1HuntingRifle">
+			<property name="ScopeCameraOffset" value="0,.0166,.14"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunRifleT2LeverActionRifle">
+			<property name="ScopeCameraOffset" value=".0002,-.0054,0"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunRifleT3SniperRifle">
+			<property name="ScopeCameraOffset" value="-.0039,-.0307,.09"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunMGT1AK47">
+			<property name="ScopeCameraOffset" value="-.0076,-.0525,.08"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunMGT2TacticalAR">
+			<property name="ScopeCameraOffset" value="-.0016,-.0098,.04"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunMGT3M60">
+			<property name="ScopeCameraOffset" value=".001,-.0448,.08"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+	</append>
+	
+		<!--	2XSCOPE	-->
+		
+	<append xpath="/item_modifiers/item_modifier[@name='modGunScopeSmall']">
+
+		<item_property_overrides name="gunHandgunT1Pistol">
+			<property name="ScopeCameraOffset" value="-.0017,-.0335,-.05"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunHandgunT3DesertVulture">
+			<property name="ScopeCameraOffset" value="-.0012,-.04,.04"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunHandgunT3SMG5">
+			<property name="ScopeCameraOffset" value=".0102,-.04,-.01"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunShotgunT2PumpShotgun">
+			<property name="ScopeCameraOffset" value="0,-.01,.02"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunRifleT1HuntingRifle">
+			<property name="ScopeCameraOffset" value="0,.01,.14"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunRifleT2LeverActionRifle">
+			<property name="ScopeCameraOffset" value=".0003,-.025,0"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunRifleT3SniperRifle">
+			<property name="ScopeCameraOffset" value="-.0038,-.03,.09"/>
+			<property name="CrosshairOnAim" value="false"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="false"/> <!-- aimTest -->
+		</item_property_overrides>
+		
+	</append>
+	
+		<!--	Silencer 	-->
+	<append xpath="/item_modifiers/item_modifier[@name='modGunSoundSuppressorSilencer']">
+	
+		<item_property_overrides name="gunHandgunT1Pistol">
+			<property name="Sound_start" value="M9pistol_silen_fire"/>
+			<property name="Sound_loop" value="M9pistol_silen_fire"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunHandgunT3SMG5">
+			<property name="Sound_start" value="VRsmg5_silen_fire"/>
+			<property name="Sound_loop" value="VRsmg5_silen_fire"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunMGT1AK47">
+			<property name="Sound_start" value="VRtacAR_silen_fire"/>
+			<property name="Sound_loop" value="VRtacAR_silen_fire"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunMGT2TacticalAR">
+			<property name="Sound_start" value="VRtacAR_silen_fire"/>
+			<property name="Sound_loop" value="VRtacAR_silen_fire"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunMGT3M60">
+			<property name="Sound_start" value="VRm60_silen_fire"/>
+			<property name="Sound_loop" value="VRm60_silen_fire"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunShotgunT2PumpShotgun">
+			<property name="Sound_start" value="VRpumpSG_silen_fire"/>
+			<property name="Sound_loop" value="VRpumpSG_silen_fire"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunShotgunT3AutoShotgun">
+			<property name="Sound_start" value="VRpumpSG_silen_fire"/>
+			<property name="Sound_loop" value="VRpumpSG_silen_fire"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunRifleT1HuntingRifle">
+			<property name="Sound_start" value="VRleveraction_silen_fire"/>
+			<property name="Sound_loop" value="VRleveraction_silen_fire"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunRifleT2LeverActionRifle">
+			<property name="Sound_start" value="VRleveraction_silen_fire"/>
+			<property name="Sound_loop" value="VRleveraction_silen_fire"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="gunRifleT3SniperRifle">
+			<property name="Sound_start" value="VRleveraction_silen_fire"/>
+			<property name="Sound_loop" value="VRleveraction_silen_fire"/>
+		</item_property_overrides>
+		
+	</append>
+	
+			<!--	HOLD_STYLE 1	-->
+	<append xpath="/item_modifiers/item_modifier[@name='IZYmodPistolHoldstyle01']">
+
+		<item_property_overrides name="gunHandgunT1Pistol">
+			<property name="Meshfile" value="#@modfolder:Resources/IZY_VanilaReplacer_Pack_MainResource.unity3d?IZY_PISTOL_M9_Holdstyle_01.Prefab"/>
 		</item_property_overrides>
 
-		<item_property_overrides name="gunExplosivesT3RocketLauncher">
-			<property name="SideOffset" value=".037,-.1,.19"/>
-			<property name="SideScale" value="1,1,1"/>
-			<property name="SideRotation" value="0,0,20"/>
+	</append>
+	
+			<!--	HOLD_STYLE 2	-->
+	<append xpath="/item_modifiers/item_modifier[@name='IZYmodPistolHoldstyle02']">
+
+		<item_property_overrides name="gunHandgunT1Pistol">
+			<property name="Meshfile" value="#@modfolder:Resources/IZY_VanilaReplacer_Pack_MainResource.unity3d?IZY_PISTOL_M9_Holdstyle_02.Prefab"/>
 		</item_property_overrides>
-
-		<item_property_overrides name="gunBowT1IronCrossbow">
-			<property name="SideOffset" value="0,-.038,.32"/>
-			<property name="SideScale" value="1,1,1"/>
-			<property name="SideRotation" value="0,0,0"/>
-		</item_property_overrides>
-		<item_property_overrides name="gunHandgunT3DesertVulture ">
-			<property name="SideOffset" value="0,0,.32"/>
-			<property name="SideScale" value="1,1,1"/>
-		</item_property_overrides>
-
-		<!-- visible attachment: gunlaser -->
-		<effect_group tiered="false" name="external attachment prefab (old way)">
-			<requirement name="!HoldingItemHasTags" tags="attachmentsIncluded"/>
-				<triggered_effect trigger="onSelfHoldingItemCreated" action="AttachPrefabToHeldItem" prefab="@:Other/Items/Mods/Sides/side_attachment_laserPrefab.prefab" parent_transform="Attachments/Side" local_rotation="0,0,0"/>
-				<triggered_effect trigger="onSelfItemActivate" action="SetTransformChildrenActive" active="true" parent_transform="Side" transform_path="gun_laser"/>
-				<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformChildrenActive" active="false" parent_transform="Side" transform_path="gun_laser"/>
-				<triggered_effect trigger="onSelfEquipStop" action="SetTransformChildrenActive" active="false" parent_transform="Side" transform_path="gun_laser"/>
-		</effect_group>
-		<effect_group tiered="false" name="internal attachment prefab (A19)">
-			<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
-				<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="gunlaser"/>
-
-				<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="gunlaser/gunlaser"/>
-				<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser/gunlaser"/>
-				<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser/gunlaser"/>
-		</effect_group>
 		
-		<effect_group tiered="false" name="internal attachment prefab (A19)">
-			<requirement name="!HasBuff" buff="IZYRangeWPmeleeKick"/>
-			<requirement name="HasBuff" buff="buffCrouching"/>
-			<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
-				<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="gunlaser"/>
-
-				<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="gunlaser/gunlaser_IZY"/>
-				<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser/gunlaser_IZY"/>
-				<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser/gunlaser_IZY"/>
-				<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="gunlaser2/gunlaser_IZY2"/>
-				<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser2/gunlaser_IZY2"/>
-				<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser2/gunlaser_IZY2"/>
-				<triggered_effect trigger="onSelfItemActivate" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="gunlaser2/gunlaser_IZY_2"/>
-				<triggered_effect trigger="onSelfItemDeactivate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser2/gunlaser_IZY_2"/>
-				<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="gunlaser2/gunlaser_IZY_2"/>
-				<triggered_effect trigger="onSelfItemActivate" action="PlaySound" silent_on_equip="true" target="self" sound="flashlight_toggle" play_in_head="false"/>
-				<triggered_effect trigger="onSelfItemDeactivate" action="PlaySound" silent_on_equip="true" target="self" sound="flashlight_toggle" play_in_head="false"/>
-		</effect_group>
-
-		<effect_group tiered="false" name="mod effects">
-			<passive_effect name="SpreadMultiplierHip" operation="perc_add" value="-.2"/>
-			<passive_effect name="WeaponHandling" operation="perc_add" value=".2"/>
-		</effect_group>
-		
-		
-		
-	</item_modifier>
-</addnew>
+	</append>
+	
+</configs>

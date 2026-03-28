@@ -129,3 +129,12 @@ buffColonCleanseFreshDesc,UI,Buff,,,"Your body odor has been purged. Any new sme
 
 
 buffLD_ParasitesName,Parasites,Buff,,,,
+
+
+deadairWeaponBenchInfoTitle,Weapon Repair Instructions
+deadairWeaponBenchHowToTitle,How to use this bench
+deadairWeaponBenchStep1,1. Put the damaged weapon in the first slot.
+deadairWeaponBenchStep2,2. Put a Weapon Repair Kit in the second slot.
+deadairWeaponBenchStep3,3. Put the required weapon parts in the third slot.
+deadairWeaponBenchStep4,4. Press Repair to fully restore the weapon.
+deadairWeaponBenchQualityNote,Parts required scale with weapon quality.

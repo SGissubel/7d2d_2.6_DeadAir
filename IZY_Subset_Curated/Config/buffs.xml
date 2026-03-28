@@ -1,453 +1,453 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configs>
-<append xpath="/buffs">
-<buff name="HavingNVG" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="false">
+	<append xpath="/buffs">
+		<buff name="HavingNVG" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="false">
 			<stack_type value="ignore"/>
 			<duration value="0"/>
 			<effect_group>
 			</effect_group>
 		</buff>
 
-<buff name="HavingSilencer" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="false">
-			<stack_type value="ignore"/>
-			<duration value="0"/>
-			<effect_group>
-			</effect_group>
-		</buff>
+		<buff name="HavingSilencer" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="false">
+				<stack_type value="ignore"/>
+				<duration value="0"/>
+				<effect_group>
+				</effect_group>
+			</buff>
 
-<buff name="IZYBashingCooldown" hidden="false" icon="IZY_BashingCooldown" icon_color="255,0,0" icon_blink="true">
-			<stack_type value="ignore"/>
-			<duration value="10"/>
-			<effect_group>
-			</effect_group>
-		</buff>
+		<buff name="IZYBashingCooldown" hidden="false" icon="IZY_BashingCooldown" icon_color="255,0,0" icon_blink="true">
+				<stack_type value="ignore"/>
+				<duration value="10"/>
+				<effect_group>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Barrel_Smoke_01" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="100,100,50">
-			<stack_type value="ignore"/>
-			<duration value="2"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Gun_Barrel_Smoke_FPV">
-					<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeEnd"/>
+		<buff name="IZYGun_Barrel_Smoke_01" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="100,100,50">
+				<stack_type value="ignore"/>
+				<duration value="2"/>
+				<effect_group>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Gun_Barrel_Smoke_FPV">
+						<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeEnd"/>
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Gun_Barrel_Smoke_FPV">
+						<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeEnd"/>
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+				</effect_group>
+				<effect_group>
 					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Gun_Barrel_Smoke_FPV">
-					<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeEnd"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Barrel_Smoke_02"/>
+				</effect_group>
+				<effect_group>
 					<requirement name="IsFPV"/>
-				</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Barrel_Smoke_02"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Barrel_Smoke_02"/>
-			</effect_group>
-		</buff>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Barrel_Smoke_02"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Barrel_Smoke_02" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="100,100,50">
-			<stack_type value="ignore"/>
-			<duration value="2"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Gun_Barrel_Smoke_2_FPV">
-					<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeEnd"/>
+		<buff name="IZYGun_Barrel_Smoke_02" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="100,100,50">
+				<stack_type value="ignore"/>
+				<duration value="2"/>
+				<effect_group>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Gun_Barrel_Smoke_2_FPV">
+						<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeEnd"/>
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Gun_Barrel_Smoke_2_FPV">
+						<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeEnd"/>
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+				</effect_group>
+				<effect_group>
 					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Gun_Barrel_Smoke_2_FPV">
-					<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeEnd"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Barrel_Smoke_01"/>
+				</effect_group>
+				<effect_group>
 					<requirement name="IsFPV"/>
-				</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Barrel_Smoke_01"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Barrel_Smoke_01"/>
-			</effect_group>
-		</buff>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Barrel_Smoke_01"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Effect" hidden="true" icon="IZY_GunheatMedium">   <!--	just warnning no Debuff -->
-			<stack_type value="ignore"/>
-			<duration value="3"/>
-			<effect_group>
-			<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Gun_Heat_Smoke_Light_FPV">
-				<requirement name="IsFPV"/>
-			</triggered_effect>
-			<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Gun_Heat_Smoke_Light_FPV">
-				<requirement name="IsFPV"/>
-			</triggered_effect>
-			</effect_group>
-		</buff>
+		<buff name="IZYGun_Heat_Effect" hidden="true" icon="IZY_GunheatMedium">   <!--	just warnning no Debuff -->
+				<stack_type value="ignore"/>
+				<duration value="3"/>
+				<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Gun_Heat_Smoke_Light_FPV">
+					<requirement name="IsFPV"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Gun_Heat_Smoke_Light_FPV">
+					<requirement name="IsFPV"/>
+				</triggered_effect>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_01" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="50,0,10">
-			<stack_type value="ignore"/>
-			<duration value="1"/>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01"/>
-				<requirement name="HasBuff" buff="IZYGun_Heat_Smoke_01"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_01_Ready"/>
-			</effect_group>
-		</buff>
+		<buff name="IZYGun_Heat_Smoke_01" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="50,0,10">
+				<stack_type value="ignore"/>
+				<duration value="1"/>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01"/>
+					<requirement name="HasBuff" buff="IZYGun_Heat_Smoke_01"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_01_Ready"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_01_Ready" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="120,0,8">
-			<stack_type value="ignore"/>
-			<duration value=".2"/>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_02"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_02"/>
-			</effect_group>
+		<buff name="IZYGun_Heat_Smoke_01_Ready" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="120,0,8">
+				<stack_type value="ignore"/>
+				<duration value=".2"/>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_02"/>
+				</effect_group>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_02"/>
+				</effect_group>
 
-		</buff>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_02" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="10,80,50">
-			<stack_type value="ignore"/>
-			<duration value="1"/>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="HasBuff" buff="IZYGun_Heat_Smoke_02"/>
-					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_02_Ready"/>
-			</effect_group>
-		</buff>
+		<buff name="IZYGun_Heat_Smoke_02" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="10,80,50">
+				<stack_type value="ignore"/>
+				<duration value="1"/>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="HasBuff" buff="IZYGun_Heat_Smoke_02"/>
+						<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_02_Ready"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_02_Ready" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="90,80,210">
-			<stack_type value="ignore"/>
-			<duration value=".2"/>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_03"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_03"/>
-			</effect_group>
-		</buff>
+		<buff name="IZYGun_Heat_Smoke_02_Ready" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="90,80,210">
+				<stack_type value="ignore"/>
+				<duration value=".2"/>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_03"/>
+				</effect_group>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_03"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_03" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="80,40,10">
-			<stack_type value="ignore"/>
-			<duration value="1"/>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="HasBuff" buff="IZYGun_Heat_Smoke_03"/>
-					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_03_Ready"/>
-			</effect_group>
-		</buff>
+		<buff name="IZYGun_Heat_Smoke_03" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="80,40,10">
+				<stack_type value="ignore"/>
+				<duration value="1"/>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="HasBuff" buff="IZYGun_Heat_Smoke_03"/>
+						<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_03_Ready"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_03_Ready" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="100,40,20">
-			<stack_type value="ignore"/>
-			<duration value=".2"/>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_04"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_04"/>
-			</effect_group>
-			
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Effect"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Effect"/>
-			</effect_group>
-		</buff>
+		<buff name="IZYGun_Heat_Smoke_03_Ready" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="100,40,20">
+				<stack_type value="ignore"/>
+				<duration value=".2"/>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_04"/>
+				</effect_group>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_04"/>
+				</effect_group>
+				
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Effect"/>
+				</effect_group>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Effect"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_04" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="120,0,150">
-			<stack_type value="ignore"/>
-			<duration value="1.2"/>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="HasBuff" buff="IZYGun_Heat_Smoke_04"/>
-					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_04_Ready"/>
-			</effect_group>
-		</buff>
+		<buff name="IZYGun_Heat_Smoke_04" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="120,0,150">
+				<stack_type value="ignore"/>
+				<duration value="1.2"/>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="HasBuff" buff="IZYGun_Heat_Smoke_04"/>
+						<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_04_Ready"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_04_Ready" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="200,200,0">
-			<stack_type value="ignore"/>
-			<duration value=".2"/>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_05"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_05"/>
-			</effect_group>
-		</buff>
+		<buff name="IZYGun_Heat_Smoke_04_Ready" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="200,200,0">
+				<stack_type value="ignore"/>
+				<duration value=".2"/>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_05"/>
+				</effect_group>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_05"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_05" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="20,80,10">
-			<stack_type value="ignore"/>
-			<duration value="1.2"/>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="HasBuff" buff="IZYGun_Heat_Smoke_05"/>
-					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_05_Ready"/>
-			</effect_group>
-		</buff>
+		<buff name="IZYGun_Heat_Smoke_05" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="20,80,10">
+				<stack_type value="ignore"/>
+				<duration value="1.2"/>
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="HasBuff" buff="IZYGun_Heat_Smoke_05"/>
+						<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_05_Ready"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_05_Ready" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="20,80,10">
-			<stack_type value="ignore"/>
-			<duration value="0.2"/>
-			<effect_group>
-				<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01"/>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeOn"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01"/>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeOn"/>
-			</effect_group>
-		</buff>
+		<buff name="IZYGun_Heat_Smoke_05_Ready" hidden="true" icon="ui_game_symbol_lightbulb" icon_color="20,80,10">
+				<stack_type value="ignore"/>
+				<duration value="0.2"/>
+				<effect_group>
+					<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01"/>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeOn"/>
+				</effect_group>
+				<effect_group>
+					<requirement name="!HasBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01"/>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeOn"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_DangerHeatSmokeEnd" hidden="true" icon="ui_game_symbol_pen">
-			<stack_type value="replace"/>
-			<duration value="3"/>
-			<update_rate value="1" />
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_End_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_End_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_normal_temp_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Barrel_normal_temp_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-			</effect_group>
-		</buff>
+		<buff name="IZYGun_Heat_Smoke_DangerHeatSmokeEnd" hidden="true" icon="ui_game_symbol_pen">
+				<stack_type value="replace"/>
+				<duration value="3"/>
+				<update_rate value="1" />
+				<effect_group>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_End_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_End_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_normal_temp_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Barrel_normal_temp_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01" hidden="true" icon="ui_game_symbol_invite">
-			<stack_type value="replace"/>
-			<duration value=".8"/>
-			<effect_group>
-				<passive_effect name="RoundsPerMinute" operation="perc_add" value="-.06"/>
-				<passive_effect name="DegradationPerUse" operation="base_add" value="1"/>
-			</effect_group>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_Idle_FPV">
+		<buff name="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01" hidden="true" icon="ui_game_symbol_invite">
+				<stack_type value="replace"/>
+				<duration value=".8"/>
+				<effect_group>
+					<passive_effect name="RoundsPerMinute" operation="perc_add" value="-.06"/>
+					<passive_effect name="DegradationPerUse" operation="base_add" value="1"/>
+				</effect_group>
+				<effect_group>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_Idle_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_End_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_normal_temp_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+				</effect_group>
+				<effect_group>
+					<passive_effect name="DegradationPerUse" operation="base_add" value="1"/>
+				</effect_group>
+				
+				<effect_group>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeEnd">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmoke_PrepEnd">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+				</effect_group>
+				
+				<effect_group>
 					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_FPV">
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01"/>
+				</effect_group>
+				<effect_group>
 					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_End_FPV">
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01"/>
+				</effect_group>
+				<effect_group>
 					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_normal_temp_FPV">
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmoke_PrepEnd"/>
+				</effect_group>
+				<effect_group>
 					<requirement name="IsFPV"/>
-				</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<passive_effect name="DegradationPerUse" operation="base_add" value="1"/>
-			</effect_group>
-			
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeEnd">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmoke_PrepEnd">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-			</effect_group>
-			
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmoke_PrepEnd"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmoke_PrepEnd"/>
-			</effect_group>
-		</buff>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmoke_PrepEnd"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_DangerHeatSmokeOn" hidden="false" icon="IZY_GunheatDanger">
-			<stack_type value="ignore"/>
-			<duration value="3"/>
-			<effect_group>
-				<passive_effect name="RoundsPerMinute" operation="perc_add" value="-.08"/>
-				<passive_effect name="DegradationPerUse" operation="base_add" value="1"/>
-			</effect_group>
-			
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="Male_havingFUN_01">
-					<requirement name="IsMale"/>
-					<requirement name="HoldingItemHasTags" tags="IZYMINIGUN"/>
-					<requirement name="IsFPV"/>
-					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="30"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="Male_havingFUN_02">
-					<requirement name="IsMale"/>
-					<requirement name="HoldingItemHasTags" tags="IZYMINIGUN"/>
-					<requirement name="IsFPV"/>
-					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GTE" value="70"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="Female_havingFUN_01">
-					<requirement name="!IsMale"/>
-					<requirement name="HoldingItemHasTags" tags="IZYMINIGUN"/>
-					<requirement name="IsFPV"/>
-					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="30"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="Female_havingFUN_02">
-					<requirement name="!IsMale"/>
-					<requirement name="HoldingItemHasTags" tags="IZYMINIGUN"/>
-					<requirement name="IsFPV"/>
-					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GTE" value="71"/>
-				</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Gun_Heat_Smoke_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Gun_Heat_Smoke_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_normal_temp_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Barrel_normal_temp_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-			</effect_group>
+		<buff name="IZYGun_Heat_Smoke_DangerHeatSmokeOn" hidden="false" icon="IZY_GunheatDanger">
+				<stack_type value="ignore"/>
+				<duration value="3"/>
+				<effect_group>
+					<passive_effect name="RoundsPerMinute" operation="perc_add" value="-.08"/>
+					<passive_effect name="DegradationPerUse" operation="base_add" value="1"/>
+				</effect_group>
+				
+				<effect_group>
+					<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="Male_havingFUN_01">
+						<requirement name="IsMale"/>
+						<requirement name="HoldingItemHasTags" tags="IZYMINIGUN"/>
+						<requirement name="IsFPV"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="30"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="Male_havingFUN_02">
+						<requirement name="IsMale"/>
+						<requirement name="HoldingItemHasTags" tags="IZYMINIGUN"/>
+						<requirement name="IsFPV"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GTE" value="70"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="Female_havingFUN_01">
+						<requirement name="!IsMale"/>
+						<requirement name="HoldingItemHasTags" tags="IZYMINIGUN"/>
+						<requirement name="IsFPV"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="30"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="Female_havingFUN_02">
+						<requirement name="!IsMale"/>
+						<requirement name="HoldingItemHasTags" tags="IZYMINIGUN"/>
+						<requirement name="IsFPV"/>
+						<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GTE" value="71"/>
+					</triggered_effect>
+				</effect_group>
+				<effect_group>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Gun_Heat_Smoke_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Gun_Heat_Smoke_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+				</effect_group>
+				<effect_group>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_normal_temp_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Barrel_normal_temp_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+				</effect_group>
 
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmoke_PrepIdle">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-			</effect_group>
-		</buff>
+				<effect_group>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmoke_PrepIdle">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_DangerHeatSmoke_PrepEnd" hidden="true" icon="ui_game_symbol_twitch_shield_enemies">
-			<stack_type value="replace"/>
-			<duration value=".9"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_Idle_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_Idle_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_normal_temp_FPV">
-					<requirement name="IsFPV"/>
-				</triggered_effect>
-			</effect_group>
-		</buff>
+		<buff name="IZYGun_Heat_Smoke_DangerHeatSmoke_PrepEnd" hidden="true" icon="ui_game_symbol_twitch_shield_enemies">
+				<stack_type value="replace"/>
+				<duration value=".9"/>
+				<effect_group>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_Idle_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffRemove" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_Idle_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_Heat_visible_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Barrel_normal_temp_FPV">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+				</effect_group>
+			</buff>
 
-<buff name="IZYGun_Heat_Smoke_DangerHeatSmoke_PrepIdle" hidden="true" icon="IZY_GunheatDanger">
-			<stack_type value="ignore"/>
-			<duration value="2.9"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01">
+		<buff name="IZYGun_Heat_Smoke_DangerHeatSmoke_PrepIdle" hidden="true" icon="IZY_GunheatDanger">
+				<stack_type value="ignore"/>
+				<duration value="2.9"/>
+				<effect_group>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="IZYGun_Heat_Smoke_DangerHeatSmokeIdle_01">
+						<requirement name="IsFPV"/>
+					</triggered_effect>
+				</effect_group>
+			</buff>
+
+		<buff name="IZYNightHunterKit" hidden="false" description_key="IZYNightHunterKitDesc" icon="IZY_UI_NightHunter_WH">
+				<stack_type value="ignore"/>
+				<duration value="0"/>
+				
+				<effect_group>
+					<triggered_effect trigger="onSelfAimingGunStart" action="AddBuff" buff="IZYNightHunterKit_Aiming"/>
+					<triggered_effect trigger="onSelfAimingGunStop" action="RemoveBuff" buff="IZYNightHunterKit_Aiming"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="IZYNightHunterKit_Aiming"/>
+				</effect_group>
+				
+				<effect_group>
+					<requirement name="!HasBuff" buff="HavingNVG"/>
+					<triggered_effect trigger="onSelfAimingGunStop" action="ModifyScreenEffect" effect_name="NightVision" intensity="0" fade="0"/>
+					<triggered_effect trigger="onSelfAimingGunStop" action="SetTransformActive" active="false" transform_path="IR_Light_FPV"/>
+				</effect_group>
+				
+				<effect_group>
+					<triggered_effect trigger="onSelfEquipStop" action="ModifyScreenEffect" effect_name="NightVision" intensity="0" fade="0"/>
+					<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" transform_path="IR_Light_FPV"/>
+				</effect_group>
+			</buff>
+
+		<buff name="IZYNightHunterKit_Aiming" hidden="false" icon="ui_game_symbol_lightbulb" icon_color="100,100,100">
+				<stack_type value="replace"/>
+				<duration value="0"/>
+				<effect_group>
 					<requirement name="IsFPV"/>
-				</triggered_effect>
-			</effect_group>
-		</buff>
+					<requirement name="IsNight"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".5"/> <!-- damagebonus at Night 50% -->
+				</effect_group>
+				
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfRangedBurstShotStart" action="PlaySound" sound="NHK_fire"/>
+				</effect_group>
+				
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="IsNight"/>
+					<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
+						<triggered_effect trigger="onSelfPrimaryActionStart" action="PlaySound" sound="NHK_fire"/>
+				</effect_group>
+				
+				<effect_group>
+					<requirement name="IsFPV"/>
+					<requirement name="IsNight"/>
+					<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" transform_path="IR_Light_FPV"/>
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" effect_name="NightVision" intensity="1" fade="0"/>
+				</effect_group>
+			</buff>
 
-<buff name="IZYNightHunterKit" hidden="false" description_key="IZYNightHunterKitDesc" icon="IZY_UI_NightHunter_WH">
-			<stack_type value="ignore"/>
-			<duration value="0"/>
-			
-			<effect_group>
-				<triggered_effect trigger="onSelfAimingGunStart" action="AddBuff" buff="IZYNightHunterKit_Aiming"/>
-				<triggered_effect trigger="onSelfAimingGunStop" action="RemoveBuff" buff="IZYNightHunterKit_Aiming"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="IZYNightHunterKit_Aiming"/>
-			</effect_group>
-			
-			<effect_group>
-				<requirement name="!HasBuff" buff="HavingNVG"/>
-				<triggered_effect trigger="onSelfAimingGunStop" action="ModifyScreenEffect" effect_name="NightVision" intensity="0" fade="0"/>
-				<triggered_effect trigger="onSelfAimingGunStop" action="SetTransformActive" active="false" transform_path="IR_Light_FPV"/>
-			</effect_group>
-			
-			<effect_group>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyScreenEffect" effect_name="NightVision" intensity="0" fade="0"/>
-				<triggered_effect trigger="onSelfEquipStop" action="SetTransformActive" active="false" transform_path="IR_Light_FPV"/>
-			</effect_group>
-		</buff>
-
-<buff name="IZYNightHunterKit_Aiming" hidden="false" icon="ui_game_symbol_lightbulb" icon_color="100,100,100">
-			<stack_type value="replace"/>
-			<duration value="0"/>
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="IsNight"/>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".5"/> <!-- damagebonus at Night 50% -->
-			</effect_group>
-			
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfRangedBurstShotStart" action="PlaySound" sound="NHK_fire"/>
-			</effect_group>
-			
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="IsNight"/>
-				<requirement name="RoundsInMagazine" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfPrimaryActionStart" action="PlaySound" sound="NHK_fire"/>
-			</effect_group>
-			
-			<effect_group>
-				<requirement name="IsFPV"/>
-				<requirement name="IsNight"/>
-				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" transform_path="IR_Light_FPV"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" effect_name="NightVision" intensity="1" fade="0"/>
-			</effect_group>
-		</buff>
-
-<buff name="IZYRangeWPmeleeDAMAGE" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="false">
+		<buff name="IZYRangeWPmeleeDAMAGE" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="false">
 			<stack_type value="ignore"/>
 			<duration value="1"/>
 			<update_rate value=".7"/>
@@ -456,7 +456,7 @@
 			</effect_group>
 		</buff>
 
-<buff name="IZYRangeWPmeleeKick" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="true">
+		<buff name="IZYRangeWPmeleeKick" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="true">
 			<stack_type value="ignore"/>
 			<duration value="1"/>
 			<update_rate value=".7"/>
@@ -535,7 +535,7 @@
 			</effect_group>
 		</buff>
 
-<buff name="IZYRangeWPmeleeKick2" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="true">
+		<buff name="IZYRangeWPmeleeKick2" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="true">
 			<stack_type value="ignore"/>
 			<duration value="1"/>
 			<update_rate value=".7"/>
@@ -614,7 +614,7 @@
 			</effect_group>
 		</buff>
 
-<buff name="IZYReloadDefenseBonus" hidden="false" icon="ui_game_symbol_lightbulb" remove_on_death="false">
+		<buff name="IZYReloadDefenseBonus" hidden="false" icon="ui_game_symbol_lightbulb" remove_on_death="false">
 			<stack_type value="ignore"/>
 			<duration value="0"/>
 			<effect_group>
@@ -625,7 +625,7 @@
 			</effect_group>
 		</buff>
 
-<buff name="IZYSGdragonbreathEffect" hidden="true" icon="ui_game_symbol_fire" icon_color="255,70,0" icon_blink="true">
+		<buff name="IZYSGdragonbreathEffect" hidden="true" icon="ui_game_symbol_fire" icon_color="255,70,0" icon_blink="true">
 			<stack_type value="ignore"/>
 			<duration value="0"/>
 			<effect_group tiered="false">
@@ -644,12 +644,74 @@
 			</effect_group>
 		</buff>
 
-<buff name="IZYweaponHosting" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="false">
+		<buff name="IZYweaponHosting" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="false">
 			<stack_type value="ignore"/>
 			<duration value="1"/>
 			<update_rate value=".1"/>
 			<effect_group>
 			</effect_group>
 		</buff>
-</append>
+
+		<!-- Names must exist in /buffs for HasBuff/!HasBuff checks on items + RefreshHand. Full FPV Gloves pack defines
+				these with glove logic; subset has no armor items.xml hooks yet, so these are no-op stubs until you merge those. -->
+		<buff name="WearingArmorBrownLeather" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+			</effect_group>
+		</buff>
+		<buff name="WearingArmorBlackLeather" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+			</effect_group>
+		</buff>
+		<buff name="WearingArmorDarkLeather" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+			</effect_group>
+		</buff>
+
+		<!-- From 7D1.0_Izayo_Visible_FPV_Gloves_mod: enables HAND_RAW_* on #HeldItemRoot after items hide vanilla hands -->
+		<buff name="RefreshHand" hidden="true" icon="ui_game_symbol_lightbulb" remove_on_death="false">
+			<stack_type value="ignore"/>
+			<duration value="0.001"/>
+			<effect_group tiered="false">
+				<requirement name="ItemHasTags" tags="IZY"/>
+				<requirement name="IsFPV"/>
+				<requirement name="!HasBuff" buff="WearingArmorBrownLeather"/>
+				<requirement name="!HasBuff" buff="WearingArmorBlackLeather"/>
+				<requirement name="!HasBuff" buff="WearingArmorDarkLeather"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="HandWarp_Right"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="HandWarp_Left"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="IZY_LeatherDark_Gloves_BASE"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="IZY_LeatherBlack_Gloves_BASE"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="IZY_LeatherBrown_Gloves_BASE"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Armormod_Steelplat_Forarm001"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Armormod_Steelplat_Forarm002"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Pocket_modgroup_right"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Pocket_modgroup_left"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="IZY_LeatherDark_Gloves_BASE_2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="IZY_LeatherBlack_Gloves_BASE_2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="IZY_LeatherBrown_Gloves_BASE_2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="HandWarp_Right"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="HandWarp_Left"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="IZY_LeatherDark_Gloves_BASE"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="IZY_LeatherBlack_Gloves_BASE"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="IZY_LeatherBrown_Gloves_BASE"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Armormod_Steelplat_Forarm001"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Armormod_Steelplat_Forarm002"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Pocket_modgroup_left"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="Pocket_modgroup_right"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="IZY_LeatherDark_Gloves_BASE_2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="IZY_LeatherBlack_Gloves_BASE_2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="SetTransformActive" active="false" parent_transform="#HeldItemRoot" transform_path="IZY_LeatherBrown_Gloves_BASE_2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="HAND_RAW_LEFT"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="HAND_RAW_RIGHT"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="HAND_RAW_LEFT_2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="HAND_RAW_RIGHT_2"/>
+			</effect_group>
+		</buff>
+	</append>
 </configs>
