@@ -4539,7 +4539,7 @@
 			</effect_group>
 		</item>
 		<item name="IZYgunT4SMGCZScorpionEVO3">
-		<property name="Tags" value="IZY,overrideSounds,weapon,stock,ShortBarrelmod,ranged,holdBreathAiming,gun,shortRange,barrelAttachments,sideAttachments,smallTopAttachments,magazine,firingMode,bottomAttachments,attAgility,perkGunslinger,9mmGun,attachmentsIncluded,canHaveCosmetic,handgunSkill"/>
+			<property name="Tags" value="IZY,overrideSounds,weapon,stock,ShortBarrelmod,ranged,holdBreathAiming,gun,shortRange,barrelAttachments,sideAttachments,smallTopAttachments,magazine,firingMode,bottomAttachments,attAgility,perkGunslinger,9mmGun,attachmentsIncluded,canHaveCosmetic,handgunSkill"/>
 			<property name="DisplayType" value="rangedGun"/>
 			<property name="HoldType" value="6"/>
 			<property name="Meshfile" value="#@modfolder:Resources/IZY_9mm_Pack_MainResource_SMGs.unity3d?IZY_SMG_ScorpionEVO.Prefab"/>

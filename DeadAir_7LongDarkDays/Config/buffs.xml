@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configs>
+  <!-- Parkour: broken-leg gate uses perkParkour LT 4 instead of LT 3 (see buffPlayerFallingDamage). -->
+  <set xpath="/buffs/buff[@name='buffPlayerFallingDamage']/effect_group/requirement[@name='ProgressionLevel' and @progression_name='perkParkour' and @operation='LT' and @value='3']/@value">4</set>
+
   <append xpath="/buffs">
     <buff name="buffDeadAirScreamTest" hidden="false" duration="3">
       <effect_group>

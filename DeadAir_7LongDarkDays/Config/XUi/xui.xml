@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configs>
-  <remove xpath="//window_group[@name='workstation_cntDeadAirWeaponRepairBench']"/>
-
-  <insertAfter xpath="//window_group[@name='workstation_workbench']">
+  <insertAfter xpath="/xui/ruleset[@name='default']/window_group[@name='workstation_workbench']">
     <window_group name="workstation_cntDeadAirWeaponRepairBench"
                   controller="XUiC_WorkstationWindowGroup"
                   open_backpack_on_open="true"
                   close_compass_on_open="true"
                   defaultSelected="bp.content">
-
       <window name="windowDeadAirWeaponBenchCraftingList"/>
-      <window name="windowDeadAirWeaponBenchCraftingInfo"/>
+      <window name="craftingInfoPanel"/>
       <window name="windowDeadAirWeaponBenchCraftingQueue"/>
       <window name="windowDeadAirWeaponBenchOutput"/>
       <window name="windowNonPagingHeader"/>
       <window name="windowDeadAirWeaponBenchInputs"/>
-
     </window_group>
   </insertAfter>
 </configs>

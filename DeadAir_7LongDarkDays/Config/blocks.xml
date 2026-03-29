@@ -116,6 +116,7 @@
           <property name="HeatMapFrequency" value="1000"/>
           <property name="OpenSound" value="open_workbench"/>
           <property name="CloseSound" value="close_workbench"/>
+          <property name="WorkstationWindow" value="workstation_cntDeadAirWeaponRepairBench"/>
           <property name="TakeDelay" value="15"/>
 
           <property class="RepairItems">

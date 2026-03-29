@@ -127,6 +127,14 @@ drinkColonCleanseTonicDesc,items,ItemDesc,,,"A brutal herbal purge made from cha
 buffColonCleanseFresh,UI,Buff,,,"Colon Cleanse Fresh",,,,,,,,,,,,,
 buffColonCleanseFreshDesc,UI,Buff,,,"Your body odor has been purged. Any new smell you create will return normally.",,,,,,,,,,,,,
 
+perkParkourDesc,progression,perk Agi,,,"Light footwork training: cheaper jumps, slightly softer landings, and a modest vertical edge—nothing like rooftop free-running.",,,,,,,,,,,,,
+perkParkourRank1Desc,progression,perk Agi,,,Tumbler,,,,,,,,,,,,,
+perkParkourRank1LongDesc,progression,perk Agi,,,"Basic rolls and landings.\nReduce stamina cost of jumping by 8%.\nNo extra jump height yet.",,,,,,,,,,,,,
+perkParkourRank2Desc,progression,perk Agi,,,Stuntman,,,,,,,,,,,,,
+perkParkourRank2LongDesc,progression,perk Agi,,,"Cleaner takeoffs and landings.\nReduce stamina cost of jumping by 15%.\nSlightly higher jumps (about one extra step, not a rooftop leap).\nTiny reduction to impact from falls—big drops still hurt.",,,,,,,,,,,,,
+perkParkourRank3Desc,progression,perk Agi,,,Adrenaline Junkie,,,,,,,,,,,,,
+perkParkourRank3LongDesc,progression,perk Agi,,,"You move with more confidence at height.\nReduce stamina cost of jumping by 22%.\nA bit more jump height than rank 2, still capped around a two-block vertical.\nSlightly softer landings than without the perk—falls from several stories remain very dangerous, and you are not immune to broken bones on bad impacts.",,,,,,,,,,,,
+
 
 buffLD_ParasitesName,Parasites,Buff,,,,
 
