@@ -185,37 +185,46 @@
 
     <window name="windowDeadAirWeaponBenchInputs"
             width="390"
-            height="210"
+            height="270"
             panel="Left"
             cursor_area="true">
       <panel name="header" height="43" depth="1" backgroundspritename="ui_game_panel_header">
         <sprite pos="4,-5" depth="2" name="windowIcon" style="icon32px" sprite="ui_game_symbol_repair"/>
-        <label style="header.name" text_key="deadairWeaponBenchTitle"/>
+        <label style="header.name" text="Weapon Refurbish Bench"/>
       </panel>
 
-      <rect name="content" pos="0,-46" width="390" height="164" disablefallthrough="true">
+      <rect name="content" pos="0,-46" width="390" height="224" disablefallthrough="true">
         <sprite name="backgroundMain"
                 sprite="menu_empty3px"
                 width="390"
-                height="164"
+                height="224"
                 color="[black]"
                 type="sliced"
                 fillcenter="false"/>
 
         <label depth="3"
-               pos="10,-8"
-               width="370"
-               height="18"
-               font_size="14"
-               color="[lightGrey]"
-               text_key="deadairWeaponBenchSlotsHint"
-               justify="left"/>
+              pos="12,-10"
+              width="366"
+              height="26"
+              font_size="22"
+              color="[white]"
+              text="Full Refurbish Requirements"
+              justify="left"/>
+
+        <label depth="3"
+              pos="12,-34"
+              width="366"
+              height="18"
+              font_size="14"
+              color="[lightGrey]"
+              text="Place a supported weapon below. Repair kit and matching parts are taken from your inventory."
+              justify="left"/>
 
         <grid name="inventory"
               rows="1"
-              cols="3"
-              pos="8,-32"
-              width="375"
+              cols="1"
+              pos="157,-66"
+              width="75"
               height="75"
               cell_width="75"
               cell_height="75"
@@ -224,25 +233,42 @@
           <item_stack controller="RequiredItemStack" name="0"/>
         </grid>
 
+        <label depth="3"
+              pos="118,-150"
+              width="154"
+              height="24"
+              font_size="20"
+              color="[white]"
+              text="Weapon"
+              justify="center"/>
+
+        <label depth="3"
+              pos="70,-172"
+              width="250"
+              height="18"
+              font_size="14"
+              color="[lightGrey]"
+              text="Supported firearm or bow"
+              justify="center"/>
+
         <button name="btnDeadAirWeaponRepair"
                 depth="5"
-                pos="20,-118"
+                pos="20,-184"
                 width="350"
-                height="38"
+                height="34"
                 sprite="menu_empty"
                 defaultcolor="[mediumGrey]"
                 disabledcolor="[darkGrey]"
                 hoversprite="ui_game_select_row"
                 hovercolor="[white]"
                 type="sliced"
-                font_size="26"
+                font_size="24"
                 justify="center"
-                text_key="deadairWeaponBenchRepairBtn"
+                text="Refurbish"
                 sound="[paging_click]"
                 hoverscale="1.0"
                 controller="SimpleButton"/>
       </rect>
     </window>
-
   </append>
 </configs>
