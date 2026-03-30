@@ -427,116 +427,6 @@
     </item>
   </append>
 
-
-
-  <!-- ===================================================== -->
-  <!-- All guns and bows use Weapons Repair Kit              -->
-  <!-- ===================================================== -->
-<!-- 
-  <remove xpath="/items/item[@name='gunHandgunT1Pistol']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunHandgunT1Pistol']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunHandgunT3SMG5']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunHandgunT3SMG5']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunHandgunT2Magnum44']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunHandgunT2Magnum44']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunHandgunT3DesertVulture']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunHandgunT3DesertVulture']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunShotgunT1DoubleBarrel']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunShotgunT1DoubleBarrel']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunShotgunT2PumpShotgun']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunShotgunT2PumpShotgun']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunShotgunT3AutoShotgun']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunShotgunT3AutoShotgun']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunRifleT1HuntingRifle']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunRifleT1HuntingRifle']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunRifleT2LeverActionRifle']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunRifleT2LeverActionRifle']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunRifleT3SniperRifle']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunRifleT3SniperRifle']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunMGT1AK47']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunMGT1AK47']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunMGT2TacticalAR']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunMGT2TacticalAR']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunMGT3M60']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunMGT3M60']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunExplosivesT3RocketLauncher']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunExplosivesT3RocketLauncher']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunBowT1WoodenBow']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunBowT1WoodenBow']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunBowT3CompoundBow']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunBowT3CompoundBow']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunBowT1IronCrossbow']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunBowT1IronCrossbow']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append>
-
-  <remove xpath="/items/item[@name='gunBowT3CompoundCrossbow']/property[@name='RepairTools']"/>
-  <append xpath="/items/item[@name='gunBowT3CompoundCrossbow']">
-      <property name="RepairTools" value="resourceWeaponRepairKit"/>
-  </append> -->
-
-  <!-- Level Action - 44 magnum ammo -->
-<!-- 
-  <insertAfter xpath="/items/item[@name='gunRifleT2LeverActionRifle']/property[@name='UnlockedBy']">
-    <property name="DescriptionKey" value="gunRifleT2LeverActionRifleDesc_44"/>
-  </insertAfter>
-
-  <set xpath="/items/item[@name='gunRifleT2LeverActionRifle']/property[@class='Action0']/property[@name='Magazine_items']/@value">
-    ammo44MagnumBulletBall,ammo44MagnumBulletHP,ammo44MagnumBulletAP
-  </set>
-  <set xpath="/items/item[@name='gunRifleT2LeverActionRifle']/effect_group[@name='gunRifleT2LeverActionRifle']/passive_effect[@name='EntityDamage' and @operation='base_add' and @tags='perkDeadEye']/@value">
-    65
-  </set> -->
-
-
   <!-- PURE ETHANOL (Beer-like feel, but horrible effects) -->
   <append xpath="/items">
     <item name="resourceEthanol" extends="drinkJarBeer">
@@ -1128,14 +1018,6 @@
     </item>
   </append>
 
-  
-
-  <!-- <remove xpath="/items/item[@name='drinkTeaParasiteCleanse']/property[@class='Action1']"/>
-  <remove xpath="/items/item[@name='medicalAnthelminticTonic']/property[@class='Action1']"/>
-
-  <remove xpath="/items/item[@name='drinkTeaParasiteCleanse']/property[@name='ModifierSlots']"/>
-  <remove xpath="/items/item[@name='medicalAnthelminticTonic']/property[@name='ModifierSlots']"/> -->
-
 
 
   <append xpath="/items">
@@ -1229,5 +1111,126 @@
       <requirement name="HasBuff" buff="buffColonCleanseReady"/>
       <requirement name="!HasBuff" buff="buffColonCleanseFresh"/>
     </property>
+  </append>
+
+
+
+  <!-- ===================================================== -->
+  <!-- 1) NORMALIZE DISPLAYTYPE FOR ALL CUSTOM INVENTORY ITEMS -->
+  <!-- ===================================================== -->
+
+  <!-- Raw herbivore meats -->
+  <set xpath="/items/item[@name='foodRawMeatStag']/property[@name='DisplayType']/@value">foodRawMeat</set>
+  <set xpath="/items/item[@name='foodRawMeatDoe']/property[@name='DisplayType']/@value">foodRawMeat</set>
+  <set xpath="/items/item[@name='foodRawMeatBoar']/property[@name='DisplayType']/@value">foodRawMeat</set>
+  <set xpath="/items/item[@name='foodRawMeatRabbit']/property[@name='DisplayType']/@value">foodRawMeat</set>
+  <set xpath="/items/item[@name='foodRawMeatChicken']/property[@name='DisplayType']/@value">foodRawMeat</set>
+
+  <!-- Raw carnivore meats -->
+  <set xpath="/items/item[@name='foodRawMeatBear']/property[@name='DisplayType']/@value">foodRawMeat</set>
+  <set xpath="/items/item[@name='foodRawMeatWolf']/property[@name='DisplayType']/@value">foodRawMeat</set>
+  <set xpath="/items/item[@name='foodRawMeatMountainLion']/property[@name='DisplayType']/@value">foodRawMeat</set>
+  <set xpath="/items/item[@name='foodRawMeatSnake']/property[@name='DisplayType']/@value">foodRawMeat</set>
+
+  <!-- Cooked herbivore meats -->
+  <append xpath="/items/item[@name='foodGrilledMeatHerbivore'][not(property[@name='DisplayType'])]">
+    <property name="DisplayType" value="foodGrilledMeat"/>
+  </append>
+  <append xpath="/items/item[@name='foodBoiledMeatHerbivore'][not(property[@name='DisplayType'])]">
+    <property name="DisplayType" value="foodBoiledMeat"/>
+  </append>
+  <append xpath="/items/item[@name='foodCharredMeatHerbivore'][not(property[@name='DisplayType'])]">
+    <property name="DisplayType" value="foodCharredMeat"/>
+  </append>
+
+  <!-- Cooked carnivore meats -->
+  <append xpath="/items/item[@name='foodCharredMeatCarnivore'][not(property[@name='DisplayType'])]">
+    <property name="DisplayType" value="foodCharredMeat"/>
+  </append>
+  <set xpath="/items/item[@name='foodGrilledMeatCarnivore']/property[@name='DisplayType']/@value">foodGrilledMeat</set>
+  <set xpath="/items/item[@name='foodBoiledMeatCarnivore']/property[@name='DisplayType']/@value">foodBoiledMeat</set>
+
+  <!-- Repair / drink / medical -->
+  <append xpath="/items/item[@name='resourceWeaponRepairKit'][not(property[@name='DisplayType'])]">
+    <property name="DisplayType" value="resourceRepairKit"/>
+  </append>
+
+  <append xpath="/items/item[@name='resourceEthanol'][not(property[@name='DisplayType'])]">
+    <property name="DisplayType" value="drinkJarBeer"/>
+  </append>
+
+  <append xpath="/items/item[@name='medicalFirstAidBandageDirty'][not(property[@name='DisplayType'])]">
+    <property name="DisplayType" value="medicalFirstAidBandage"/>
+  </append>
+
+  <append xpath="/items/item[@name='medicalWoundInfectionTreatment'][not(property[@name='DisplayType'])]">
+    <property name="DisplayType" value="medicalBandage"/>
+  </append>
+
+  <set xpath="/items/item[@name='drinkTeaParasiteCleanse']/property[@name='DisplayType']/@value">foodSmoothie</set>
+  <set xpath="/items/item[@name='medicalAnthelminticTonic']/property[@name='DisplayType']/@value">foodSmoothie</set>
+  <set xpath="/items/item[@name='drinkColonCleanseTonic']/property[@name='DisplayType']/@value">foodSmoothie</set>
+
+
+  <!-- ===================================================== -->
+  <!-- 2) EXPLICITLY SURFACE CUSTOM NUMERIC/UNIQUE ITEM STATS -->
+  <!-- ===================================================== -->
+
+  <!-- Weapon Repair Kit: custom mechanic, not just a vanilla kit -->
+  <append xpath="/items/item[@name='resourceWeaponRepairKit'][not(effect_group)]">
+    <effect_group tiered="false"/>
+  </append>
+  <append xpath="/items/item[@name='resourceWeaponRepairKit']/effect_group[1]">
+    <display_value name="ldWeaponRepairAmount" value="9999"/>
+    <display_value name="ldWeaponRepairTime" value="3"/>
+    <display_value name="ldWeaponBenchRefurbish" value="1"/>
+  </append>
+
+  <!-- Ethanol: surface the fact that it applies a punishment buff -->
+  <append xpath="/items/item[@name='resourceEthanol'][not(effect_group)]">
+    <effect_group tiered="false"/>
+  </append>
+  <append xpath="/items/item[@name='resourceEthanol']/effect_group[last()]">
+    <display_value name="ldAppliesEthanolPoisoning" value="1"/>
+  </append>
+
+  <!-- Dirty bandage: already has useful custom display values in your file.
+       This block only adds a missing explicit label for clarity if needed. -->
+  <append xpath="/items/item[@name='medicalFirstAidBandageDirty']/effect_group[1]">
+    <display_value name="ldDirtyBandageHealth" value="30"/>
+  </append>
+
+  <!-- Wound infection treatment: already has custom display values.
+       Add an explicit binary treatment line too. -->
+  <append xpath="/items/item[@name='medicalWoundInfectionTreatment']/effect_group[1]">
+    <display_value name="ldConsumesOnUse" value="1"/>
+  </append>
+
+  <!-- Parasite tea -->
+  <append xpath="/items/item[@name='drinkTeaParasiteCleanse'][not(effect_group)]">
+    <effect_group tiered="false"/>
+  </append>
+  <append xpath="/items/item[@name='drinkTeaParasiteCleanse']/effect_group[last()]">
+    <display_value name="foodWaterAmount" value="10"/>
+    <display_value name="ldTreatsParasites" value="1"/>
+    <display_value name="ldParasiteTreatmentTypeTea" value="1"/>
+  </append>
+
+  <!-- Anthelmintic tonic -->
+  <append xpath="/items/item[@name='medicalAnthelminticTonic'][not(effect_group)]">
+    <effect_group tiered="false"/>
+  </append>
+  <append xpath="/items/item[@name='medicalAnthelminticTonic']/effect_group[last()]">
+    <display_value name="foodWaterAmount" value="10"/>
+    <display_value name="ldTreatsParasites" value="1"/>
+    <display_value name="ldParasiteTreatmentTypeTonic" value="1"/>
+  </append>
+
+  <!-- Colon cleanse tonic -->
+  <append xpath="/items/item[@name='drinkColonCleanseTonic'][not(effect_group)]">
+    <effect_group tiered="false"/>
+  </append>
+  <append xpath="/items/item[@name='drinkColonCleanseTonic']/effect_group[last()]">
+    <display_value name="ldRemovesBodyOdor" value="1"/>
   </append>
 </configs>

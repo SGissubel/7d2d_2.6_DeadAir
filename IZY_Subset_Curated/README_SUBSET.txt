@@ -8,7 +8,6 @@ Weapons included (22):
   - IZYMeleeT4SpearPoleAxe
   - gunShotgunT3AutoShotgun
   - gunShotgunT1DoubleBarrel
-  - IZYgunT4TACshotgunM1014
   - IZYgunT2TradshotgunLeveractionShotgunModel1887
   - IZYgunT2LGLChinalakeGrenadeLauncher
   - IZYgunT3MarksManRifle762HKPSG1
@@ -34,6 +33,34 @@ double-barrel and auto shotgun models/sounds.
 Ammo: Item XML only includes ammo types defined in the compiled pack (e.g. IZY 45ACP,
 556, 25mm grenades, shotgun premium). 9mm/762/standard shells use the base game defs.
 
+Vanilla ammo icons (IZY art for base-game ammo)
+-----------------------------------------------
+Base-game ammo uses the same icon names as item ids (e.g. ammo9mmBulletBall.png). To
+show Izayo icons instead of TFP defaults, copy PNGs from a full Izayo/Izayo All-in-One
+mod into this folder:
+
+  UIAtlases/ItemIconAtlas/
+
+Icons are copied automatically when you run the build helper (or the shell wrapper):
+
+  IZY_SRC="/path/to/IZY_Compiled_AllInOne" python3 Mods/_build_izy_subset.py
+
+If IZY_SRC is unset, the script uses Mods/IZY_Compiled_AllInOne when that folder exists.
+Use --no-icons to skip copying. copy_vanilla_ammo_icons.sh calls the same Python script.
+
+Do not change CustomIcon on items that already define IZY-only ammo (ammo45ACP*,
+IZYammo556*, 25mm, etc.); those are unchanged.
+
+Weapon animations (troubleshooting)
+----------------------------------
+RefreshHand must match 7D1.0_Izayo_Visible_FPV_Gloves_mod: it turns on weapon-prefab
+HAND_RAW_* transforms under #HeldItemRoot after items.xml hides vanilla FPV hands.
+A no-op stub breaks FPV hands and typically breaks animator-driven gun motion (reload,
+slide, eject, muzzle child objects). If visuals are still wrong after that:
+- Check output_log for failed loads of #@modfolder:Resources/*.unity3d or missing prefabs.
+- Ensure the same Mods folder is used (single-player and server must match).
+- Confirm only one Izayo stack is active (disable IZY_Compiled_AllInOne when using this mod).
+
 Total item defs (with ammo/deps): 34
 
 Disable IZY_Compiled_AllInOne when using this mod.
@@ -42,5 +69,8 @@ Sound nodes: 69
 Buffs: 40
 Unity bundles copied: 16
 
-Re-run after changing SEED_ITEMS in _build_izy_subset.py:
+Re-run after changing SEED_ITEMS in Mods/_build_izy_subset.py (when merge is implemented):
   python3 Mods/_build_izy_subset.py
+
+That script also copies vanilla ammo icons from --izy-src / IZY_SRC / Mods/IZY_Compiled_AllInOne
+unless you pass --no-icons.

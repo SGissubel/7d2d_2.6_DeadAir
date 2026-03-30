@@ -177,14 +177,6 @@
 	<unlock_entry item="IZYgunT3TACshotgunSPAS12G" unlock_tier="1" tags="IZYgunT3TACshotgunSPAS12G"/>
 </append>
 
-<append xpath="/progression/crafting_skills/crafting_skill[@name='craftingShotguns']/display_entry[@item='gunShotgunT3AutoShotgun']">
-	<unlock_entry item="IZYgunT4TACshotgunM1014" unlock_tier="1" tags="IZYgunT4TACshotgunM1014"/>
-</append>
-
-<append xpath="/progression/crafting_skills/crafting_skill[@name='craftingShotguns']/effect_group">
-	<passive_effect name="RecipeTagUnlocked" operation="base_set" level="61,100" value="1" tags="IZYgunT4TACshotgunM1014"/>
-	<passive_effect name="CraftingTier" operation="base_add" level="68,76,84,92,100" value="1,2,3,4,5" tags="IZYgunT4TACshotgunM1014"/>
-</append>
 
 <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingSpears']/display_entry[@item='meleeWpnSpearT3SteelSpear']">
 	<unlock_entry item="IZYMeleeT4SpearPoleAxe" unlock_tier="1" tags="IZYMeleeT4SpearPoleAxe"/>

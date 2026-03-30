@@ -27,7 +27,6 @@
 		<item name="IZYgunT3BULLPUPHellionVHS2" loot_prob_template="veryLow"/>
 		<item name="IZYgunT3MarksManRifle762HKPSG1" loot_prob_template="veryLow"/>
 		<item name="IZYgunT3BattleRifleHKG3" loot_prob_template="veryLow"/>
-		<item name="IZYgunT4TACshotgunM1014" loot_prob_template="veryLow"/>
 		<item name="IZYgunT4SMGCZScorpionEVO3" loot_prob_template="veryLow"/>
 		<item name="IZYgunT4ARCabineHK416" loot_prob_template="veryLow"/>
 		<item name="IZYgunT445TACSMGKrissSuperV" loot_prob_template="veryLow"/>
@@ -84,7 +83,6 @@
 		<item name="IZYgunT3BULLPUPHellionVHS2" loot_prob_template="veryLow"/>
 		<item name="IZYgunT3MarksManRifle762HKPSG1" loot_prob_template="veryLow"/>
 		<item name="IZYgunT3BattleRifleHKG3" loot_prob_template="veryLow"/>
-		<item name="IZYgunT4TACshotgunM1014" loot_prob_template="veryLow"/>
 	</append>
 
 	<append xpath="/lootcontainers/lootgroup[@name='groupMilitaryFootlocker01']">

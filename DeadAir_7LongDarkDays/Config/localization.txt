@@ -9,6 +9,7 @@ buffLD_FoodPoisoningName,UI,Buff,,,"Food Poisoning",,,,,,,,,,,,,
 buffLD_FoodPoisoningDesc,UI,Buff,,,"Spoiled or contaminated intake. Severe stamina loss and dehydration until it passes.",,,,,,,,,,,,,
 
 drugAntiparasiticTonicDesc,UI,Item,,,"A potent antiparasitic tonic. Cures parasites and helps you recover.",,,,,,,,,,,,,
+resourceWeaponRepairKit,items,Item,,,"Weapon Repair Kit",,,,,,,,,,,,,
 resourceWeaponRepairKitDesc,items,Item,False,False,"A field repair kit for firearms and bows. Restores limited durability in the field, but enables full refurbishing at a Weapon Repair Bench.",,,,,,,,,,,,,
 
 gunRifleT2LeverActionRifleName_44,items,Item,,,"Lever Action Rifle (.44)",,,,,,,,,,,,,
@@ -32,6 +33,7 @@ ldMsgParasitesStage02End,UI,Tooltip,,,"Parasites worsened.",,,,,,,,,,,,,
 
 ldDescWoundInfectionTreatment,UI,ItemDesc,,,"A treatment bundle for wound infections. Requires a clean bandage plus honey or ethanol.",,,,,,,,,,,,,
 ldDescEthanol,DeadAir,ItemDesc,,,"Pure ethanol. It will disinfect in a pinch, but it is harsh on the body.",,,,,,,,,,,,,
+resourceEthanol,items,Item,,,"Ethanol",,,,,,,,,,,,,
 resourceEthanolDesc,DeadAir,ItemDesc,,,"Pure ethanol. It will disinfect in a pinch, but it is harsh on the body.",,,,,,,,,,,,,
 medicalFirstAidBandageDirty,DeadAir,Item,,,"Dirty Medical Bandage",,,,,,,,,,,,,
 
@@ -59,12 +61,16 @@ ldTreatsWoundInfection,DeadAir,DisplayValue,,,"Treats Wound Infection",,,,,,,,,,
 ldWoundInfectionCurePower,DeadAir,DisplayValue,,,"Treatment Strength",,,,,,,,,,,,,
 ldChanceOfInfection,DeadAir,DisplayValue,,,"Chance of Infection",,,,,,,,,,,,,
 ldDescDirtyBandage,DeadAir,ItemDesc,,,"A dirty medical bandage.\n\n{color=ff3b30}Chance of Infection: 35%{/color}",,,,,,,,,,,,,
+
 statStaminaRegen,ui_display,Item stat,,,"Stamina Regen",,,,,,,,,,,,,
 statStaminaRegenRunning,ui_display,Item stat,,,"Stamina Regen, Running",,,,,,,,,,,,,
 statStopsBleeding,ui_display,Item stat,,,"Stop Bleeding",,,,,,,,,,,,,
+dhealAbrasionMult,ui_display,Item stat,,,"Abrasion Healing Speed",,,,,,,,,,,,,
+dInfectionChance,ui_display,Item stat,,,"Infection Chance",,,,,,,,,,,,,
 
 buffDeadAirHeightRageActiveDesc,UI,Buff,,,"Zombies have entered a rage after losing reach on you.",,,,,,,,,,,,,
 
+buffLD_ParasitesName,UI,Buff,,,"Parasites",,,,,,,,,,,,,
 buffLD_ParasitesStage01Name,UI,Buff,,,"Parasites",,,,,,,,,,,,,
 buffLD_ParasitesStage01Desc,UI,Buff,,,"You've contracted parasites. Hunger, thirst, and fatigue are becoming harder to manage. Left untreated, this condition will worsen.",,,,,,,,,,,,,
 
@@ -91,8 +97,25 @@ buffLD_ParasiteTeaCourseDesc,UI,Buff,,,"The medicinal tea is working through you
 ldMsgParasiteTeaWorking,UI,Tooltip,,,"You drink the cleanse tea and wait for it to take effect.",,,,,,,,,,,,,
 ldMsgParasiteTeaFinished,UI,Tooltip,,,"The tea runs its course and the parasites weaken.",,,,,,,,,,,,,
 
-foodRawMeatDoe,items,Item,,,"Raw Meat",,,,,,,,,,,,,
+foodRawMeatDoe,items,Item,,,"Raw Doe Meat",,,,,,,,,,,,,
 foodRawMeatDoeDesc,items,ItemDesc,,,"Raw animal meat. Eating it uncooked can make you sick.",,,,,,,,,,,,,
+foodRawMeatStag,items,Item,,,"Raw Stag Meat",,,,,,,,,,,,,
+foodRawMeatStagDesc,items,ItemDesc,,,"Raw animal meat. Eating it uncooked can make you sick.",,,,,,,,,,,,,
+foodRawMeatBoar,items,Item,,,"Raw Boar Meat",,,,,,,,,,,,,
+foodRawMeatBoarDesc,items,ItemDesc,,,"Raw animal meat. Eating it uncooked can make you sick.",,,,,,,,,,,,,
+foodRawMeatRabbit,items,Item,,,"Raw Rabbit Meat",,,,,,,,,,,,,
+foodRawMeatRabbitDesc,items,ItemDesc,,,"Raw animal meat. Eating it uncooked can make you sick.",,,,,,,,,,,,,
+foodRawMeatChicken,items,Item,,,"Raw Chicken Meat",,,,,,,,,,,,,
+foodRawMeatChickenDesc,items,ItemDesc,,,"Raw animal meat. Eating it uncooked can make you sick.",,,,,,,,,,,,,
+
+foodRawMeatBear,items,Item,,,"Raw Bear Meat",,,,,,,,,,,,,
+foodRawMeatBearDesc,items,ItemDesc,,,"Raw carnivore meat. Eating it uncooked is much riskier.",,,,,,,,,,,,,
+foodRawMeatWolf,items,Item,,,"Raw Wolf Meat",,,,,,,,,,,,,
+foodRawMeatWolfDesc,items,ItemDesc,,,"Raw carnivore meat. Eating it uncooked is much riskier.",,,,,,,,,,,,,
+foodRawMeatMountainLion,items,Item,,,"Raw Mountain Lion Meat",,,,,,,,,,,,,
+foodRawMeatMountainLionDesc,items,ItemDesc,,,"Raw carnivore meat. Eating it uncooked is much riskier.",,,,,,,,,,,,,
+foodRawMeatSnake,items,Item,,,"Raw Snake Meat",,,,,,,,,,,,,
+foodRawMeatSnakeDesc,items,ItemDesc,,,"Raw carnivore meat. Eating it uncooked is much riskier.",,,,,,,,,,,,,
 
 foodGrilledMeatHerbivore,items,Item,,,"Grilled Meat",,,,,,,,,,,,,
 foodGrilledMeatHerbivoreDesc,items,ItemDesc,,,"A cooked cut of meat. Smells good, tastes better.",,,,,,,,,,,,,
@@ -102,6 +125,13 @@ foodCharredMeatHerbivoreDesc,items,ItemDesc,,,"Blackened but edible. Better than
 
 foodBoiledMeatHerbivore,items,Item,,,"Boiled Meat",,,,,,,,,,,,,
 foodBoiledMeatHerbivoreDesc,items,ItemDesc,,,"Soft cooked meat prepared in boiling water.",,,,,,,,,,,,,
+
+foodCharredMeatCarnivore,items,Item,,,"Charred Carnivore Meat",,,,,,,,,,,,,
+foodCharredMeatCarnivoreDesc,items,ItemDesc,,,"Blackened carnivore meat. Edible, but still rough eating.",,,,,,,,,,,,,
+foodGrilledMeatCarnivore,items,Item,,,"Grilled Carnivore Meat",,,,,,,,,,,,,
+foodGrilledMeatCarnivoreDesc,items,ItemDesc,,,"Cooked carnivore meat. Better than raw, but still not the safest meal.",,,,,,,,,,,,,
+foodBoiledMeatCarnivore,items,Item,,,"Boiled Carnivore Meat",,,,,,,,,,,,,
+foodBoiledMeatCarnivoreDesc,items,ItemDesc,,,"Boiled carnivore meat. Safer than raw, but still risky fare.",,,,,,,,,,,,,
 
 cntDeadAirWeaponRepairBench,blocks,Block,False,False,"Weapon Repair Bench",,,,,,,,,,,,,
 cntDeadAirWeaponRepairBenchDesc,blocks,Block,False,False,"A dedicated bench for full weapon refurbishing and repair.",,,,,,,,,,,,,
@@ -121,6 +151,14 @@ deadairRepairAlreadyFull,xui,Menu,,,"That weapon is already at full durability."
 deadairRepairSuccess,xui,Menu,,,"Weapon refurbished.",,,,,,,,,,,,,
 deadairRepairUseBenchButton,xui,Menu,,,"Use the Refurbish button on the bench. Ingredients must be in the bench slots, not only your backpack.",,,,,,,,,,,,,
 
+deadairWeaponBenchInfoTitle,xui,Menu,,,"Weapon Repair Instructions",,,,,,,,,,,,,
+deadairWeaponBenchHowToTitle,xui,Menu,,,"How to use this bench",,,,,,,,,,,,,
+deadairWeaponBenchStep1,xui,Menu,,,"1. Put the damaged weapon in the first slot.",,,,,,,,,,,,,
+deadairWeaponBenchStep2,xui,Menu,,,"2. Put a Weapon Repair Kit in the second slot.",,,,,,,,,,,,,
+deadairWeaponBenchStep3,xui,Menu,,,"3. Put the required weapon parts in the third slot.",,,,,,,,,,,,,
+deadairWeaponBenchStep4,xui,Menu,,,"4. Press Repair to fully restore the weapon.",,,,,,,,,,,,,
+deadairWeaponBenchQualityNote,xui,Menu,,,"Parts required scale with weapon quality.",,,,,,,,,,,,,
+
 drinkColonCleanseTonic,items,Item,,,"Colon Cleanse Tonic",,,,,,,,,,,,,
 drinkColonCleanseTonicDesc,items,ItemDesc,,,"A brutal herbal purge made from charcoal, flowers, and desert plants. Drink immediately after rinsing off to eliminate body odor. Does not remove the smell of meat carried in your pockets.",,,,,,,,,,,,,
 
@@ -133,16 +171,16 @@ perkParkourRank1LongDesc,progression,perk Agi,,,"Basic rolls and landings.\nRedu
 perkParkourRank2Desc,progression,perk Agi,,,Stuntman,,,,,,,,,,,,,
 perkParkourRank2LongDesc,progression,perk Agi,,,"Cleaner takeoffs and landings.\nReduce stamina cost of jumping by 15%.\nSlightly higher jumps (about one extra step, not a rooftop leap).\nTiny reduction to impact from falls—big drops still hurt.",,,,,,,,,,,,,
 perkParkourRank3Desc,progression,perk Agi,,,Adrenaline Junkie,,,,,,,,,,,,,
-perkParkourRank3LongDesc,progression,perk Agi,,,"You move with more confidence at height.\nReduce stamina cost of jumping by 22%.\nA bit more jump height than rank 2, still capped around a two-block vertical.\nSlightly softer landings than without the perk—falls from several stories remain very dangerous, and you are not immune to broken bones on bad impacts.",,,,,,,,,,,,
+perkParkourRank3LongDesc,progression,perk Agi,,,"You move with more confidence at height.\nReduce stamina cost of jumping by 22%.\nA bit more jump height than rank 2, still capped around a two-block vertical.\nSlightly softer landings than without the perk—falls from several stories remain very dangerous, and you are not immune to broken bones on bad impacts.",,,,,,,,,,,,,
 
 
-buffLD_ParasitesName,Parasites,Buff,,,,
-
-
-deadairWeaponBenchInfoTitle,Weapon Repair Instructions
-deadairWeaponBenchHowToTitle,How to use this bench
-deadairWeaponBenchStep1,1. Put the damaged weapon in the first slot.
-deadairWeaponBenchStep2,2. Put a Weapon Repair Kit in the second slot.
-deadairWeaponBenchStep3,3. Put the required weapon parts in the third slot.
-deadairWeaponBenchStep4,4. Press Repair to fully restore the weapon.
-deadairWeaponBenchQualityNote,Parts required scale with weapon quality.
+ldWeaponRepairAmount,DeadAir,DisplayValue,,,"Repair Power",,,,,,,,,,,,,
+ldWeaponRepairTime,DeadAir,DisplayValue,,,"Repair Time",,,,,,,,,,,,,
+ldWeaponBenchRefurbish,DeadAir,DisplayValue,,,"Enables Full Bench Refurbish",,,,,,,,,,,,,
+ldAppliesEthanolPoisoning,DeadAir,DisplayValue,,,"Applies Ethanol Poisoning",,,,,,,,,,,,,
+ldDirtyBandageHealth,DeadAir,DisplayValue,,,"Restores Health",,,,,,,,,,,,,
+ldConsumesOnUse,DeadAir,DisplayValue,,,"Single Use",,,,,,,,,,,,,
+ldTreatsParasites,DeadAir,DisplayValue,,,"Treats Parasites",,,,,,,,,,,,,
+ldParasiteTreatmentTypeTea,DeadAir,DisplayValue,,,"Treatment Type: Tea",,,,,,,,,,,,,
+ldParasiteTreatmentTypeTonic,DeadAir,DisplayValue,,,"Treatment Type: Tonic",,,,,,,,,,,,,
+ldRemovesBodyOdor,DeadAir,DisplayValue,,,"Removes Body Odor",,,,,,,,,,,,,
