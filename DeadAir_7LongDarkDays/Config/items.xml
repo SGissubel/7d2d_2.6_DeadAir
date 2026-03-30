@@ -1136,8 +1136,6 @@
   <remove xpath="/items/item[@name='drinkTeaParasiteCleanse']/property[@name='ModifierSlots']"/>
   <remove xpath="/items/item[@name='medicalAnthelminticTonic']/property[@name='ModifierSlots']"/> -->
 
-  T
-
 
 
   <append xpath="/items">

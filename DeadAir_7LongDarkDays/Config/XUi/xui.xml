@@ -9,7 +9,6 @@
       <window name="windowDeadAirWeaponBenchCraftingList"/>
       <window name="craftingInfoPanel"/>
       <window name="windowDeadAirWeaponBenchCraftingQueue"/>
-      <window name="windowDeadAirWeaponBenchOutput"/>
       <window name="windowNonPagingHeader"/>
       <window name="windowDeadAirWeaponBenchInputs"/>
     </window_group>

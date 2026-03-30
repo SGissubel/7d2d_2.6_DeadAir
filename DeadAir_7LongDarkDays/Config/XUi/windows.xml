@@ -185,7 +185,7 @@
 
     <window name="windowDeadAirWeaponBenchInputs"
             width="390"
-            height="270"
+            height="320"
             panel="Left"
             cursor_area="true">
       <panel name="header" height="43" depth="1" backgroundspritename="ui_game_panel_header">
@@ -193,11 +193,11 @@
         <label style="header.name" text="Weapon Refurbish Bench"/>
       </panel>
 
-      <rect name="content" pos="0,-46" width="390" height="224" disablefallthrough="true">
+      <rect name="content" pos="0,-46" width="390" height="259" disablefallthrough="true">
         <sprite name="backgroundMain"
                 sprite="menu_empty3px"
                 width="390"
-                height="224"
+                height="274"
                 color="[black]"
                 type="sliced"
                 fillcenter="false"/>
@@ -205,25 +205,46 @@
         <label depth="3"
               pos="12,-10"
               width="366"
-              height="26"
+              height="28"
               font_size="22"
               color="[white]"
               text="Full Refurbish Requirements"
               justify="left"/>
 
         <label depth="3"
-              pos="12,-34"
+              pos="12,-40"
               width="366"
-              height="18"
-              font_size="14"
-              color="[lightGrey]"
-              text="Place a supported weapon below. Repair kit and matching parts are taken from your inventory."
+              height="20"
+              font_size="16"
+              color="[white]"
+              text="Insert a weapon into the slot below."
               justify="left"/>
 
+        <!-- slot background -->
+        <sprite name="weaponPlaceholderBg"
+                depth="3"
+                pos="157,-92"
+                width="75"
+                height="75"
+                sprite="menu_empty3px"
+                color="70,70,70,255"
+                type="sliced"
+                fillcenter="true"/>
+
+        <!-- centered pistol placeholder -->
+        <sprite name="weaponPlaceholderIcon"
+                depth="4"
+                pos="169,-100"
+                width="50"
+                height="50"
+                sprite="ui_game_symbol_pistol"
+                color="255,255,255,255"/>
+
         <grid name="inventory"
+              depth="5"
               rows="1"
               cols="1"
-              pos="157,-66"
+              pos="157,-92"
               width="75"
               height="75"
               cell_width="75"
@@ -234,7 +255,7 @@
         </grid>
 
         <label depth="3"
-              pos="118,-150"
+              pos="118,-175"
               width="154"
               height="24"
               font_size="20"
@@ -243,31 +264,37 @@
               justify="center"/>
 
         <label depth="3"
-              pos="70,-172"
-              width="250"
-              height="18"
-              font_size="14"
-              color="[lightGrey]"
-              text="Supported firearm or bow"
+              pos="35,-198"
+              width="320"
+              height="22"
+              font_size="15"
+              color="[white]"
+              text="Repair kit + matching parts are pulled from your inventory."
               justify="center"/>
 
         <button name="btnDeadAirWeaponRepair"
                 depth="5"
-                pos="20,-184"
+                pos="20,-222"
                 width="350"
-                height="34"
+                height="38"
                 sprite="menu_empty"
                 defaultcolor="[mediumGrey]"
                 disabledcolor="[darkGrey]"
                 hoversprite="ui_game_select_row"
                 hovercolor="[white]"
                 type="sliced"
-                font_size="24"
-                justify="center"
-                text="Refurbish"
                 sound="[paging_click]"
                 hoverscale="1.0"
                 controller="SimpleButton"/>
+
+        <label depth="6"
+              pos="20,-228"
+              width="350"
+              height="26"
+              font_size="24"
+              color="[white]"
+              text="Repair"
+              justify="center"/>
       </rect>
     </window>
   </append>

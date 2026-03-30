@@ -47,31 +47,6 @@
       <property name="DowngradeFX" value="impact_organic_on_metal,silencefiller"/>
   </append>
 
-  <!-- ===== Pallet cartons ===== -->
-<!-- 
-  <append xpath="/blocks/block[@name='palletCartonMilitaryCap']">
-    <property name="Class" value="Loot"/>
-    <property name="LootList" value="daPalletAmmo"/>
-  </append>
-
-  <append xpath="/blocks/block[@name='palletCartonMilitaryTile']">
-    <property name="Class" value="Loot"/>
-    <property name="LootList" value="daPalletAmmo"/>
-  </append>
-
-  <append xpath="/blocks/block[@name='palletCartonMilitaryTileCovered']">
-    <property name="Class" value="Loot"/>
-    <property name="LootList" value="daPalletAmmo"/>
-  </append>
-
-  <append xpath="/blocks/block[@name='decoMannequinMilitaryCommando']">
-    <property name="Class" value="Loot"/>
-    <property name="LootList" value="daMannequinArmor"/>
-    <property name="LootedBlock" value="decoMannequin"/>
-  </append> -->
-
-
-
 
 
   <!-- ===================================================== -->
