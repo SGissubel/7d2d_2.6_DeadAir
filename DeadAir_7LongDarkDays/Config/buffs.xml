@@ -244,21 +244,6 @@
   </append>
 
 
-  <!-- Fatigue trigger: coffee/blackstrap is the counter -->
-  <set xpath="/buffs/buff[@name='buffFatiguedTrigger']/effect_group/requirement[@name='!HasBuff']/@buff">buffCoffee,buffBlackStrapCoffee</set>
-
-  <!-- Remove vitamins magic -->
-  <remove xpath="/buffs/buff[@name='buffFatigued']/effect_group/triggered_effect[@action='RemoveBuff' and @buff='buffFatigued']/requirement[@name='HasBuff' and @buff='buffDrugVitamins']"/>
-
-  <!-- Coffee clears fatigue -->
-  <append xpath="/buffs/buff[@name='buffCoffee']/effect_group[3]">
-    <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFatigued"/>
-  </append>
-
-  <append xpath="/buffs/buff[@name='buffBlackStrapCoffee']/effect_group[3]">
-    <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFatigued"/>
-  </append>
-
   <append xpath="/buffs">
 
     <!-- ========================= -->
@@ -2004,4 +1989,181 @@
     </buff>
   </append>
 
+
+
+  <!-- ========================================================= -->
+  <!-- DEAD AIR FATIGUE SYSTEM                                   -->
+  <!-- Counter-driven fatigue system with coffee treatment       -->
+  <!-- ========================================================= -->
+
+  <!-- ========================================================= -->
+  <!-- CUSTOM FATIGUE BUFFS                                      -->
+  <!-- ========================================================= -->
+  <append xpath="/buffs">
+
+    <!-- STARTER / CATCH BUFF -->
+    <buff name="buffLDFatigueCatch" hidden="true" remove_on_death="false">
+      <duration value="1"/>
+      <stack_type value="ignore"/>
+
+      <effect_group>
+        <requirement name="NotHasBuff" buff="buffLDFatigueMain"/>
+        <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffLDFatigueMain"/>
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$ldFatigueCounter" operation="set" value="7200"/>
+      </effect_group>
+
+      <effect_group>
+        <requirement name="HasBuff" buff="buffLDFatigueMain"/>
+        <requirement name="CVarCompare" cvar="$ldFatigueCounter" operation="LT" value="7200"/>
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$ldFatigueCounter" operation="set" value="7200"/>
+      </effect_group>
+    </buff>
+
+    <!-- ======================================================= -->
+    <!-- MAIN CONTROLLER                                         -->
+    <!-- Hidden buff that controls untreated / improving states  -->
+    <!-- and maintains the display cvar for the timer.           -->
+    <!-- ======================================================= -->
+    <buff name="buffLDFatigueMain" hidden="true" remove_on_death="false">
+      <duration value="0"/>
+      <stack_type value="ignore"/>
+
+      <!-- Keep display cvar synced to the main counter -->
+      <effect_group>
+        <requirement name="CVarCompare" cvar="$ldFatigueCounter" operation="GT" value="0"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ldFatigueDisplay" operation="set" value="@$ldFatigueCounter"/>
+      </effect_group>
+      <!-- Natural fatigue countdown -->
+      <effect_group>
+        <requirement name="CVarCompare" cvar="$ldFatigueCounter" operation="GT" value="0"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$ldFatigueCounter" operation="add" value="-1"/>
+      </effect_group>
+      <!-- Untreated -->
+      <effect_group>
+        <requirement name="CVarCompare" cvar="$ldFatigueCounter" operation="GT" value="0"/>
+        <requirement name="NotHasBuff" buff="buffLDFatigueCoffeeCourse"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffLDFatigueUntreated"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLDFatigueImproving"/>
+      </effect_group>
+
+      <!-- Improving -->
+      <effect_group>
+        <requirement name="CVarCompare" cvar="$ldFatigueCounter" operation="GT" value="0"/>
+        <requirement name="HasBuff" buff="buffLDFatigueCoffeeCourse"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffLDFatigueImproving"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLDFatigueUntreated"/>
+      </effect_group>
+
+      <!-- Fully cured -->
+      <effect_group>
+        <requirement name="CVarCompare" cvar="$ldFatigueCounter" operation="LTE" value="0"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$ldFatigueCounter" operation="set" value="0"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLDFatigueUntreated"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLDFatigueImproving"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLDFatigueCoffeeCourse"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLDFatigueMain"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".ldFatigueDisplay"/>
+      </effect_group>
+    </buff>
+
+
+    <!-- ======================================================= -->
+    <!-- UNTREATED FATIGUE                                       -->
+    <!-- ======================================================= -->
+    <buff name="buffLDFatigueUntreated"
+          name_key="ldBuffFatigueName"
+          description_key="ldBuffFatigueDescUntreated"
+          icon="ui_game_symbol_fatigued"
+          icon_color="255,180,0"
+          remove_on_death="false">
+      <duration value="0"/>
+      <stack_type value="ignore"/>
+      <display_value value=".ldFatigueDisplay"/>
+      <display_value_format value="time"/>
+
+      <effect_group>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.35">
+          <requirement name="!HasBuff" buff="buffHealWaterMax"/>
+        </passive_effect>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.20">
+          <requirement name="HasBuff" buff="buffHealWaterMax"/>
+        </passive_effect>
+      </effect_group>
+    </buff>
+
+
+    <!-- ======================================================= -->
+    <!-- IMPROVING FATIGUE                                       -->
+    <!-- ======================================================= -->
+    <buff name="buffLDFatigueImproving"
+          name_key="ldBuffFatigueName"
+          description_key="ldBuffFatigueDescImproving"
+          icon="ui_game_symbol_fatigued"
+          icon_color="90,200,120"
+          remove_on_death="false">
+      <duration value="0"/>
+      <stack_type value="ignore"/>
+      <display_value value=".ldFatigueDisplay"/>
+      <display_value_format value="time"/>
+
+      <effect_group>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.12">
+          <requirement name="!HasBuff" buff="buffHealWaterMax"/>
+        </passive_effect>
+        <passive_effect name="StaminaChangeOT" operation="perc_add" value="-0.06">
+          <requirement name="HasBuff" buff="buffHealWaterMax"/>
+        </passive_effect>
+      </effect_group>
+    </buff>
+
+    <!-- COFFEE TREATMENT COURSE -->
+    <buff name="buffLDFatigueCoffeeCourse" hidden="true" remove_on_death="false">
+      <duration value="300"/>
+      <stack_type value="ignore"/>
+
+      <effect_group>
+        <requirement name="CVarCompare" cvar="$ldFatigueCounter" operation="GT" value="0"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$ldFatigueCounter" operation="add" value="-11.24"/>
+      </effect_group>
+    </buff>
+
+  </append>
+
+  <!-- ========================================================= -->
+  <!-- COFFEE STARTS TREATMENT                                   -->
+  <!-- ========================================================= -->
+  <append xpath="/buffs/buff[@name='buffCoffee']/effect_group[last()]">
+    <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffLDFatigueCoffeeCourse"/>
+  </append>
+
+  <append xpath="/buffs/buff[@name='buffBlackStrapCoffee']/effect_group[last()]">
+    <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffLDFatigueCoffeeCourse"/>
+  </append>
+
+  <!-- ========================================================= -->
+  <!-- VANILLA FATIGUE TRIGGER -> CUSTOM FATIGUE                 -->
+  <!-- ========================================================= -->
+  <remove xpath="/buffs/buff[@name='buffFatiguedTrigger']//triggered_effect[@action='AddBuff' and @buff='buffFatigued']"/>
+
+  <append xpath="/buffs/buff[@name='buffFatiguedTrigger']/effect_group[last()]">
+    <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffLDFatigueCatch"/>
+  </append>
+
+  <!-- ========================================================= -->
+  <!-- VANILLA FATIGUE SAFETY HANDOFF                            -->
+  <!-- If vanilla buffFatigued gets applied by some other path,  -->
+  <!-- immediately convert it and remove the vanilla visible     -->
+  <!-- buff so you do not get duplicate fatigue icons.           -->
+  <!-- ========================================================= -->
+  <append xpath="/buffs/buff[@name='buffFatigued']/effect_group[last()]">
+    <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffLDFatigueCatch"/>
+    <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFatigued"/>
+  </append>
+
+
+  <append xpath="/buffs">
+    <buff name="buffDeadAirCoolerCleanDrink" hidden="true" remove_on_death="true" stack_type="ignore">
+        <duration value="1" />
+    </buff>
+</append>
 </configs>

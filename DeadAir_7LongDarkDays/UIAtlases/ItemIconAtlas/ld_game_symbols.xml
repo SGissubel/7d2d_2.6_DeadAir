@@ -79,5 +79,10 @@
     <sprite name="ui_game_symbol_parsiteTea" x="0" y="0" width="64" height="64"/>
   </atlas>
 
+   <!-- fatigued coffee buff -->
+  <atlas name="ldGameSymbols_coffeebuff" texture="ItemIconAtlas/ui_game_symbol_coffeebuff.png" size="64,64">
+    <sprite name="ui_game_symbol_coffeebuff" x="0" y="0" width="64" height="64"/>
+  </atlas>
+
 
 </uiatlases>

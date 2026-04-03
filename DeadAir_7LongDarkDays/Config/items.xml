@@ -104,7 +104,7 @@
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
       <property name="Material" value="MfoodRawMeat"/>
       <property name="Stacknumber" value="40"/>
-      <property name="DisplayType" value="foodRawMeat"/>
+      <property name="DisplayType" value="foodRawMeatDoe"/>
       <property name="EconomicValue" value="20"/>
       <property name="CraftingIngredientTime" value="3"/>
       <property name="SoundPickup" value="meat_raw_grab"/>
@@ -127,7 +127,7 @@
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
       <property name="Material" value="MfoodRawMeat"/>
       <property name="Stacknumber" value="40"/>
-      <property name="DisplayType" value="foodRawMeat"/>
+      <property name="DisplayType" value="foodRawMeatBoar"/>
       <property name="EconomicValue" value="20"/>
       <property name="CraftingIngredientTime" value="3"/>
       <property name="SoundPickup" value="meat_raw_grab"/>
@@ -150,7 +150,7 @@
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
       <property name="Material" value="MfoodRawMeat"/>
       <property name="Stacknumber" value="40"/>
-      <property name="DisplayType" value="foodRawMeat"/>
+      <property name="DisplayType" value="foodRawMeatRabbit"/>
       <property name="EconomicValue" value="20"/>
       <property name="CraftingIngredientTime" value="3"/>
       <property name="SoundPickup" value="meat_raw_grab"/>
@@ -173,7 +173,7 @@
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
       <property name="Material" value="MfoodRawMeat"/>
       <property name="Stacknumber" value="40"/>
-      <property name="DisplayType" value="foodRawMeat"/>
+      <property name="DisplayType" value="foodRawMeatChicken"/>
       <property name="EconomicValue" value="20"/>
       <property name="CraftingIngredientTime" value="3"/>
       <property name="SoundPickup" value="meat_raw_grab"/>
@@ -459,6 +459,7 @@
   <!-- ===================================================== -->
   <append xpath="/items">
     <item name="medicalFirstAidBandageDirty">
+    
       <property name="Extends" value="medicalFirstAidBandage"/>
       <property name="CustomIcon" value="dirty_bandage_ui_pop_160"/>
       <property name="DescriptionKey" value="ldDescDirtyBandage"/>
@@ -1024,7 +1025,6 @@
     <item name="drinkColonCleanseTonic" extends="drinkJarCoffee">
       <property name="CustomIcon" value="ui_game_symbol_colon_cleanse"/>
       <property name="DescriptionKey" value="drinkColonCleanseTonicDesc"/>
-      <property name="DisplayType" value="foodSmoothie"/>
       <property name="Tags" value="food,foodSkill,farmerFoodBonus"/>
       <property name="HoldType" value="3"/>
       <property name="Meshfile" value="@:Other/Items/Food/masonJarOasisSmoothiePrefab.prefab"/>
@@ -1081,156 +1081,203 @@
 
 
 
-  <append xpath="/items/item[@name='drinkTeaParasiteCleanse']">
-    <property class="Action0">
-      <property name="Class" value="Eat"/>
-      <property name="Delay" value="4"/>
-      <property name="Sound_start" value="player_drinking"/>
-      <property name="Create_item" value="drinkJarEmpty"/>
-      <property name="Use_jar_refund" value="true"/>
-    </property>
-  </append>
-
-  <append xpath="/items/item[@name='medicalAnthelminticTonic']">
-    <property class="Action0">
-      <property name="Class" value="Eat"/>
-      <property name="Delay" value="4"/>
-      <property name="Sound_start" value="player_drinking"/>
-      <property name="Create_item" value="drinkJarEmpty"/>
-      <property name="Use_jar_refund" value="true"/>
-    </property>
-  </append>
-
-  <append xpath="/items/item[@name='drinkColonCleanseTonic']">
-    <property class="Action0">
-      <property name="Class" value="Eat"/>
-      <property name="Delay" value="4"/>
-      <property name="Sound_start" value="player_drinking"/>
-      <property name="Create_item" value="drinkJarEmpty"/>
-      <property name="Use_jar_refund" value="true"/>
-      <requirement name="HasBuff" buff="buffColonCleanseReady"/>
-      <requirement name="!HasBuff" buff="buffColonCleanseFresh"/>
-    </property>
-  </append>
 
 
 
-  <!-- ===================================================== -->
-  <!-- 1) NORMALIZE DISPLAYTYPE FOR ALL CUSTOM INVENTORY ITEMS -->
-  <!-- ===================================================== -->
 
-  <!-- Raw herbivore meats -->
+<!-- display test 2 -->
+
+ <!-- Herbivore raw -->
   <set xpath="/items/item[@name='foodRawMeatStag']/property[@name='DisplayType']/@value">foodRawMeat</set>
   <set xpath="/items/item[@name='foodRawMeatDoe']/property[@name='DisplayType']/@value">foodRawMeat</set>
   <set xpath="/items/item[@name='foodRawMeatBoar']/property[@name='DisplayType']/@value">foodRawMeat</set>
   <set xpath="/items/item[@name='foodRawMeatRabbit']/property[@name='DisplayType']/@value">foodRawMeat</set>
   <set xpath="/items/item[@name='foodRawMeatChicken']/property[@name='DisplayType']/@value">foodRawMeat</set>
 
-  <!-- Raw carnivore meats -->
-  <set xpath="/items/item[@name='foodRawMeatBear']/property[@name='DisplayType']/@value">foodRawMeat</set>
-  <set xpath="/items/item[@name='foodRawMeatWolf']/property[@name='DisplayType']/@value">foodRawMeat</set>
-  <set xpath="/items/item[@name='foodRawMeatMountainLion']/property[@name='DisplayType']/@value">foodRawMeat</set>
-  <set xpath="/items/item[@name='foodRawMeatSnake']/property[@name='DisplayType']/@value">foodRawMeat</set>
+  <append xpath="/items/item[@name='foodRawMeatStag']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="1"/><display_value name="foodHealthAmount" value="-1"/><display_value name="ddummyNoBonus" value="1"/><display_value name="dDysenteryRisk" value=".09"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
+  <append xpath="/items/item[@name='foodRawMeatDoe']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="1"/><display_value name="foodHealthAmount" value="-1"/><display_value name="ddummyNoBonus" value="1"/><display_value name="dDysenteryRisk" value=".09"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
+  <append xpath="/items/item[@name='foodRawMeatBoar']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="1"/><display_value name="foodHealthAmount" value="-1"/><display_value name="ddummyNoBonus" value="1"/><display_value name="dDysenteryRisk" value=".09"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
+  <append xpath="/items/item[@name='foodRawMeatRabbit']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="1"/><display_value name="foodHealthAmount" value="-1"/><display_value name="ddummyNoBonus" value="1"/><display_value name="dDysenteryRisk" value=".09"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
+  <append xpath="/items/item[@name='foodRawMeatChicken']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="1"/><display_value name="foodHealthAmount" value="-1"/><display_value name="ddummyNoBonus" value="1"/><display_value name="dDysenteryRisk" value=".09"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
 
-  <!-- Cooked herbivore meats -->
+  <!-- Herbivore cooked -->
+  <append xpath="/items/item[@name='foodGrilledMeatHerbivore'][not(property[@name='DisplayType'])]"><property name="DisplayType" value="food"/></append>
+  <append xpath="/items/item[@name='foodCharredMeatHerbivore'][not(property[@name='DisplayType'])]"><property name="DisplayType" value="foodWaterNegative"/></append>
+  <append xpath="/items/item[@name='foodBoiledMeatHerbivore'][not(property[@name='DisplayType'])]"><property name="DisplayType" value="foodWater"/></append>
+
+  <append xpath="/items/item[@name='foodGrilledMeatHerbivore']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="7"/><display_value name="foodHealthAmount" value="3"/><display_value name=".foodStaminaBonusAdd" value="7"/><display_value name="dSmellUse" value="18"/></effect_group></append>
+  <append xpath="/items/item[@name='foodCharredMeatHerbivore']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="7"/><display_value name="$waterAmountAdd" value="-4"/><display_value name="foodHealthAmount" value="3"/><display_value name=".foodStaminaBonusAdd" value="7"/><display_value name="dSmellUse" value="18"/></effect_group></append>
+  <append xpath="/items/item[@name='foodBoiledMeatHerbivore']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="7"/><display_value name="$waterAmountAdd" value="7"/><display_value name="foodHealthAmount" value="11"/><display_value name=".foodStaminaBonusAdd" value="7"/><display_value name="dSmellUse" value="18"/></effect_group></append>
+
+  <!-- Raw carnivores -->
+  <set xpath="/items/item[@name='foodRawMeatBear']/property[@name='DisplayType']/@value">foodRawMeatCarnivore</set>
+  <set xpath="/items/item[@name='foodRawMeatWolf']/property[@name='DisplayType']/@value">foodRawMeatCarnivore</set>
+  <set xpath="/items/item[@name='foodRawMeatMountainLion']/property[@name='DisplayType']/@value">foodRawMeatCarnivore</set>
+  <set xpath="/items/item[@name='foodRawMeatSnake']/property[@name='DisplayType']/@value">foodRawMeatCarnivore</set>
+
+  <append xpath="/items/item[@name='foodRawMeatBear']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="4"/>
+      <display_value name="foodHealthAmount" value="1"/>
+      <display_value name=".foodStaminaBonusAdd" value="4"/>
+      <display_value name="ldParasiteChance" value="1.0"/>
+      <display_value name="dSmell" value="1"/>
+      <display_value name="dSmellUse" value="2"/>
+    </effect_group>
+  </append>
+  <append xpath="/items/item[@name='foodRawMeatWolf']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="4"/>
+      <display_value name="foodHealthAmount" value="1"/>
+      <display_value name=".foodStaminaBonusAdd" value="4"/>
+      <display_value name="ldParasiteChance" value="1.0"/>
+      <display_value name="dSmell" value="1"/>
+      <display_value name="dSmellUse" value="2"/>
+    </effect_group>
+  </append>
+  <append xpath="/items/item[@name='foodRawMeatMountainLion']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="4"/>
+      <display_value name="foodHealthAmount" value="1"/>
+      <display_value name=".foodStaminaBonusAdd" value="4"/>
+      <display_value name="ldParasiteChance" value="1.0"/>
+      <display_value name="dSmell" value="1"/>
+      <display_value name="dSmellUse" value="2"/>
+    </effect_group>
+  </append>
+  <append xpath="/items/item[@name='foodRawMeatSnake']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="4"/>
+      <display_value name="foodHealthAmount" value="1"/>
+      <display_value name=".foodStaminaBonusAdd" value="4"/>
+      <display_value name="ldParasiteChance" value="1.0"/>
+      <display_value name="dSmell" value="1"/>
+      <display_value name="dSmellUse" value="2"/>
+    </effect_group>
+  </append>
+
+  <!-- Cooked carnivores -->
+  <append xpath="/items/item[@name='foodCharredMeatCarnivore'][not(property[@name='DisplayType'])]"><property name="DisplayType" value="foodCarnivore"/></append>
+  <set xpath="/items/item[@name='foodGrilledMeatCarnivore']/property[@name='DisplayType']/@value">foodCarnivore</set>
+  <set xpath="/items/item[@name='foodBoiledMeatCarnivore']/property[@name='DisplayType']/@value">foodCarnivoreWater</set>
+
+  <append xpath="/items/item[@name='foodCharredMeatCarnivore']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="10"/><display_value name="foodHealthAmount" value="4"/><display_value name=".foodStaminaBonusAdd" value="6"/><display_value name="ldParasiteChance" value=".30"/><display_value name="dSmellUse" value="35"/></effect_group></append>
+  <append xpath="/items/item[@name='foodGrilledMeatCarnivore']">
+    <effect_group tiered="false"><display_value name="$foodAmountAdd" value="15"/><display_value name="foodHealthAmount" value="6"/><display_value name=".foodStaminaBonusAdd" value="8"/><display_value name="ldParasiteChance" value=".30"/><display_value name="dSmellUse" value="35"/></effect_group></append>
+  <append xpath="/items/item[@name='foodBoiledMeatCarnivore']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="18"/>
+      <display_value name="$waterAmountAdd" value="12"/>
+      <display_value name="foodHealthAmount" value="8"/>
+      <display_value name=".foodStaminaBonusAdd" value="8"/>
+      <display_value name="ldParasiteChance" value=".30"/>
+      <display_value name="dSmellUse" value="35"/>
+    </effect_group>
+  </append>
+
+  <!-- Colon cleanse needs a real display type -->
+  <append xpath="/items/item[@name='drinkColonCleanseTonic'][not(property[@name='DisplayType'])]">
+    <property name="DisplayType" value="foodWater"/>
+  </append>
+
+
+
+
+
+
+<!-- bbbbeeeeeeeeppp -->
+
+  <append xpath="/items/item[@name='foodCharredMeatHerbivore'][not(property[@name='DisplayType'])]">
+    <property name="DisplayType" value="foodCharredMeatHerbivore"/>
+  </append>
   <append xpath="/items/item[@name='foodGrilledMeatHerbivore'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="foodGrilledMeat"/>
+    <property name="DisplayType" value="foodGrilledMeatHerbivore"/>
   </append>
   <append xpath="/items/item[@name='foodBoiledMeatHerbivore'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="foodBoiledMeat"/>
-  </append>
-  <append xpath="/items/item[@name='foodCharredMeatHerbivore'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="foodCharredMeat"/>
+    <property name="DisplayType" value="foodBoiledMeatHerbivore"/>
   </append>
 
-  <!-- Cooked carnivore meats -->
-  <append xpath="/items/item[@name='foodCharredMeatCarnivore'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="foodCharredMeat"/>
+  <append xpath="/items/item[@name='drinkTeaParasiteCleanse'][not(property[@name='DisplayType'])]">
+    <property name="DisplayType" value="drinkDeadAirParasiteTea"/>
   </append>
-  <set xpath="/items/item[@name='foodGrilledMeatCarnivore']/property[@name='DisplayType']/@value">foodGrilledMeat</set>
-  <set xpath="/items/item[@name='foodBoiledMeatCarnivore']/property[@name='DisplayType']/@value">foodBoiledMeat</set>
+  <set xpath="/items/item[@name='drinkTeaParasiteCleanse']/property[@name='DisplayType']/@value">drinkDeadAirParasiteTea</set>
+  <set xpath="/items/item[@name='medicalAnthelminticTonic']/property[@name='DisplayType']/@value">drinkDeadAirParasiteTonic</set>
 
-  <!-- Repair / drink / medical -->
-  <append xpath="/items/item[@name='resourceWeaponRepairKit'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="resourceRepairKit"/>
+  <!-- Hide weird Modify action on drinks -->
+  <append xpath="/items/item[@name='drinkTeaParasiteCleanse']/effect_group[1]">
+    <passive_effect name="ModSlots" operation="base_set" value="0"/>
   </append>
-
-  <append xpath="/items/item[@name='resourceEthanol'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="drinkJarBeer"/>
+  <append xpath="/items/item[@name='medicalAnthelminticTonic']/effect_group[1]">
+    <passive_effect name="ModSlots" operation="base_set" value="0"/>
   </append>
-
-  <append xpath="/items/item[@name='medicalFirstAidBandageDirty'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="medicalFirstAidBandage"/>
+  <append xpath="/items/item[@name='drinkColonCleanseTonic']/effect_group[1]">
+    <passive_effect name="ModSlots" operation="base_set" value="0"/>
   </append>
 
-  <append xpath="/items/item[@name='medicalWoundInfectionTreatment'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="medicalBandage"/>
+  <!-- Remove the accidental dirty-bandage rows from colon cleanse -->
+  <remove xpath="/items/item[@name='drinkColonCleanseTonic']/effect_group[display_value[@name='dhealAbrasionMult'] and display_value[@name='foodHealthAmount'] and display_value[@name='dStopsBleeding']]"/>
+
+  <!-- Herbivore raw (75% vanilla raw, rounded down) -->
+  <append xpath="/items/item[@name='foodRawMeatStag']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="1"/><display_value name="ldHealthAmount" value="-1"/><display_value name="ldDysenteryChance" value="9"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
+  <append xpath="/items/item[@name='foodRawMeatDoe']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="1"/><display_value name="ldHealthAmount" value="-1"/><display_value name="ldDysenteryChance" value="9"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
+  <append xpath="/items/item[@name='foodRawMeatBoar']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="1"/><display_value name="ldHealthAmount" value="-1"/><display_value name="ldDysenteryChance" value="9"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
+  <append xpath="/items/item[@name='foodRawMeatRabbit']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="1"/><display_value name="ldHealthAmount" value="-1"/><display_value name="ldDysenteryChance" value="9"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
+  <append xpath="/items/item[@name='foodRawMeatChicken']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="1"/><display_value name="ldHealthAmount" value="-1"/><display_value name="ldDysenteryChance" value="9"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
+
+  <!-- Herbivore cooked (75% vanilla cooked, rounded down) -->
+  <append xpath="/items/item[@name='foodCharredMeatHerbivore']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="7"/><display_value name="ldWaterAmount" value="-4"/><display_value name="ldHealthAmount" value="3"/><display_value name="ldMaxStaminaBonus" value="7"/><display_value name="dSmellUse" value="18"/></effect_group></append>
+  <append xpath="/items/item[@name='foodGrilledMeatHerbivore']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="7"/><display_value name="ldHealthAmount" value="3"/><display_value name="ldMaxStaminaBonus" value="7"/><display_value name="dSmellUse" value="18"/></effect_group></append>
+  <append xpath="/items/item[@name='foodBoiledMeatHerbivore']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="7"/><display_value name="ldWaterAmount" value="7"/><display_value name="ldHealthAmount" value="11"/><display_value name="ldMaxStaminaBonus" value="7"/><display_value name="dSmellUse" value="18"/></effect_group></append>
+
+  <insertAfter xpath="/items/item[@name='meleeHandPlayer']/effect_group[@name='Drink']/triggered_effect[@trigger='onSelfAction2End' and @action='ModifyCVar' and @cvar='$waterAmountAdd' and @operation='add']">
+      <triggered_effect trigger="onSelfAction2End" action="ShowTooltip" str="ldMsgCoolerCleanDrinkActive">
+          <requirement name="CVarCompare" cvar=".DeadAirCoolerCleanDrink" operation="GT" value="0"/>
+      </triggered_effect>
+  </insertAfter>
+  <!-- Add a clean-cooler hydration line -->
+  <insertAfter xpath="/items/item[@name='meleeHandPlayer']/effect_group[@name='Drink']/triggered_effect[@trigger='onSelfAction2End' and @action='ModifyCVar' and @cvar='$waterAmountAdd' and @operation='add' and @value='10']">
+      <triggered_effect trigger="onSelfAction2End" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="20">
+          <requirement name="HasBuff" buff="buffDeadAirCoolerCleanDrink"/>
+      </triggered_effect>
+  </insertAfter>
+  <insertAfter xpath="/items/item[@name='meleeHandPlayer']/effect_group[@name='Drink']/triggered_effect[@trigger='onSelfAction2End' and @action='ModifyCVar' and @cvar='$waterAmountAdd' and @operation='add' and @value='20']">
+    <triggered_effect trigger="onSelfAction2End" action="ShowTooltip" str="ldMsgCoolerCleanDrinkActive">
+        <requirement name="HasBuff" buff="buffDeadAirCoolerCleanDrink"/>
+      </triggered_effect>
+  </insertAfter>
+
+  <!-- Dirty-water +10 only when not cooler-clean -->
+  <append xpath="/items/item[@name='meleeHandPlayer']/effect_group[@name='Drink']/triggered_effect[@trigger='onSelfAction2End' and @action='ModifyCVar' and @cvar='$waterAmountAdd' and @operation='add' and @value='10']">
+      <requirement name="!HasBuff" buff="buffDeadAirCoolerCleanDrink"/>
   </append>
 
-  <set xpath="/items/item[@name='drinkTeaParasiteCleanse']/property[@name='DisplayType']/@value">foodSmoothie</set>
-  <set xpath="/items/item[@name='medicalAnthelminticTonic']/property[@name='DisplayType']/@value">foodSmoothie</set>
-  <set xpath="/items/item[@name='drinkColonCleanseTonic']/property[@name='DisplayType']/@value">foodSmoothie</set>
-
-
-  <!-- ===================================================== -->
-  <!-- 2) EXPLICITLY SURFACE CUSTOM NUMERIC/UNIQUE ITEM STATS -->
-  <!-- ===================================================== -->
-
-  <!-- Weapon Repair Kit: custom mechanic, not just a vanilla kit -->
-  <append xpath="/items/item[@name='resourceWeaponRepairKit'][not(effect_group)]">
-    <effect_group tiered="false"/>
-  </append>
-  <append xpath="/items/item[@name='resourceWeaponRepairKit']/effect_group[1]">
-    <display_value name="ldWeaponRepairAmount" value="9999"/>
-    <display_value name="ldWeaponRepairTime" value="3"/>
-    <display_value name="ldWeaponBenchRefurbish" value="1"/>
+  <!-- HP penalty only when not cooler-clean -->
+  <append xpath="/items/item[@name='meleeHandPlayer']/effect_group[@name='Drink']/triggered_effect[@trigger='onSelfAction2End' and @action='ModifyStats' and @stat='Health' and @operation='add' and @value='-5']">
+      <requirement name="!HasBuff" buff="buffDeadAirCoolerCleanDrink"/>
   </append>
 
-  <!-- Ethanol: surface the fact that it applies a punishment buff -->
-  <append xpath="/items/item[@name='resourceEthanol'][not(effect_group)]">
-    <effect_group tiered="false"/>
-  </append>
-  <append xpath="/items/item[@name='resourceEthanol']/effect_group[last()]">
-    <display_value name="ldAppliesEthanolPoisoning" value="1"/>
+  <!-- Disease roll set only when not cooler-clean -->
+  <append xpath="/items/item[@name='meleeHandPlayer']/effect_group[@name='Drink']/triggered_effect[@trigger='onSelfAction2End' and @action='ModifyCVar' and @cvar='.DiseaseRoll' and @operation='set']">
+      <requirement name="!HasBuff" buff="buffDeadAirCoolerCleanDrink"/>
   </append>
 
-  <!-- Dirty bandage: already has useful custom display values in your file.
-       This block only adds a missing explicit label for clarity if needed. -->
-  <append xpath="/items/item[@name='medicalFirstAidBandageDirty']/effect_group[1]">
-    <display_value name="ldDirtyBandageHealth" value="30"/>
+  <!-- Disease roll add only when not cooler-clean -->
+  <append xpath="/items/item[@name='meleeHandPlayer']/effect_group[@name='Drink']/triggered_effect[@trigger='onSelfAction2End' and @action='ModifyCVar' and @cvar='.DiseaseRoll' and @operation='add']">
+      <requirement name="!HasBuff" buff="buffDeadAirCoolerCleanDrink"/>
   </append>
 
-  <!-- Wound infection treatment: already has custom display values.
-       Add an explicit binary treatment line too. -->
-  <append xpath="/items/item[@name='medicalWoundInfectionTreatment']/effect_group[1]">
-    <display_value name="ldConsumesOnUse" value="1"/>
+  <!-- Dysentery catch only when not cooler-clean -->
+  <append xpath="/items/item[@name='meleeHandPlayer']/effect_group[@name='Drink']/triggered_effect[@trigger='onSelfAction2End' and @action='AddBuff' and @buff='buffDysenteryCatchDrink']">
+      <requirement name="!HasBuff" buff="buffDeadAirCoolerCleanDrink"/>
   </append>
 
-  <!-- Parasite tea -->
-  <append xpath="/items/item[@name='drinkTeaParasiteCleanse'][not(effect_group)]">
-    <effect_group tiered="false"/>
+  <!-- Gag/vomit sound only when not cooler-clean -->
+  <append xpath="/items/item[@name='meleeHandPlayer']/effect_group[@name='Drink']/triggered_effect[@trigger='onSelfAction2End' and @action='PlaySound' and @sound='player#vomit']">
+      <requirement name="!HasBuff" buff="buffDeadAirCoolerCleanDrink"/>
   </append>
-  <append xpath="/items/item[@name='drinkTeaParasiteCleanse']/effect_group[last()]">
-    <display_value name="foodWaterAmount" value="10"/>
-    <display_value name="ldTreatsParasites" value="1"/>
-    <display_value name="ldParasiteTreatmentTypeTea" value="1"/>
-  </append>
-
-  <!-- Anthelmintic tonic -->
-  <append xpath="/items/item[@name='medicalAnthelminticTonic'][not(effect_group)]">
-    <effect_group tiered="false"/>
-  </append>
-  <append xpath="/items/item[@name='medicalAnthelminticTonic']/effect_group[last()]">
-    <display_value name="foodWaterAmount" value="10"/>
-    <display_value name="ldTreatsParasites" value="1"/>
-    <display_value name="ldParasiteTreatmentTypeTonic" value="1"/>
-  </append>
-
-  <!-- Colon cleanse tonic -->
-  <append xpath="/items/item[@name='drinkColonCleanseTonic'][not(effect_group)]">
-    <effect_group tiered="false"/>
-  </append>
-  <append xpath="/items/item[@name='drinkColonCleanseTonic']/effect_group[last()]">
-    <display_value name="ldRemovesBodyOdor" value="1"/>
-  </append>
+  <insertAfter xpath="/items/item[@name='meleeHandPlayer']/effect_group[@name='Drink']/triggered_effect[@trigger='onSelfAction2End' and @action='PlaySound' and @sound='player#vomit']">
+    <triggered_effect trigger="onSelfAction2End" action="ShowTooltip" str="ldMsgCoolerDirtyPathActive">
+        <requirement name="!HasBuff" buff="buffDeadAirCoolerCleanDrink"/>
+    </triggered_effect>
+</insertAfter>
 </configs>

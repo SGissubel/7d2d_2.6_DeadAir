@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configs>
 
+
+
+<!-- temp -->
+<append xpath="/recipes">
+    <recipe name="cntWaterCoolerFull" count="1" craft_time="1" tags="learnable">
+        <ingredient name="resourceRockSmall" count="1"/>
+    </recipe>
+    <recipe name="cntWaterCoolerFullSideCentered" count="1" craft_time="1" tags="learnable">
+        <ingredient name="resourceRockSmall" count="1"/>
+    </recipe>
+    <recipe name="cntWaterCoolerBottle" count="1" craft_time="1" tags="learnable">
+        <ingredient name="resourceRockSmall" count="1"/>
+    </recipe>
+    <recipe name="cntWaterCoolerBottleSideCentered" count="1" craft_time="1" tags="learnable">
+        <ingredient name="resourceRockSmall" count="1"/>
+    </recipe>
+</append>
+
+
+
+
+
   <!-- Remove vanilla cooked meat recipes -->
   <remove xpath="/recipes/recipe[@name='foodCharredMeat']"/>
   <remove xpath="/recipes/recipe[@name='foodGrilledMeat']"/>
