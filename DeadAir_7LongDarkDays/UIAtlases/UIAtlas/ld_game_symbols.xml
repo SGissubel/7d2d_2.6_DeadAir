@@ -62,6 +62,34 @@
     <sprite name="ui_game_symbol_coffeebuff" x="0" y="0" width="64" height="64"/>
   </atlas>
 
+   <!-- raw deer meat  -->
+  <atlas name="ldGameSymbols_rawdeermeat" texture="ItemIconAtlas/ui_game_symbol_rawdeermeat.png" size="64,64">
+    <sprite name="ui_game_symbol_rawdeermeat" x="0" y="0" width="64" height="64"/>
+  </atlas>
 
+   <!-- raw wolf meat  -->
+  <atlas name="ldGameSymbols_rawwolfmeat" texture="ItemIconAtlas/ui_game_symbol_rawwolfmeat.png" size="64,64">
+    <sprite name="ui_game_symbol_rawwolfmeat" x="0" y="0" width="64" height="64"/>
+  </atlas>
+
+   <!-- raw mountain lion meat  -->
+  <atlas name="ldGameSymbols_rawmountainlion" texture="ItemIconAtlas/ui_game_symbol_rawmountainlion.png" size="64,64">
+    <sprite name="ui_game_symbol_rawmountainlion" x="0" y="0" width="64" height="64"/>
+  </atlas>
+
+   <!-- raw rabbit chicken meat  -->
+  <atlas name="ldGameSymbols_rawrabitchickenmeat" texture="ItemIconAtlas/ui_game_symbol_rawrabbitchickenmeat.png" size="64,64">
+    <sprite name="ui_game_symbol_rawrabbitchickenmeat" x="0" y="0" width="64" height="64"/>
+  </atlas>
+
+   <!-- raw boar meat meat  -->
+  <atlas name="ldGameSymbols_rawboarmeat" texture="ItemIconAtlas/ui_game_symbol_rawboarmeat.png" size="64,64">
+    <sprite name="ui_game_symbol_rawboarmeat" x="0" y="0" width="64" height="64"/>
+  </atlas>
+
+   <!-- raw bear meat  -->
+  <atlas name="ldGameSymbols_rawbearmeat" texture="ItemIconAtlas/ui_game_symbol_rawbearmeat.png" size="64,64">
+    <sprite name="ui_game_symbol_rawbearmeat" x="0" y="0" width="64" height="64"/>
+  </atlas>
 
 </uiatlases>
