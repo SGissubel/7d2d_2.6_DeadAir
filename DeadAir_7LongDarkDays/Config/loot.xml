@@ -2,73 +2,81 @@
 <configs>
 
   <!-- ===================================== -->
-  <!-- BANDAGES: MOST CLEAN -> DIRTY         -->
+  <!-- BANDAGES: world loot = dirty only     -->
+  <!-- (clean via ethanol recipe)            -->
   <!-- ===================================== -->
 
   <remove xpath="//lootgroup[@name='groupQuestMedical']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupQuestMedical']">
-    <item name="medicalFirstAidBandageDirty" prob="4"/>
-    <item name="medicalFirstAidBandage" prob="1"/>
+    <item name="medicalFirstAidBandageDirty" count="2" loot_prob_template="QuestT0Prob"/>
   </append>
 
   <remove xpath="//lootgroup[@name='survivalMedical']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='survivalMedical']">
-    <item name="medicalFirstAidBandageDirty" prob="4"/>
-    <item name="medicalFirstAidBandage" prob="1"/>
+    <item name="medicalFirstAidBandageDirty"/>
   </append>
 
   <remove xpath="//lootgroup[@name='groupMedicalAll']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupMedicalAll']">
-    <item name="medicalFirstAidBandageDirty" prob="4"/>
-    <item name="medicalFirstAidBandage" prob="1"/>
+    <item name="medicalFirstAidBandageDirty" loot_prob_template="med"/>
   </append>
 
   <remove xpath="//lootgroup[@name='groupMedicalUncommon']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupMedicalUncommon']">
-    <item name="medicalFirstAidBandageDirty" prob="4"/>
-    <item name="medicalFirstAidBandage" prob="1"/>
+    <item name="medicalFirstAidBandageDirty" loot_prob_template="med"/>
   </append>
 
   <remove xpath="//lootgroup[@name='groupZpackNurseB']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupZpackNurseB']">
-    <item name="medicalFirstAidBandageDirty" prob="4"/>
-    <item name="medicalFirstAidBandage" prob="1"/>
+    <item name="medicalFirstAidBandageDirty" loot_prob_template="med"/>
   </append>
 
   <remove xpath="//lootgroup[@name='groupZpackLab01']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupZpackLab01']">
-    <item name="medicalFirstAidBandageDirty" prob="4"/>
-    <item name="medicalFirstAidBandage" prob="1"/>
+    <item name="medicalFirstAidBandageDirty" loot_prob_template="low"/>
   </append>
 
   <remove xpath="//lootgroup[@name='groupZpackSoldier01']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupZpackSoldier01']">
-    <item name="medicalFirstAidBandageDirty" prob="4"/>
-    <item name="medicalFirstAidBandage" prob="1"/>
+    <item name="medicalFirstAidBandageDirty" loot_prob_template="med"/>
   </append>
 
   <remove xpath="//lootgroup[@name='groupReinforcedChestT1_03']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupReinforcedChestT1_03']">
-    <item name="medicalFirstAidBandageDirty" prob="4"/>
-    <item name="medicalFirstAidBandage" prob="1"/>
+    <item name="medicalFirstAidBandageDirty" count="1,2" loot_prob_template="high"/>
   </append>
 
   <remove xpath="//lootgroup[@name='groupReinforcedChestT2_03']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupReinforcedChestT2_03']">
-    <item name="medicalFirstAidBandageDirty" prob="4"/>
-    <item name="medicalFirstAidBandage" prob="1"/>
+    <item name="medicalFirstAidBandageDirty" count="1,2" loot_prob_template="high"/>
   </append>
 
   <remove xpath="//lootgroup[@name='groupReinforcedChestT3_03']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupReinforcedChestT3_03']">
-    <item name="medicalFirstAidBandageDirty" prob="4"/>
-    <item name="medicalFirstAidBandage" prob="1"/>
+    <item name="medicalFirstAidBandageDirty" count="1,2" loot_prob_template="high"/>
   </append>
 
   <remove xpath="//lootgroup[@name='groupHardenedChestT4_05']/item[@name='medicalFirstAidBandage']"/>
   <append xpath="//lootgroup[@name='groupHardenedChestT4_05']">
-    <item name="medicalFirstAidBandageDirty" prob="4"/>
-    <item name="medicalFirstAidBandage" prob="1"/>
+    <item name="medicalFirstAidBandageDirty" count="1,2" loot_prob_template="high"/>
+  </append>
+ 
+  <!-- Vanilla cloth bandages in medical groups -> dirty first-aid -->
+  <set xpath="//lootgroup[@name='survivalMedical']/item[@name='medicalBandage']/@name">medicalFirstAidBandageDirty</set>
+  <set xpath="//lootgroup[@name='groupMedicalAll']/item[@name='medicalBandage']/@name">medicalFirstAidBandageDirty</set>
+  <set xpath="//lootgroup[@name='groupMedicalCommon']/item[@name='medicalBandage']/@name">medicalFirstAidBandageDirty</set>
+
+  <!-- Airdrop / Twitch (not covered by lootgroups above) -->
+  <set xpath="//lootgroup[@name='airdropMedicine']/item[@name='medicalFirstAidBandage']/@name">medicalFirstAidBandageDirty</set>
+  <set xpath="//lootgroup[@name='twitch_med1']/item[@name='medicalBandage']/@name">medicalFirstAidBandageDirty</set>
+  <set xpath="//lootgroup[@name='twitch_bandage']/item[@name='medicalBandage']/@name">medicalFirstAidBandageDirty</set>
+  <set xpath="//lootgroup[@name='twitch_med2']/item[@name='medicalFirstAidBandage']/@name">medicalFirstAidBandageDirty</set>
+  <set xpath="//lootgroup[@name='twitch_med3']/item[@name='medicalFirstAidBandage']/@name">medicalFirstAidBandageDirty</set>
+  <set xpath="//lootgroup[@name='twitch_firstaidbandage']/item[@name='medicalFirstAidBandage']/@name">medicalFirstAidBandageDirty</set>
+
+  <!-- Nurse A: mod removed cloth bandage; add dirty first-aid -->
+  <append xpath="//lootgroup[@name='groupZpackNurseA']">
+    <item name="medicalFirstAidBandageDirty" loot_prob_template="medHigh"/>
   </append>
 
   <!-- ===================================== -->

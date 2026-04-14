@@ -136,19 +136,28 @@
 
 
 
-
-
   <!-- ===================================================== -->
   <!-- SOLDIER ZOMBIE - OLD SCHOOL HELMET BEHAVIOR           -->
   <!-- - While helmet NOT broken: head damage heavily reduced -->
   <!-- - Ranged hits add to daHelmetHits (clang each time)    -->
   <!-- - At threshold: apply buffDA_HelmetBroken              -->
   <!-- ===================================================== -->
+  <append xpath="/entity_classes/entity_class[@name='zombieUtilityWorker']/property[@name='Tags']/@value">,deadairUtilityHelmetArmor</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerFeral']/property[@name='Tags']/@value">,deadairUtilityHelmetArmor</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerRadiated']/property[@name='Tags']/@value">,deadairUtilityHelmetArmor</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerCharged']/property[@name='Tags']/@value">,deadairUtilityHelmetArmor</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerInfernal']/property[@name='Tags']/@value">,deadairUtilityHelmetArmor</append>
+
+  <append xpath="/entity_classes/entity_class[@name='zombieBikerFeral']/property[@name='Tags']/@value">,deadairHelmetArmor</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieBiker']/property[@name='Tags']/@value">,deadairHelmetArmor</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieBikerRadiated']/property[@name='Tags']/@value">,deadairHelmetArmor</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieBikerInfernal']/property[@name='Tags']/@value">,deadairHelmetArmor</append>
 
   <append xpath="/entity_classes/entity_class[@name='zombieSoldier']/property[@name='Tags']/@value">,deadairSoldierArmor</append>
   <append xpath="/entity_classes/entity_class[@name='zombieSoldierFeral']/property[@name='Tags']/@value">,deadairSoldierArmor</append>
   <append xpath="/entity_classes/entity_class[@name='zombieSoldierRadiated']/property[@name='Tags']/@value">,deadairSoldierArmor</append>
   <append xpath="/entity_classes/entity_class[@name='zombieSoldierInfernal']/property[@name='Tags']/@value">,deadairSoldierArmor</append>
+  
   <append xpath="/entity_classes/entity_class[@name='zombieDemolition']/property[@name='Tags']/@value">,deadairSoldierArmor</append>
 
   <append xpath="/entity_classes/entity_class[@name='playerMale']/effect_group">
@@ -162,9 +171,25 @@
       <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
       <requirement name="HoldingItemHasTags" tags="shotgun"/>
     </passive_effect>
+    <!-- shotgun vs biker head: extra reduction -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.70" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairHelmetArmor"/>
+      <requirement name="HoldingItemHasTags" tags="shotgun"/>
+    </passive_effect>
+
     <!-- handgun penalty vs helmet targets -->
     <passive_effect name="DamageModifier" operation="perc_set" value="0.25" tags="head">
       <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
+      <requirement name="HoldingItemHasTags" tags="gun,pistol" match_all_tags="true"/>
+    </passive_effect>
+    <!-- handgun penalty vs Bikers -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.65" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairHelmetArmor"/>
+      <requirement name="HoldingItemHasTags" tags="gun,pistol" match_all_tags="true"/>
+    </passive_effect>
+    <!-- handgun penalty vs utility -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.85" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairUtilityHelmetArmor"/>
       <requirement name="HoldingItemHasTags" tags="gun,pistol" match_all_tags="true"/>
     </passive_effect>
 
@@ -173,67 +198,88 @@
       <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
       <requirement name="HoldingItemHasTags" tags="gun,rifle" match_all_tags="true"/>
     </passive_effect>
-      <!-- bow headshots vs soldier -->
+    <!-- rifle penalty vs helmet targets -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.20" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairHelmetArmor"/>
+      <requirement name="HoldingItemHasTags" tags="gun,rifle" match_all_tags="true"/>
+    </passive_effect>
+
+      <!-- bow headshots vs soldiers -->
     <passive_effect name="DamageModifier" operation="perc_set" value="0.12" tags="head">
       <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
       <requirement name="HoldingItemHasTags" tags="bow"/>
     </passive_effect>
+      <!-- bow headshots vs biker -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.32" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairHelmetArmor"/>
+      <requirement name="HoldingItemHasTags" tags="bow"/>
+    </passive_effect>
+      <!-- bow headshots vs utilityworker -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.52" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairUtilityHelmetArmor"/>
+      <requirement name="HoldingItemHasTags" tags="bow"/>
+    </passive_effect>
 
-    <!-- crossbow headshots vs soldier -->
+    <!-- crossbow headshots vs soldiers -->
     <passive_effect name="DamageModifier" operation="perc_set" value="0.12" tags="head">
       <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
       <requirement name="HoldingItemHasTags" tags="crossbow"/>
     </passive_effect>
+    <!-- crossbow headshots vs biker -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.32" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairHelmetArmor"/>
+      <requirement name="HoldingItemHasTags" tags="crossbow"/>
+    </passive_effect>
+    <!-- crossbow headshots vs utility worker -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.62" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairUtilityHelmetArmor"/>
+      <requirement name="HoldingItemHasTags" tags="crossbow"/>
+    </passive_effect>
 
-    <!-- melee headshots vs soldier -->
+    <!-- melee headshots vs soldiers -->
     <passive_effect name="DamageModifier" operation="perc_set" value="0.20" tags="head">
       <requirement name="EntityTagCompare" target="other" tags="deadairSoldierArmor"/>
+      <requirement name="HoldingItemHasTags" tags="melee"/>
+    </passive_effect>
+    <!-- melee headshots vs biker -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.40" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairHelmetArmor"/>
+      <requirement name="HoldingItemHasTags" tags="melee"/>
+    </passive_effect>
+    <!-- melee headshots vs utilityworker -->
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.60" tags="head">
+      <requirement name="EntityTagCompare" target="other" tags="deadairUtilityHelmetArmor"/>
       <requirement name="HoldingItemHasTags" tags="melee"/>
     </passive_effect>
   </append>
 
 
 
-  <!-- 3) Increment helmet hits on ranged damage; clang; break at threshold -->
-  <append xpath="/entity_classes/entity_class[@name='zombieSoldier']">
-    <effect_group name="DeadAir_HelmetSystem">
-      <!-- CLANG on ranged damage while intact -->
-      <triggered_effect trigger="onOtherDamagedSelf" action="PlaySound" target="self" sound="bullethitmetal">
-        <requirement name="RequirementDamageSource" value="ranged" />
-        <requirement name="RequirementCompareCVar" cvar="daHelmetBroken" operation="Equals" value="1" invert="true" />
-      </triggered_effect>
 
-      <!-- Break helmet at 3 hits -->
-      <!-- <triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="daHelmetBroken" operation="set" value="1">
-        <requirement name="RequirementDamageSource" value="ranged" />
-        <requirement name="RequirementCompareCVar" cvar="daHelmetHits" operation="GTE" value="5" />
-        <requirement name="RequirementCompareCVar" cvar="daHelmetBroken" operation="Equals" value="1" invert="true" />
-      </triggered_effect> -->
 
-    </effect_group>
-  </append>
-  <append xpath="/entity_classes/entity_class[@name='zombieDemolition']">
-    <effect_group name="DeadAir_HelmetSystem">
 
-      <!-- CLANG on ranged damage while intact -->
-      <triggered_effect trigger="onOtherDamagedSelf" action="PlaySound" target="self" sound="bullethitmetal">
-        <requirement name="RequirementDamageSource" value="ranged" />
-        <requirement name="RequirementCompareCVar" cvar="daHelmetBroken" operation="Equals" value="1" invert="true" />
-      </triggered_effect>
+  <!-- ===================================================== -->
+  <!--            FAT ZOMBIES HAVE IRON GUTS.                -->
+  <!-- ===================================================== -->
+  <append xpath="/entity_classes/entity_class[@name='zombieFemaleFat']/property[@name='Tags']/@value">,deadairHeavyTorso</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieFatCop']/property[@name='Tags']/@value">,deadairHeavyTorso</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieChuck']/property[@name='Tags']/@value">,deadairHeavyTorso</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieFatHawaiian']/property[@name='Tags']/@value">,deadairHeavyTorso</append>
+  <append xpath="/entity_classes/entity_class[@name='zombieBowler']/property[@name='Tags']/@value">,deadairHeavyTorso</append>
 
-      <!-- Break helmet at 3 hits -->
-      <!-- <triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="daHelmetBroken" operation="set" value="1">
-        <requirement name="RequirementDamageSource" value="ranged" />
-        <requirement name="RequirementCompareCVar" cvar="daHelmetHits" operation="GTE" value="5" />
-        <requirement name="RequirementCompareCVar" cvar="daHelmetBroken" operation="Equals" value="1" invert="true" />
-      </triggered_effect> -->
-
-    </effect_group>
+  <append xpath="/entity_classes/entity_class[@name='playerMale']/effect_group">
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.30">
+      <requirement name="EntityTagCompare" target="other" tags="deadairHeavyTorso"/>
+      <requirement name="HoldingItemHasTags" tags="ranged"/>
+      <requirement name="HitLocation" body_parts="Torso"/>
+    </passive_effect>
+    <passive_effect name="DamageModifier" operation="perc_set" value="0.30">
+      <requirement name="EntityTagCompare" target="other" tags="deadairHeavyTorso"/>
+      <requirement name="HoldingItemHasTags" tags="melee"/>
+      <requirement name="HitLocation" body_parts="Torso"/>
+    </passive_effect>
   </append>
  
-
-
-
   <!-- ===================================================== -->
   <!-- WIGHT - MAKE THEM A REAL LATE GAME THREAT AGAIN       -->
   <!-- ===================================================== -->
@@ -247,9 +293,6 @@
       <!-- Make them hit structures harder (if BlockDamage property doesn't exist locally) -->
       <passive_effect name="BlockDamage" operation="perc_add" value="0.35" />
 
-      <!-- Harder to control -->
-      <!-- <passive_effect name="StunResist" operation="perc_add" value="0.50" /> -->
-      <!-- <passive_effect name="KnockdownResist" operation="perc_add" value="0.35" /> -->
 
       <!-- Rage more often -->
       <triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffFeralRage" />
@@ -257,13 +300,8 @@
     </effect_group>
   </append>
  
-  <!-- <append xpath="/entity_classes">
-    <entity_class name="zombieSoldierLegacyTest" extends="zombieSoldier">
-      <property name="UserSpawnType" value="Menu"/>
-      <property name="Tags" value="entity,zombie,walker,allbiome,zombieSoldierLegacyTest"/>
-      <property name="Mesh" value="#Entities/Zombies?Zombies/zombieStandardSoldierRagdoll.prefab"/>
-      <property name="AvatarController" value="AvatarZombie01Controller"/>
-    </entity_class>
-  </append> -->
-
+  <!-- Match world loot: starter bandage is dirty (playerFemale extends playerMale) -->
+  <set xpath="/entity_classes/entity_class[@name='playerMale']/property[@name='ItemsOnEnterGame.GameModeSurvival']/@value">drinkJarBoiledWater=2,foodCanChili,medicalFirstAidBandageDirty,meleeToolTorch,noteDuke01</set>
+  <set xpath="/entity_classes/entity_class[@name='playerMale']/property[@name='ItemsOnEnterGame.GameModeSurvivalSP']/@value">drinkJarBoiledWater,foodCanChili,medicalFirstAidBandageDirty,meleeToolTorch</set>
+  <set xpath="/entity_classes/entity_class[@name='playerMale']/property[@name='ItemsOnEnterGame.GameModeSurvivalMP']/@value">drinkJarBoiledWater,foodCanChili,medicalFirstAidBandageDirty,meleeToolTorch</set>
 </configs>

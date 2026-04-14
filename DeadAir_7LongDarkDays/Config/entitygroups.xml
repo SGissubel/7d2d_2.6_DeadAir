@@ -1,0 +1,395 @@
+<configs>
+	<append xpath="/entitygroups">
+
+		<entitygroup name="DeadAir_BloodMoon_T1_Baseline">
+			zombieArlene
+			zombieMarlene
+			zombieJoe
+			zombieSteve
+			zombieTomClark
+			zombieDarlene
+			zombieYo
+			zombieMoe
+			zombieBusinessMan
+			zombieNurse
+			zombieLumberjack
+			zombieUtilityWorker
+			zombiePartyGirl
+			zombieBiker
+			zombieBurnt
+			zombieFemaleFat
+			zombieBowler
+			zombieRancher
+			zombieSkateboarder
+			zombieSpider
+			zombieArleneFeral
+			zombieMarleneFeral
+			zombiePartyGirlFeral
+			zombieNurseFeral
+			zombieJoeFeral
+			zombieSteveFeral
+			zombieTomClarkFeral
+			zombieBusinessManFeral
+			zombieBurntFeral
+			zombieRancherFeral
+			zombiePlagueSpitterFeral
+			zombieChuckFeral
+			zombieSpiderFeral
+			zombieBoeFeral
+			zombieMaleHazmatFeral
+			zombieJanitorFeral
+			zombieInmateFeral
+			zombieMoeFeral
+			zombieLabFeral
+			zombieDarleneFeral
+			zombieYoFeral
+			zombieUtilityWorkerFeral
+			zombieBikerFeral
+			zombieLumberjackFeral
+			zombieFemaleFatFeral
+			zombieFatHawaiianFeral
+			zombieBowlerFeral
+			zombieFatCopFeral
+			zombieSkateboarderFeral
+			zombieSoldierFeral
+			zombieWightFeral
+			zombieMutatedFeral
+			zombieArleneRadiated, .15
+			zombieJoeRadiated, .15
+			zombieSteveRadiated, .15
+			zombieMoeRadiated, .15
+			zombieSpiderRadiated, .2
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T1_Heavy">
+			zombieJoeFeral
+			zombieSteveFeral
+			zombieTomClarkFeral
+			zombieBusinessManFeral
+			zombieBurntFeral
+			zombiePlagueSpitterFeral
+			zombieBoeFeral
+			zombieMaleHazmatFeral
+			zombieInmateFeral
+			zombieMoeFeral
+			zombieBikerFeral
+			zombieLumberjackFeral
+			zombieFemaleFatFeral
+			zombieBusinessManRadiated
+			zombieNurseRadiated
+			zombieLumberjackRadiated
+			zombieUtilityWorkerRadiated
+			zombieBikerRadiated
+			zombieSpiderRadiated, .35
+			zombieMutatedRadiated, .2
+			zombieFatCopRadiated, .08
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T1_Severe">
+			zombieFatCopRadiated, .18
+			zombieSpiderRadiated, .2
+			zombieMutatedRadiated, .18
+			zombieArleneCharged, .05
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T2_Baseline">
+			zombieArleneFeral
+			zombieMarleneFeral
+			zombiePartyGirlFeral
+			zombieNurseFeral
+			zombieJoeFeral
+			zombieSteveFeral
+			zombieTomClarkFeral
+			zombieBusinessManFeral
+			zombieSpiderFeral
+			zombieBoeFeral
+			zombieMaleHazmatFeral
+			zombieJanitorFeral
+			zombieInmateFeral
+			zombieMoeFeral
+			zombieLabFeral
+			zombieDarleneFeral
+			zombieYoFeral
+			zombieUtilityWorkerFeral
+			zombieBikerFeral
+			zombieLumberjackFeral
+			zombieFemaleFatFeral
+			zombieFatHawaiianFeral
+			zombieBowlerFeral
+			zombieFatCopFeral
+			zombieSkateboarderFeral
+			zombieSoldierFeral
+			zombieWightFeral
+			zombieMutatedFeral
+			zombieArleneRadiated
+			zombieMarleneRadiated
+			zombieJoeRadiated
+			zombieSteveRadiated
+			zombieTomClarkRadiated
+			zombieDarleneRadiated
+			zombieYoRadiated
+			zombieMoeRadiated
+			zombieBusinessManRadiated
+			zombieNurseRadiated
+			zombieLumberjackRadiated
+			zombieUtilityWorkerRadiated
+			zombiePartyGirlRadiated
+			zombieBikerRadiated
+			zombieBurntRadiated
+			zombieFemaleFatRadiated
+			zombieBowlerRadiated, .2
+			zombieRancherRadiated, .18
+			zombieSkateboarderRadiated
+			zombieSpiderRadiated, .45
+			zombieMutatedRadiated, .25
+			zombieArleneCharged, .18
+			zombieJoeCharged, .18
+			zombieSteveCharged, .18
+			zombieSpiderCharged, .2
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T2_Heavy">
+			zombieBusinessManRadiated
+			zombieNurseRadiated
+			zombieLumberjackRadiated
+			zombieUtilityWorkerRadiated
+			zombiePartyGirlRadiated
+			zombieBikerRadiated
+			zombieFemaleFatRadiated
+			zombieSpiderRadiated
+			zombieMutatedRadiated
+			zombieFatCopRadiated
+			zombieSoldierRadiated
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T2_Severe">
+			zombieFatCopRadiated
+			zombieSoldierRadiated
+			zombieSpiderRadiated
+			zombieMutatedRadiated
+			zombieArleneCharged
+			zombieJoeCharged
+			zombieSpiderCharged
+			zombieChuckRadiated
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T3_Baseline">
+			zombieArleneFeral
+			zombieMarleneFeral
+			zombiePartyGirlFeral
+			zombieNurseFeral
+			zombieJoeFeral
+			zombieSteveFeral
+			zombieTomClarkFeral
+			zombieBusinessManFeral
+			zombieSpiderFeral
+			zombieBoeFeral
+			zombieMaleHazmatFeral
+			zombieJanitorFeral
+			zombieInmateFeral
+			zombieMoeFeral
+			zombieLabFeral
+			zombieDarleneFeral
+			zombieYoFeral
+			zombieUtilityWorkerFeral
+			zombieBikerFeral
+			zombieLumberjackFeral
+			zombieFemaleFatFeral
+			zombieFatHawaiianFeral
+			zombieBowlerFeral
+			zombieFatCopFeral
+			zombieSkateboarderFeral
+			zombieSoldierFeral
+			zombieWightFeral
+			zombieMutatedFeral
+			zombieArleneRadiated
+			zombieMarleneRadiated
+			zombieJoeRadiated
+			zombieSteveRadiated
+			zombieTomClarkRadiated
+			zombieDarleneRadiated
+			zombieYoRadiated
+			zombieMoeRadiated
+			zombieBusinessManRadiated
+			zombieNurseRadiated
+			zombieLumberjackRadiated
+			zombieUtilityWorkerRadiated
+			zombiePartyGirlRadiated
+			zombieBikerRadiated
+			zombieBurntRadiated
+			zombieFemaleFatRadiated
+			zombieBowlerRadiated, .2
+			zombieRancherRadiated, .18
+			zombieSkateboarderRadiated
+			zombieSpiderRadiated, .45
+			zombieMutatedRadiated, .25
+			zombieArleneCharged, .18
+			zombieJoeCharged, .18
+			zombieSteveCharged, .18
+			zombieSpiderCharged, .2
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T3_Heavy">
+			zombieFatCopRadiated
+			zombieSoldierRadiated
+			zombieWightRadiated
+			zombieWightCharged, .2
+			zombieMaleHazmatRadiated
+			zombieMaleHazmatCharged, .2
+			zombieInmateRadiated
+			zombieInmateCharged, .18
+			zombieLabRadiated, .08
+			animalZombieVultureRadiated, .2
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T3_Severe">
+			zombieFatCopRadiated, .35
+			zombieWightCharged, .2
+			zombieMaleHazmatCharged, .18
+			zombieChuckRadiated, .2
+			zombieMutatedRadiated, .25
+			zombieDemolition, .08
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T4_Baseline">
+			zombieArleneRadiated
+			zombieMarleneRadiated
+			zombieSteveRadiated
+			zombieJoeRadiated
+			zombieTomClarkRadiated
+			zombieDarleneRadiated
+			zombieYoRadiated
+			zombieMoeRadiated
+			zombieBusinessManRadiated
+			zombieNurseRadiated
+			zombieLumberjackRadiated
+			zombieUtilityWorkerRadiated
+			zombiePartyGirlRadiated
+			zombieBikerRadiated
+			zombieBurntRadiated
+			zombieFemaleFatRadiated
+			zombieBowlerRadiated, .22
+			zombieRancherRadiated, .18
+			zombieSkateboarderRadiated
+			zombieSpiderRadiated, .5
+			zombieMutatedRadiated
+			zombieArleneCharged
+			zombieMarleneCharged
+			zombieJoeCharged
+			zombieSteveCharged
+			zombieTomClarkCharged
+			zombieDarleneCharged
+			zombieYoCharged
+			zombieBusinessManCharged
+			zombieNurseCharged
+			zombieUtilityWorkerCharged
+			zombiePartyGirlCharged
+			zombieBurntCharged
+			zombieRancherCharged
+			zombieSkateboarderCharged
+			zombieSpiderCharged
+			zombieMutatedCharged
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T4_Heavy">
+			zombieFatCopRadiated
+			zombieFatCopInfernal
+			zombieSoldierRadiated
+			zombieSoldierInfernal
+			zombieWightRadiated
+			zombieWightCharged
+			zombieWightInfernal
+			zombieMaleHazmatRadiated
+			zombieMaleHazmatCharged
+			zombieMaleHazmatInfernal
+			zombieInmateRadiated
+			zombieInmateCharged
+			zombieInmateInfernal
+			zombieLabRadiated
+			zombieLabCharged
+			animalZombieVultureRadiated
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T4_Severe">
+			zombieFatCopInfernal
+			zombieWightInfernal
+			zombieMaleHazmatInfernal
+			zombieMutatedInfernal
+			zombieChuckRadiated
+			zombieChuckCharged
+			zombieDemolition
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T5_Baseline">
+			zombieArleneRadiated
+			zombieArleneCharged, .55
+			zombieMarleneRadiated
+			zombieMarleneCharged, .55
+			zombieJoeRadiated
+			zombieJoeCharged, .55
+			zombieSteveRadiated
+			zombieSteveCharged, .55
+			zombieTomClarkRadiated
+			zombieTomClarkCharged, .5
+			zombieDarleneRadiated
+			zombieDarleneCharged, .5
+			zombieYoRadiated
+			zombieYoCharged, .5
+			zombieMoeRadiated
+			zombieBusinessManRadiated
+			zombieBusinessManCharged, .45
+			zombieNurseRadiated
+			zombieNurseCharged, .45
+			zombieLumberjackRadiated
+			zombieUtilityWorkerRadiated
+			zombieUtilityWorkerCharged, .45
+			zombiePartyGirlRadiated
+			zombiePartyGirlCharged, .45
+			zombieBikerRadiated
+			zombieBurntRadiated
+			zombieBurntCharged, .45
+			zombieFemaleFatRadiated
+			zombieBowlerRadiated, .25
+			zombieRancherRadiated, .18
+			zombieRancherCharged, .22
+			zombieSkateboarderRadiated
+			zombieSkateboarderCharged, .35
+			zombieSpiderRadiated, .5
+			zombieSpiderCharged, .45
+			zombieMutatedRadiated
+			zombieMutatedCharged, .42
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T5_Heavy">
+			zombieFatCopRadiated
+			zombieFatCopInfernal, .45
+			zombieSoldierRadiated
+			zombieSoldierInfernal, .5
+			zombieWightRadiated
+			zombieWightCharged, .45
+			zombieWightInfernal, .35
+			zombieMaleHazmatRadiated
+			zombieMaleHazmatCharged, .45
+			zombieMaleHazmatInfernal, .35
+			zombieInmateRadiated
+			zombieInmateCharged, .4
+			zombieInmateInfernal, .35
+			zombieLabRadiated, .08
+			zombieLabCharged, .35
+			animalZombieVultureRadiated, .3
+		</entitygroup>
+
+		<entitygroup name="DeadAir_BloodMoon_T5_Severe">
+			zombieDemolition, 1.2
+			zombieDemolition, .95
+			zombieChuckRadiated, .85
+			zombieChuckCharged, .7
+			zombieChuckInfernal, .65
+			zombieFatCopInfernal, .55
+			zombieWightInfernal, .5
+			zombieMaleHazmatInfernal, .45
+			zombieMutatedInfernal, .4
+		</entitygroup>
+
+	</append>
+</configs>

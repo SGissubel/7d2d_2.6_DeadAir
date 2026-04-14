@@ -44,29 +44,7 @@
 			</effect_group>
 		</item>
 	</append>
-	<!-- <append xpath="/items">
-		<item name="meleeHandZombieBoar">
-			<property name="Extends" value="meleeHandMaster"/>
-			<property name="CreativeMode" value="None"/>
-			<property name="HoldType" value="35"/>
-			<property class="Action0">
-				<property name="Delay" value="0.42"/>
-				<property name="Range" value="3.1"/>
-				<property name="DamageEntity" value="110"/>
-				<property name="DamageBlock" value="1200"/>
-			</property>
-			<effect_group name="meleeHand" tiered="false">
-				<passive_effect name="ModSlots" operation="base_set" value="0"/>
-				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" fireOneBuff="true"
-					buff="buffArmBroken,buffLegBroken,buffLaceration,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"
-					weights=".08,.08,.35,.20,.25"/>
-				<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="infectionCounter" operation="add" value="150">
-					<requirement name="CVarCompare" target="other" cvar="infectionCounter" operation="GT" value="0"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="abrasionZombieHit" operation="set" value="1800"/>
-			</effect_group>
-		</item>
-	</append> -->
+
 
   <append xpath="/items">
     <!-- ========================= -->
@@ -75,7 +53,7 @@
 
     <item name="foodRawMeatStag" extends="foodRawMeat">
       <property name="Tags" value="food,foodSkill,fitness,rawMeat,herbivoreMeat,stagMeat"/>
-      <property name="CustomIcon" value="foodRawMeat"/>
+      <property name="CustomIcon" value="ui_game_symbol_rawdeermeat"/>
       <property name="HoldType" value="31"/>
       <property name="Meshfile" value="@:Other/Items/Misc/raw_meatPrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -98,7 +76,7 @@
 
     <item name="foodRawMeatDoe" extends="foodRawMeat">
       <property name="Tags" value="food,foodSkill,fitness,rawMeat,herbivoreMeat,doeMeat"/>
-      <property name="CustomIcon" value="foodRawMeat"/>
+      <property name="CustomIcon" value="ui_game_symbol_rawdeermeat"/>
       <property name="HoldType" value="31"/>
       <property name="Meshfile" value="@:Other/Items/Misc/raw_meatPrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -121,7 +99,7 @@
 
     <item name="foodRawMeatBoar" extends="foodRawMeat">
       <property name="Tags" value="food,foodSkill,fitness,rawMeat,herbivoreMeat,doeMeat"/>
-      <property name="CustomIcon" value="foodRawMeat"/>
+      <property name="CustomIcon" value="ui_game_symbol_rawboarmeat"/>
       <property name="HoldType" value="31"/>
       <property name="Meshfile" value="@:Other/Items/Misc/raw_meatPrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -144,7 +122,7 @@
 
     <item name="foodRawMeatRabbit" extends="foodRawMeat">
       <property name="Tags" value="food,foodSkill,fitness,rawMeat,herbivoreMeat,rabbitMeat"/>
-      <property name="CustomIcon" value="foodRawMeat"/>
+      <property name="CustomIcon" value="ui_game_symbol_rawrabbitchickenmeat"/>
       <property name="HoldType" value="31"/>
       <property name="Meshfile" value="@:Other/Items/Misc/raw_meatPrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -167,7 +145,7 @@
 
     <item name="foodRawMeatChicken" extends="foodRawMeat">
       <property name="Tags" value="food,foodSkill,fitness,rawMeat,herbivoreMeat,chickenMeat"/>
-      <property name="CustomIcon" value="foodRawMeat"/>
+      <property name="CustomIcon" value="ui_game_symbol_rawrabbitchickenmeat"/>
       <property name="HoldType" value="31"/>
       <property name="Meshfile" value="@:Other/Items/Misc/raw_meatPrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -193,9 +171,10 @@
     <!-- ========================= -->
     <!--    COOKED HERBIVORES      -->
     <!-- ========================= -->
-
     <item name="foodGrilledMeatHerbivore" extends="foodGrilledMeat">
       <property name="Tags" value="food,foodSkill,fitness,cookedMeat,herbivoreMeat"/>
+      <property name="UnlockedBy" value="craftingFood"/>
+      <property name="Group" value="Food/Cooking,CFFood/Cooking"/>
       <property name="CustomIcon" value="foodGrilledMeat"/>
       <property name="Meshfile" value="@:Other/Items/Food/parcelGenericPrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -211,6 +190,8 @@
 
     <item name="foodBoiledMeatHerbivore" extends="foodBoiledMeat">
       <property name="Tags" value="food,foodSkill,fitness,cookedMeat,herbivoreMeat"/>
+      <property name="UnlockedBy" value="craftingFood"/>
+      <property name="Group" value="Food/Cooking,CFFood/Cooking"/>
       <property name="CustomIcon" value="foodBoiledMeat"/>
       <property name="Meshfile" value="@:Other/Items/Food/parcelGenericPrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -226,6 +207,7 @@
 
     <item name="foodCharredMeatHerbivore" extends="foodCharredMeat">
       <property name="Tags" value="food,foodSkill,fitness,cookedMeat,herbivoreMeat"/>
+      <property name="Group" value="Food/Cooking,CFFood/Cooking"/>
       <property name="CustomIcon" value="foodCharredMeat"/>
       <property name="Meshfile" value="@:Other/Items/Food/parcelGenericPrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -238,6 +220,7 @@
         <property name="SmellUse" value="100"/>
       </property>
     </item>
+
   </append>
 
   <append xpath="/items">
@@ -247,7 +230,7 @@
 
     <item name="foodRawMeatBear" extends="foodRawMeat">
       <property name="Tags" value="food,foodSkill,fitness,rawMeat,carnivoreMeat,bearMeat"/>
-      <property name="CustomIcon" value="foodCarnivoreRawMeat"/>
+      <property name="CustomIcon" value="ui_game_symbol_rawbearmeat"/>
       <property name="HoldType" value="31"/>
       <property name="Meshfile" value="@:Other/Items/Misc/raw_meatPrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -270,7 +253,7 @@
 
     <item name="foodRawMeatWolf" extends="foodRawMeat">
       <property name="Tags" value="food,foodSkill,fitness,rawMeat,carnivoreMeat,wolfMeat"/>
-      <property name="CustomIcon" value="foodCarnivoreRawMeat"/>
+      <property name="CustomIcon" value="ui_game_symbol_rawwolfmeat"/>
       <property name="HoldType" value="31"/>
       <property name="Meshfile" value="@:Other/Items/Misc/raw_meatPrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -293,7 +276,7 @@
 
     <item name="foodRawMeatMountainLion" extends="foodRawMeat">
       <property name="Tags" value="food,foodSkill,fitness,rawMeat,carnivoreMeat,mountainLionMeat"/>
-      <property name="CustomIcon" value="foodCarnivoreRawMeat"/>
+      <property name="CustomIcon" value="ui_game_symbol_rawmountainlion"/>
       <property name="HoldType" value="31"/>
       <property name="Meshfile" value="@:Other/Items/Misc/raw_meatPrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -345,6 +328,8 @@
 
     <item name="foodCharredMeatCarnivore" extends="foodCharredMeat">
       <property name="Tags" value="food,foodSkill,fitness,cookedMeat,carnivoreMeat"/>
+      <property name="HoldType" value="31"/>
+      <property name="DisplayType" value="food"/>
       <property name="CustomIcon" value="charredCarnivoreMeat"/>
       <property name="Meshfile" value="@:Other/Items/Food/parcelGenericPrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -419,7 +404,8 @@
       <property name="Stacknumber" value="25"/>
       <property name="EconomicValue" value="250"/>
       <property name="RepairTime" value="3"/>
-      <property name="RepairAmount" value="9999"/>
+      <!-- Raw repair strength; field firearm repair is clamped to 10% max durability per kit in code. -->
+      <property name="RepairAmount" value="4800"/>
       <property name="Group" value="Resources"/>
       <property name="SoundPickup" value="repairkits_grab"/>
       <property name="SoundPlace" value="repairkits_place"/>
@@ -427,31 +413,29 @@
     </item>
   </append>
 
-  <!-- PURE ETHANOL (Beer-like feel, but horrible effects) -->
+  <!-- PURE ETHANOL -->
   <append xpath="/items">
     <item name="resourceEthanol" extends="drinkJarBeer">
-    <property name="Meshfile" value="@:Other/Items/Misc/glassJarPrefab.prefab"/>
-    <property name="DropMeshfile" value="@:Other/Items/Misc/glassJarPrefab.prefab"/>
-    <property name="CustomIcon" value="ui_game_symbol_ethanol"/>
-    <property name="Material" value="Mglass"/>
-    <property name="DescriptionKey" value="ldDescEthanol"/>
-    <property name="Stacknumber" value="50"/>
+      <property name="Meshfile" value="@:Other/Items/Misc/glassJarPrefab.prefab"/>
+      <property name="DropMeshfile" value="@:Other/Items/Misc/glassJarPrefab.prefab"/>
+      <property name="CustomIcon" value="ui_game_symbol_ethanol"/>
+      <property name="Material" value="Mglass"/>
+      <property name="DescriptionKey" value="ldDescEthanol"/>
+      <property name="Stacknumber" value="50"/>
+      <property name="Tags" value="drink,medical,resource,ethanol"/>
 
-    <!-- Optional: tags so recipes can target it cleanly -->
-    <property name="Tags" value="drink,medical,resource,ethanol"/>
-
-      <!-- Remove beer buffs -->
       <effect_group>
-        <!-- Remove vanilla beer buff so it doesn't apply stamina bonus -->
+        <passive_effect name="ModSlots" operation="base_set" value="0"/>
+
+        <!-- Remove vanilla beer buff -->
         <triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="buffBeer"/>
 
-        <!-- Apply your punishment -->
+        <!-- Apply ethanol punishment -->
         <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffEthanolPoisoning"/>
         <triggered_effect trigger="onSelfPrimaryActionEnd" action="ShowToolbeltMessage" message_key="ldMsgEthanolPoisoning"/>
       </effect_group>
     </item>
   </append>
-
 
   <!-- WOUND INFECTION TREATMENT (consumable) -->
     <!-- ===================================================== -->
@@ -527,6 +511,9 @@
         <!-- DIRTY BANDAGE MECHANIC -->
         <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffWoundInfectionCatch" prob="0.35">
           <requirement name="!HasBuff" buff="buffWoundInfectionMain"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" target="other" buff="buffWoundInfectionCatch" prob="0.35">
+          <requirement name="!HasBuff" target="other" buff="buffWoundInfectionMain"/>
         </triggered_effect>
 
         <triggered_effect trigger="onSelfPrimaryActionEnd" action="ShowToolbeltMessage" message_key="ldMsgDirtyBandageUsed"/>
@@ -980,7 +967,7 @@
       <property name="Meshfile" value="@:Other/Items/Food/masonJarOasisSmoothiePrefab.prefab"/>
       <property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
       <property name="Material" value="Mglass"/>
-      <property name="Group" value="Food/Cooking,CFFood/Cooking"/>
+      <property name="Group" value="Food/Cooking,CFDrink/Cooking,Medical"/>
       <property name="SoundPickup" value="jars2_grab"/>
       <property name="SoundPlace" value="jars2_place"/>
       <property name="EconomicValue" value="220"/>
@@ -1021,7 +1008,7 @@
 
 
 
-  <append xpath="/items">
+  <!-- <append xpath="/items">
     <item name="drinkColonCleanseTonic" extends="drinkJarCoffee">
       <property name="CustomIcon" value="ui_game_symbol_colon_cleanse"/>
       <property name="DescriptionKey" value="drinkColonCleanseTonicDesc"/>
@@ -1052,7 +1039,7 @@
         <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffColonCleanseCramps"/>
       </effect_group>
     </item>
-  </append>
+  </append> -->
 
 
   <!-- =========================
@@ -1076,40 +1063,142 @@
   <set xpath="/items/item[@name='meleeHandAnimalDireWolf']/property[@name='DamageEntity']/@value">65</set>
   <set xpath="/items/item[@name='meleeHandAnimalDireWolf']/property[@name='DamageBlock']/@value">220</set>
 
-
-
-
-
-
-
-
-
-
-<!-- display test 2 -->
-
- <!-- Herbivore raw -->
+  <!-- ========================= -->
+  <!-- Herbivore raw meats       -->
+  <!-- 75% of vanilla raw, down  -->
+  <!-- ========================= -->
   <set xpath="/items/item[@name='foodRawMeatStag']/property[@name='DisplayType']/@value">foodRawMeat</set>
   <set xpath="/items/item[@name='foodRawMeatDoe']/property[@name='DisplayType']/@value">foodRawMeat</set>
   <set xpath="/items/item[@name='foodRawMeatBoar']/property[@name='DisplayType']/@value">foodRawMeat</set>
   <set xpath="/items/item[@name='foodRawMeatRabbit']/property[@name='DisplayType']/@value">foodRawMeat</set>
   <set xpath="/items/item[@name='foodRawMeatChicken']/property[@name='DisplayType']/@value">foodRawMeat</set>
 
-  <append xpath="/items/item[@name='foodRawMeatStag']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="1"/><display_value name="foodHealthAmount" value="-1"/><display_value name="ddummyNoBonus" value="1"/><display_value name="dDysenteryRisk" value=".09"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
-  <append xpath="/items/item[@name='foodRawMeatDoe']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="1"/><display_value name="foodHealthAmount" value="-1"/><display_value name="ddummyNoBonus" value="1"/><display_value name="dDysenteryRisk" value=".09"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
-  <append xpath="/items/item[@name='foodRawMeatBoar']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="1"/><display_value name="foodHealthAmount" value="-1"/><display_value name="ddummyNoBonus" value="1"/><display_value name="dDysenteryRisk" value=".09"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
-  <append xpath="/items/item[@name='foodRawMeatRabbit']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="1"/><display_value name="foodHealthAmount" value="-1"/><display_value name="ddummyNoBonus" value="1"/><display_value name="dDysenteryRisk" value=".09"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
-  <append xpath="/items/item[@name='foodRawMeatChicken']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="1"/><display_value name="foodHealthAmount" value="-1"/><display_value name="ddummyNoBonus" value="1"/><display_value name="dDysenteryRisk" value=".09"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
+  <!-- Harmony replaces Food Tier 0 for herbivore raw (stats + dysentery in code); avoid double food/dysentery -->
+  <remove xpath="/items/item[@name='foodRawMeatStag']/effect_group[@name='Food Tier 0']"/>
+  <remove xpath="/items/item[@name='foodRawMeatDoe']/effect_group[@name='Food Tier 0']"/>
+  <remove xpath="/items/item[@name='foodRawMeatBoar']/effect_group[@name='Food Tier 0']"/>
+  <remove xpath="/items/item[@name='foodRawMeatRabbit']/effect_group[@name='Food Tier 0']"/>
+  <remove xpath="/items/item[@name='foodRawMeatChicken']/effect_group[@name='Food Tier 0']"/>
 
-  <!-- Herbivore cooked -->
+  <append xpath="/items/item[@name='foodRawMeatStag']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="1"/>
+      <display_value name="foodHealthAmount" value="-1"/>
+      <display_value name="ddummyNoBonus" value="1"/>
+      <display_value name="dDysenteryRisk" value=".9"/>
+      <display_value name="dSmell" value="1"/>
+      <display_value name="dSmellUse" value="1"/>
+    </effect_group>
+  </append>
+  <append xpath="/items/item[@name='foodRawMeatDoe']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="1"/>
+      <display_value name="foodHealthAmount" value="-1"/>
+      <display_value name="ddummyNoBonus" value="1"/>
+      <display_value name="dDysenteryRisk" value=".9"/>
+      <display_value name="ldParasiteChance" value=".30"/>
+      <display_value name="dSmell" value="1"/>
+      <display_value name="dSmellUse" value="1"/>
+    </effect_group>
+  </append>
+  <append xpath="/items/item[@name='foodRawMeatBoar']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="1"/>
+      <display_value name="foodHealthAmount" value="-1"/>
+      <display_value name="ddummyNoBonus" value="1"/>
+      <display_value name="dDysenteryRisk" value=".9"/>
+      <display_value name="ldParasiteChance" value=".30"/>
+      <display_value name="dSmell" value="1"/>
+      <display_value name="dSmellUse" value="1"/>
+    </effect_group>
+  </append>
+  <append xpath="/items/item[@name='foodRawMeatRabbit']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="1"/>
+      <display_value name="foodHealthAmount" value="-1"/>
+      <display_value name="ddummyNoBonus" value="1"/>
+      <display_value name="dDysenteryRisk" value=".9"/>
+      <display_value name="ldParasiteChance" value=".30"/>
+      <display_value name="dSmell" value="1"/>
+      <display_value name="dSmellUse" value="1"/>
+    </effect_group>
+  </append>
+  <append xpath="/items/item[@name='foodRawMeatChicken']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="1"/>
+      <display_value name="foodHealthAmount" value="-1"/>
+      <display_value name="ddummyNoBonus" value="1"/>
+      <display_value name="dDysenteryRisk" value=".9"/>
+      <display_value name="ldParasiteChance" value=".30"/>
+      <display_value name="dSmell" value="1"/>
+      <display_value name="dSmellUse" value="1"/>
+    </effect_group>
+  </append>
+
+  <!-- ========================= -->
+  <!-- Herbivore cooked meats    -->
+  <!-- 75% of vanilla cooked     -->
+  <!-- ========================= -->
+  
+  <append xpath="/items/item[@name='foodCharredMeatHerbivore']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="8"/>
+      <display_value name="$waterAmountAdd" value="-4"/>
+      <display_value name="foodHealthAmount" value="3"/>
+      <display_value name=".foodStaminaBonusAdd" value="5"/>
+      <display_value name="dDysenteryRisk" value=".15"/>
+      <display_value name="ldParasiteChance" value=".05"/>
+      <display_value name="dSmell" value=".40"/>
+      <display_value name="dSmellUse" value="30"/>
+    </effect_group>
+  </append>
+  <append xpath="/items/item[@name='foodGrilledMeatHerbivore']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="10"/>
+      <display_value name="foodHealthAmount" value="3"/>
+      <display_value name=".foodStaminaBonusAdd" value="8"/>
+      <display_value name="dDysenteryRisk" value=".15"/>
+      <display_value name="ldParasiteChance" value=".05"/>
+      <display_value name="dSmell" value=".40"/>
+      <display_value name="dSmellUse" value="30"/>
+    </effect_group>
+  </append>
+  <append xpath="/items/item[@name='foodBoiledMeatHerbivore']">
+    <effect_group tiered="false">
+      <display_value name="$foodAmountAdd" value="10"/>
+      <display_value name="$waterAmountAdd" value="8"/>
+      <display_value name="foodHealthAmount" value="8"/>
+      <display_value name=".foodStaminaBonusAdd" value="8"/>
+      <display_value name="dDysenteryRisk" value=".15"/>
+      <display_value name="ldParasiteChance" value=".05"/>
+      <display_value name="dSmell" value=".40"/>
+      <display_value name="dSmellUse" value="30"/>
+    </effect_group>
+  </append>
+
+
   <append xpath="/items/item[@name='foodGrilledMeatHerbivore'][not(property[@name='DisplayType'])]"><property name="DisplayType" value="food"/></append>
   <append xpath="/items/item[@name='foodCharredMeatHerbivore'][not(property[@name='DisplayType'])]"><property name="DisplayType" value="foodWaterNegative"/></append>
   <append xpath="/items/item[@name='foodBoiledMeatHerbivore'][not(property[@name='DisplayType'])]"><property name="DisplayType" value="foodWater"/></append>
+  <append xpath="/items/item[@name='foodGrilledMeatHerbivore'][not(property[@name='HoldType'])]">
+    <property name="HoldType" value="31"/>
+  </append>
+  <set xpath="/items/item[@name='foodGrilledMeatHerbivore']/property[@name='HoldType']/@value">31</set>
 
-  <append xpath="/items/item[@name='foodGrilledMeatHerbivore']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="7"/><display_value name="foodHealthAmount" value="3"/><display_value name=".foodStaminaBonusAdd" value="7"/><display_value name="dSmellUse" value="18"/></effect_group></append>
-  <append xpath="/items/item[@name='foodCharredMeatHerbivore']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="7"/><display_value name="$waterAmountAdd" value="-4"/><display_value name="foodHealthAmount" value="3"/><display_value name=".foodStaminaBonusAdd" value="7"/><display_value name="dSmellUse" value="18"/></effect_group></append>
-  <append xpath="/items/item[@name='foodBoiledMeatHerbivore']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="7"/><display_value name="$waterAmountAdd" value="7"/><display_value name="foodHealthAmount" value="11"/><display_value name=".foodStaminaBonusAdd" value="7"/><display_value name="dSmellUse" value="18"/></effect_group></append>
+  <append xpath="/items/item[@name='foodBoiledMeatHerbivore'][not(property[@name='HoldType'])]">
+    <property name="HoldType" value="31"/>
+  </append>
+  <set xpath="/items/item[@name='foodBoiledMeatHerbivore']/property[@name='HoldType']/@value">31</set>
 
-  <!-- Raw carnivores -->
+  <append xpath="/items/item[@name='foodCharredMeatHerbivore'][not(property[@name='HoldType'])]">
+    <property name="HoldType" value="31"/>
+  </append>
+  <set xpath="/items/item[@name='foodCharredMeatHerbivore']/property[@name='HoldType']/@value">31</set>
+
+  <!-- ========================= -->
+  <!-- Carnivore raw meats       -->
+  <!-- Harmony values + parasite -->
+  <!-- ========================= -->
   <set xpath="/items/item[@name='foodRawMeatBear']/property[@name='DisplayType']/@value">foodRawMeatCarnivore</set>
   <set xpath="/items/item[@name='foodRawMeatWolf']/property[@name='DisplayType']/@value">foodRawMeatCarnivore</set>
   <set xpath="/items/item[@name='foodRawMeatMountainLion']/property[@name='DisplayType']/@value">foodRawMeatCarnivore</set>
@@ -1120,7 +1209,7 @@
       <display_value name="$foodAmountAdd" value="4"/>
       <display_value name="foodHealthAmount" value="1"/>
       <display_value name=".foodStaminaBonusAdd" value="4"/>
-      <display_value name="ldParasiteChance" value="1.0"/>
+      <display_value name="ldParasiteChance" value=".90"/>
       <display_value name="dSmell" value="1"/>
       <display_value name="dSmellUse" value="2"/>
     </effect_group>
@@ -1130,7 +1219,7 @@
       <display_value name="$foodAmountAdd" value="4"/>
       <display_value name="foodHealthAmount" value="1"/>
       <display_value name=".foodStaminaBonusAdd" value="4"/>
-      <display_value name="ldParasiteChance" value="1.0"/>
+      <display_value name="ldParasiteChance" value=".90"/>
       <display_value name="dSmell" value="1"/>
       <display_value name="dSmellUse" value="2"/>
     </effect_group>
@@ -1140,7 +1229,7 @@
       <display_value name="$foodAmountAdd" value="4"/>
       <display_value name="foodHealthAmount" value="1"/>
       <display_value name=".foodStaminaBonusAdd" value="4"/>
-      <display_value name="ldParasiteChance" value="1.0"/>
+      <display_value name="ldParasiteChance" value=".90"/>
       <display_value name="dSmell" value="1"/>
       <display_value name="dSmellUse" value="2"/>
     </effect_group>
@@ -1150,84 +1239,106 @@
       <display_value name="$foodAmountAdd" value="4"/>
       <display_value name="foodHealthAmount" value="1"/>
       <display_value name=".foodStaminaBonusAdd" value="4"/>
-      <display_value name="ldParasiteChance" value="1.0"/>
+      <display_value name="ldParasiteChance" value=".90"/>
       <display_value name="dSmell" value="1"/>
       <display_value name="dSmellUse" value="2"/>
     </effect_group>
   </append>
 
-  <!-- Cooked carnivores -->
+  <!-- ========================= -->
+  <!-- Carnivore cooked meats    -->
+  <!-- Harmony values + parasite -->
+  <!-- ========================= -->
   <append xpath="/items/item[@name='foodCharredMeatCarnivore'][not(property[@name='DisplayType'])]"><property name="DisplayType" value="foodCarnivore"/></append>
   <set xpath="/items/item[@name='foodGrilledMeatCarnivore']/property[@name='DisplayType']/@value">foodCarnivore</set>
   <set xpath="/items/item[@name='foodBoiledMeatCarnivore']/property[@name='DisplayType']/@value">foodCarnivoreWater</set>
 
-  <append xpath="/items/item[@name='foodCharredMeatCarnivore']"><effect_group tiered="false"><display_value name="$foodAmountAdd" value="10"/><display_value name="foodHealthAmount" value="4"/><display_value name=".foodStaminaBonusAdd" value="6"/><display_value name="ldParasiteChance" value=".30"/><display_value name="dSmellUse" value="35"/></effect_group></append>
+  <append xpath="/items/item[@name='foodCharredMeatCarnivore']">
+  <effect_group tiered="false">
+    <display_value name="$foodAmountAdd" value="15"/>
+    <display_value name="foodHealthAmount" value="8"/>
+    <display_value name=".foodStaminaBonusAdd" value="15"/>
+    <display_value name="ldParasiteChance" value=".30"/>
+    <display_value name="dSmell" value=".25"/>
+    <display_value name="dSmellUse" value="20"/>
+    </effect_group>
+  </append>
   <append xpath="/items/item[@name='foodGrilledMeatCarnivore']">
-    <effect_group tiered="false"><display_value name="$foodAmountAdd" value="15"/><display_value name="foodHealthAmount" value="6"/><display_value name=".foodStaminaBonusAdd" value="8"/><display_value name="ldParasiteChance" value=".30"/><display_value name="dSmellUse" value="35"/></effect_group></append>
+  <effect_group tiered="false">
+    <display_value name="$foodAmountAdd" value="20"/>
+    <display_value name="foodHealthAmount" value="12"/>
+    <display_value name=".foodStaminaBonusAdd" value="20"/>
+    <display_value name="ldParasiteChance" value=".30"/>
+    <display_value name="dSmell" value=".25"/>
+    <display_value name="dSmellUse" value="20"/>
+    </effect_group>
+  </append>
   <append xpath="/items/item[@name='foodBoiledMeatCarnivore']">
-    <effect_group tiered="false">
-      <display_value name="$foodAmountAdd" value="18"/>
-      <display_value name="$waterAmountAdd" value="12"/>
-      <display_value name="foodHealthAmount" value="8"/>
-      <display_value name=".foodStaminaBonusAdd" value="8"/>
-      <display_value name="ldParasiteChance" value=".30"/>
-      <display_value name="dSmellUse" value="35"/>
+  <effect_group tiered="false">
+    <display_value name="$foodAmountAdd" value="25"/>
+    <display_value name="$waterAmountAdd" value="15"/>
+    <display_value name="foodHealthAmount" value="18"/>
+    <display_value name=".foodStaminaBonusAdd" value="25"/>
+    <display_value name="ldParasiteChance" value=".30"/>
+    <display_value name="dSmell" value=".25"/>
+    <display_value name="dSmellUse" value="20"/>
     </effect_group>
   </append>
 
-  <!-- Colon cleanse needs a real display type -->
-  <append xpath="/items/item[@name='drinkColonCleanseTonic'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="foodWater"/>
-  </append>
-
-
-
-
-
-
-<!-- bbbbeeeeeeeeppp -->
-
-  <append xpath="/items/item[@name='foodCharredMeatHerbivore'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="foodCharredMeatHerbivore"/>
-  </append>
-  <append xpath="/items/item[@name='foodGrilledMeatHerbivore'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="foodGrilledMeatHerbivore"/>
-  </append>
-  <append xpath="/items/item[@name='foodBoiledMeatHerbivore'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="foodBoiledMeatHerbivore"/>
-  </append>
-
-  <append xpath="/items/item[@name='drinkTeaParasiteCleanse'][not(property[@name='DisplayType'])]">
-    <property name="DisplayType" value="drinkDeadAirParasiteTea"/>
-  </append>
+  <!-- ========================= -->
+  <!-- Drinks                    -->
+  <!-- ========================= -->
   <set xpath="/items/item[@name='drinkTeaParasiteCleanse']/property[@name='DisplayType']/@value">drinkDeadAirParasiteTea</set>
   <set xpath="/items/item[@name='medicalAnthelminticTonic']/property[@name='DisplayType']/@value">drinkDeadAirParasiteTonic</set>
+  <set xpath="/items/item[@name='drinkTeaParasiteCleanse']/property[@name='Tags']/@value">drink,medical</set>
+  <!-- <set xpath="/items/item[@name='drinkColonCleanseTonic']/property[@name='Tags']/@value">drink,medical</set> -->
+  <set xpath="/items/item[@name='medicalAnthelminticTonic']/property[@name='UnlockedBy']/@value">craftingMedical</set>
+  <!-- <append xpath="/items/item[@name='drinkColonCleanseTonic'][not(property[@name='DisplayType'])]"><property name="DisplayType" value="drinkDeadAirColonCleanse"/></append> -->
 
-  <!-- Hide weird Modify action on drinks -->
-  <append xpath="/items/item[@name='drinkTeaParasiteCleanse']/effect_group[1]">
-    <passive_effect name="ModSlots" operation="base_set" value="0"/>
+  <append xpath="/items/item[@name='drinkTeaParasiteCleanse']/effect_group[1]"><passive_effect name="ModSlots" operation="base_set" value="0"/></append>
+  <append xpath="/items/item[@name='medicalAnthelminticTonic']/effect_group[1]"><passive_effect name="ModSlots" operation="base_set" value="0"/></append>
+  <!-- <append xpath="/items/item[@name='drinkColonCleanseTonic']/effect_group[1]"><passive_effect name="ModSlots" operation="base_set" value="0"/></append>
+  <remove xpath="/items/item[@name='drinkColonCleanseTonic']/effect_group[display_value[@name='dhealAbrasionMult'] and display_value[@name='foodHealthAmount'] and display_value[@name='dStopsBleeding']]"/> -->
+  <append xpath="/items/item[@name='drinkTeaParasiteCleanse']">
+    <effect_group tiered="false">
+      <display_value name="$waterAmountAdd" value="15"/>
+      <display_value name="ldTreatsParasites" value="1"/>
+      <display_value name="ldParasiteTreatmentTypeTea" value="1"/>
+    </effect_group>
   </append>
-  <append xpath="/items/item[@name='medicalAnthelminticTonic']/effect_group[1]">
-    <passive_effect name="ModSlots" operation="base_set" value="0"/>
+
+  <append xpath="/items/item[@name='medicalAnthelminticTonic']">
+    <effect_group tiered="false">
+      <display_value name="$waterAmountAdd" value="5"/>
+      <display_value name="ldTreatsParasites" value="1"/>
+      <display_value name="ldParasiteTreatmentTypeTonic" value="1"/>
+    </effect_group>
   </append>
-  <append xpath="/items/item[@name='drinkColonCleanseTonic']/effect_group[1]">
-    <passive_effect name="ModSlots" operation="base_set" value="0"/>
+
+  <!-- <append xpath="/items/item[@name='drinkColonCleanseTonic']">
+    <effect_group tiered="false">
+      <display_value name="$waterAmountAdd" value="-5"/>
+      <display_value name="ldRemovesBodyOdor" value="1"/>
+    </effect_group>
+  </append> -->
+
+  <!-- ========================= -->
+  <!-- Bandages                  -->
+  <!-- ========================= -->
+  <append xpath="/items/item[@name='medicalFirstAidBandageDirty']">
+    <effect_group tiered="false">
+      <display_value name="dhealAbrasionMult" value="1"/>
+      <display_value name="foodHealthAmount" value="30"/>
+      <display_value name="dStopsBleeding" value="1"/>
+    </effect_group>
   </append>
-
-  <!-- Remove the accidental dirty-bandage rows from colon cleanse -->
-  <remove xpath="/items/item[@name='drinkColonCleanseTonic']/effect_group[display_value[@name='dhealAbrasionMult'] and display_value[@name='foodHealthAmount'] and display_value[@name='dStopsBleeding']]"/>
-
-  <!-- Herbivore raw (75% vanilla raw, rounded down) -->
-  <append xpath="/items/item[@name='foodRawMeatStag']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="1"/><display_value name="ldHealthAmount" value="-1"/><display_value name="ldDysenteryChance" value="9"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
-  <append xpath="/items/item[@name='foodRawMeatDoe']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="1"/><display_value name="ldHealthAmount" value="-1"/><display_value name="ldDysenteryChance" value="9"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
-  <append xpath="/items/item[@name='foodRawMeatBoar']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="1"/><display_value name="ldHealthAmount" value="-1"/><display_value name="ldDysenteryChance" value="9"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
-  <append xpath="/items/item[@name='foodRawMeatRabbit']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="1"/><display_value name="ldHealthAmount" value="-1"/><display_value name="ldDysenteryChance" value="9"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
-  <append xpath="/items/item[@name='foodRawMeatChicken']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="1"/><display_value name="ldHealthAmount" value="-1"/><display_value name="ldDysenteryChance" value="9"/><display_value name="dSmell" value="1"/><display_value name="dSmellUse" value="1"/></effect_group></append>
-
-  <!-- Herbivore cooked (75% vanilla cooked, rounded down) -->
-  <append xpath="/items/item[@name='foodCharredMeatHerbivore']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="7"/><display_value name="ldWaterAmount" value="-4"/><display_value name="ldHealthAmount" value="3"/><display_value name="ldMaxStaminaBonus" value="7"/><display_value name="dSmellUse" value="18"/></effect_group></append>
-  <append xpath="/items/item[@name='foodGrilledMeatHerbivore']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="7"/><display_value name="ldHealthAmount" value="3"/><display_value name="ldMaxStaminaBonus" value="7"/><display_value name="dSmellUse" value="18"/></effect_group></append>
-  <append xpath="/items/item[@name='foodBoiledMeatHerbivore']"><effect_group tiered="false"><display_value name="ldFoodAmount" value="7"/><display_value name="ldWaterAmount" value="7"/><display_value name="ldHealthAmount" value="11"/><display_value name="ldMaxStaminaBonus" value="7"/><display_value name="dSmellUse" value="18"/></effect_group></append>
+  <append xpath="/items/item[@name='medicalWoundInfectionTreatment']">
+    <effect_group tiered="false">
+      <display_value name="dhealAbrasionMult" value="3"/>
+      <display_value name="foodHealthAmount" value="30"/>
+      <display_value name="dStopsBleeding" value="1"/>
+    </effect_group>
+  </append>
 
   <insertAfter xpath="/items/item[@name='meleeHandPlayer']/effect_group[@name='Drink']/triggered_effect[@trigger='onSelfAction2End' and @action='ModifyCVar' and @cvar='$waterAmountAdd' and @operation='add']">
       <triggered_effect trigger="onSelfAction2End" action="ShowTooltip" str="ldMsgCoolerCleanDrinkActive">
@@ -1279,5 +1390,41 @@
     <triggered_effect trigger="onSelfAction2End" action="ShowTooltip" str="ldMsgCoolerDirtyPathActive">
         <requirement name="!HasBuff" buff="buffDeadAirCoolerCleanDrink"/>
     </triggered_effect>
-</insertAfter>
+  </insertAfter>
+
+  <!-- Firearms only: vanilla resourceRepairKit cannot repair these; mod uses resourceWeaponRepairKit + Harmony. Bows/crossbows unchanged. -->
+  <set xpath="/items/item[@name='gunHandgunT1Pistol']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunHandgunT3SMG5']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunHandgunT2Magnum44']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunHandgunT3DesertVulture']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunShotgunT1DoubleBarrel']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunShotgunT2PumpShotgun']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunShotgunT3AutoShotgun']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunRifleT1HuntingRifle']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunRifleT2LeverActionRifle']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunRifleT3SniperRifle']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunMGT1AK47']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunMGT2TacticalAR']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunMGT3M60']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='gunExplosivesT3RocketLauncher']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+
+  <set xpath="/items/item[@name='IZYgunT0PistolLiberatorImprovisedPistol']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT0SMGPIPEsubmachinegun']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT1Pistol9Makarov']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT145TACSMGMAC10']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT2Pistol45M1911A1']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT3Pistol45USP45']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT445TACSMGKrissSuperV']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT4SMGCZScorpionEVO3']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT1SNIPERRIFLE762Mosinnagant']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT3MarksManRifle762HKPSG1']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT3MarksmanRifleMMRM1Carbine45']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT4MarksmanRifle45MMRKrissVectorCarbine']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT2ARSTG44N']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT3BattleRifleHKG3']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT3BULLPUPHellionVHS2']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT4ARCabineHK416']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT2TradshotgunLeveractionShotgunModel1887']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT4TACshotgunM1014']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
+  <set xpath="/items/item[@name='IZYgunT2LGLChinalakeGrenadeLauncher']/property[@name='RepairTools']/@value">resourceWeaponRepairKit</set>
 </configs>

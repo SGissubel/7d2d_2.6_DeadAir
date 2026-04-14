@@ -42,28 +42,28 @@
 
     <!-- CHARRED -->
     <recipe name="foodCharredMeatCarnivore" count="1" craft_area="campfire" tags="perkMasterChef">
-      <ingredient name="foodRawMeatBear" count="5"/>
+      <ingredient name="foodRawMeatBear" count="2"/>
       <effect_group>
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatBear"/>
       </effect_group>
     </recipe>
 
     <recipe name="foodCharredMeatCarnivore" count="1" craft_area="campfire" tags="perkMasterChef">
-      <ingredient name="foodRawMeatWolf" count="5"/>
+      <ingredient name="foodRawMeatWolf" count="4"/>
       <effect_group>
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatWolf"/>
       </effect_group>
     </recipe>
 
     <recipe name="foodCharredMeatCarnivore" count="1" craft_area="campfire" tags="perkMasterChef">
-      <ingredient name="foodRawMeatMountainLion" count="5"/>
+      <ingredient name="foodRawMeatMountainLion" count="3"/>
       <effect_group>
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatMountainLion"/>
       </effect_group>
     </recipe>
 
     <recipe name="foodCharredMeatCarnivore" count="1" craft_area="campfire" tags="perkMasterChef">
-      <ingredient name="foodRawMeatSnake" count="5"/>
+      <ingredient name="foodRawMeatSnake" count="6"/>
       <effect_group>
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatSnake"/>
       </effect_group>
@@ -71,28 +71,28 @@
 
     <!-- GRILLED -->
     <recipe name="foodGrilledMeatCarnivore" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
-      <ingredient name="foodRawMeatBear" count="5"/>
+      <ingredient name="foodRawMeatBear" count="2"/>
       <effect_group>
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatBear"/>
       </effect_group>
     </recipe>
 
     <recipe name="foodGrilledMeatCarnivore" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
-      <ingredient name="foodRawMeatWolf" count="5"/>
+      <ingredient name="foodRawMeatWolf" count="4"/>
       <effect_group>
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatWolf"/>
       </effect_group>
     </recipe>
 
     <recipe name="foodGrilledMeatCarnivore" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
-      <ingredient name="foodRawMeatMountainLion" count="5"/>
+      <ingredient name="foodRawMeatMountainLion" count="3"/>
       <effect_group>
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatMountainLion"/>
       </effect_group>
     </recipe>
 
     <recipe name="foodGrilledMeatCarnivore" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable">
-      <ingredient name="foodRawMeatSnake" count="5"/>
+      <ingredient name="foodRawMeatSnake" count="6"/>
       <effect_group>
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatSnake"/>
       </effect_group>
@@ -100,7 +100,7 @@
 
     <!-- BOILED -->
     <recipe name="foodBoiledMeatCarnivore" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
-      <ingredient name="foodRawMeatBear" count="5"/>
+      <ingredient name="foodRawMeatBear" count="2"/>
       <ingredient name="drinkJarBoiledWater" count="1"/>
       <effect_group>
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatBear"/>
@@ -108,7 +108,7 @@
     </recipe>
 
     <recipe name="foodBoiledMeatCarnivore" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
-      <ingredient name="foodRawMeatWolf" count="5"/>
+      <ingredient name="foodRawMeatWolf" count="4"/>
       <ingredient name="drinkJarBoiledWater" count="1"/>
       <effect_group>
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatWolf"/>
@@ -116,7 +116,7 @@
     </recipe>
 
     <recipe name="foodBoiledMeatCarnivore" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
-      <ingredient name="foodRawMeatMountainLion" count="5"/>
+      <ingredient name="foodRawMeatMountainLion" count="3"/>
       <ingredient name="drinkJarBoiledWater" count="1"/>
       <effect_group>
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatMountainLion"/>
@@ -124,10 +124,127 @@
     </recipe>
 
     <recipe name="foodBoiledMeatCarnivore" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
-      <ingredient name="foodRawMeatSnake" count="5"/>
+      <ingredient name="foodRawMeatSnake" count="6"/>
       <ingredient name="drinkJarBoiledWater" count="1"/>
       <effect_group>
         <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatSnake"/>
+      </effect_group>
+    </recipe>
+
+    <!-- ===================================================== -->
+    <!-- HERBIVORE -> herbivore cooked variants                 -->
+    <!-- ===================================================== -->
+
+    <!-- CHARRED -->
+    <recipe name="foodCharredMeatHerbivore" count="1" craft_area="campfire">
+      <ingredient name="foodRawMeatStag" count="5"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatStag"/>
+      </effect_group>
+    </recipe>
+
+    <recipe name="foodCharredMeatHerbivore" count="1" craft_area="campfire">
+      <ingredient name="foodRawMeatDoe" count="7"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatDoe"/>
+      </effect_group>
+    </recipe>
+
+    <recipe name="foodCharredMeatHerbivore" count="1" craft_area="campfire">
+      <ingredient name="foodRawMeatBoar" count="5"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatBoar"/>
+      </effect_group>
+    </recipe>
+
+    <recipe name="foodCharredMeatHerbivore" count="1" craft_area="campfire">
+      <ingredient name="foodRawMeatRabbit" count="8"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatRabbit"/>
+      </effect_group>
+    </recipe>
+
+    <recipe name="foodCharredMeatHerbivore" count="1" craft_area="campfire">
+      <ingredient name="foodRawMeatChicken" count="8"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatChicken"/>
+      </effect_group>
+    </recipe>
+
+    <!-- GRILLED -->
+    <recipe name="foodGrilledMeatHerbivore" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable,foodGrilledMeatHerbivore">
+      <ingredient name="foodRawMeatStag" count="5"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatStag"/>
+      </effect_group>
+    </recipe>
+
+    <recipe name="foodGrilledMeatHerbivore" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable,foodGrilledMeatHerbivore">
+      <ingredient name="foodRawMeatDoe" count="7"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatDoe"/>
+      </effect_group>
+    </recipe>
+
+    <recipe name="foodGrilledMeatHerbivore" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable,foodGrilledMeatHerbivore">
+      <ingredient name="foodRawMeatBoar" count="5"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatBoar"/>
+      </effect_group>
+    </recipe>
+
+    <recipe name="foodGrilledMeatHerbivore" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable,foodGrilledMeatHerbivore">
+      <ingredient name="foodRawMeatRabbit" count="8"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatRabbit"/>
+      </effect_group>
+    </recipe>
+
+    <recipe name="foodGrilledMeatHerbivore" count="1" craft_area="campfire" craft_tool="toolCookingGrill" tags="perkMasterChef,learnable,foodGrilledMeatHerbivore">
+      <ingredient name="foodRawMeatChicken" count="8"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatChicken"/>
+      </effect_group>
+    </recipe>
+
+    <!-- BOILED -->
+    <recipe name="foodBoiledMeatHerbivore" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable,foodBoiledMeatHerbivore">
+      <ingredient name="foodRawMeatStag" count="5"/>
+      <ingredient name="drinkJarBoiledWater" count="1"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatStag"/>
+      </effect_group>
+    </recipe>
+
+    <recipe name="foodBoiledMeatHerbivore" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable,foodBoiledMeatHerbivore">
+      <ingredient name="foodRawMeatDoe" count="7"/>
+      <ingredient name="drinkJarBoiledWater" count="1"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatDoe"/>
+      </effect_group>
+    </recipe>
+
+    <recipe name="foodBoiledMeatHerbivore" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable,foodBoiledMeatHerbivore">
+      <ingredient name="foodRawMeatBoar" count="5"/>
+      <ingredient name="drinkJarBoiledWater" count="1"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatBoar"/>
+      </effect_group>
+    </recipe>
+
+    <recipe name="foodBoiledMeatHerbivore" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable,foodBoiledMeatHerbivore">
+      <ingredient name="foodRawMeatRabbit" count="8"/>
+      <ingredient name="drinkJarBoiledWater" count="1"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatRabbit"/>
+      </effect_group>
+    </recipe>
+
+    <recipe name="foodBoiledMeatHerbivore" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable,foodBoiledMeatHerbivore">
+      <ingredient name="foodRawMeatChicken" count="8"/>
+      <ingredient name="drinkJarBoiledWater" count="1"/>
+      <effect_group>
+        <passive_effect name="CraftingIngredientCount" level="1,3" operation="base_add" value="-1,-2" tags="foodRawMeatChicken"/>
       </effect_group>
     </recipe>
 
@@ -178,15 +295,15 @@
     </recipe>
 
     <!-- Parasite Cleanse Tea -->
-    <recipe name="drinkTeaParasiteCleanse" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="learnable">
+    <recipe name="drinkTeaParasiteCleanse" count="1" craft_area="campfire" craft_tool="toolCookingPot" tags="perkMasterChef,learnable">
       <ingredient name="drinkJarBoiledWater" count="1"/>
       <ingredient name="foodCropMushrooms" count="2"/>
       <ingredient name="resourceCropChrysanthemumPlant" count="2"/>
       <ingredient name="foodHoney" count="1"/>
     </recipe>
 
-    <!-- Anthelmintic Tonic -->
-    <recipe name="medicalAnthelminticTonic" count="1" craft_area="chemistryStation" tags="learnable">
+    <!-- chemStationCrafting required or the recipe will not appear in chemistry station UI -->
+    <recipe name="medicalAnthelminticTonic" count="1" craft_area="chemistryStation" tags="learnable,chemStationCrafting">
       <ingredient name="resourceAcid" count="2"/>
       <ingredient name="foodCropMushroomsRadiated" count="4"/>
       <ingredient name="foodHoney" count="1"/>
@@ -194,16 +311,28 @@
     </recipe>
 
     <!-- Colon Cleanse Tonic -->
-    <recipe name="drinkColonCleanseTonic" count="1" craft_area="campfire" tags="learnable">
+    <!-- <recipe name="drinkColonCleanseTonic" count="1" craft_area="campfire">
       <ingredient name="drinkJarBoiledWater" count="1"/>
-      <ingredient name="resourceCropGoldenrodPlant" count="2"/>
-      <ingredient name="resourceCropChrysanthemumPlant" count="2"/>
       <ingredient name="foodCropYuccaFruit" count="1"/>
       <ingredient name="resourceCropAloeLeaf" count="1"/>
       <ingredient name="resourceCoal" count="1"/>
       <ingredient name="foodHoney" count="1"/>
-    </recipe>
+    </recipe> -->
 
   </append>
+  <!-- progression is unlocking these exact tag names, so add them to the recipes -->
+
+  <!-- CARNIVORE -->
+  <set xpath="/recipes/recipe[@name='foodGrilledMeatCarnivore']/@tags">perkMasterChef,learnable,foodGrilledMeatCarnivore</set>
+  <set xpath="/recipes/recipe[@name='foodBoiledMeatCarnivore']/@tags">perkMasterChef,learnable,foodBoiledMeatCarnivore</set>
+
+  <!-- HERBIVORE -->
+  <!-- <set xpath="/recipes/recipe[@name='foodGrilledMeatHerbivore']/@tags">perkMasterChef,learnable,foodGrilledMeatHerbivore</set>
+  <set xpath="/recipes/recipe[@name='foodBoiledMeatHerbivore']/@tags">perkMasterChef,learnable,foodBoiledMeatHerbivore</set> -->
+
+  <!-- DRINKS -->
+  <set xpath="/recipes/recipe[@name='drinkTeaParasiteCleanse']/@tags">perkMasterChef,learnable,drinkTeaParasiteCleanse</set>
+  <!-- <set xpath="/recipes/recipe[@name='drinkColonCleanseTonic']/@tags">perkMasterChef,learnable,drinkColonCleanseTonic</set> -->
+  <set xpath="/recipes/recipe[@name='medicalAnthelminticTonic']/@tags">learnable,chemStationCrafting,medicalAnthelminticTonic</set>
 
 </configs>

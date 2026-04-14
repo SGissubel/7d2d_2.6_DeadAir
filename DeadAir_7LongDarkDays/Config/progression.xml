@@ -16,15 +16,46 @@
       </level_requirements>
 
       <effect_group>
-        <passive_effect name="JumpStrength" operation="perc_add" level="2,3" value=".05,.09"/>
+        <passive_effect name="JumpStrength" operation="perc_add" level="2,3" value=".05,.12"/>
         <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$parkourBonus" operation="set" value="0,0,.004,.010"/>
         <passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3" value="-.08,-.15,-.22" tags="jumping"/>
 
         <effect_description level="1" desc_key="perkParkourRank1Desc" long_desc_key="perkParkourRank1LongDesc"/>
         <effect_description level="2" desc_key="perkParkourRank2Desc" long_desc_key="perkParkourRank2LongDesc"/>
         <effect_description level="3" desc_key="perkParkourRank3Desc" long_desc_key="perkParkourRank3LongDesc"/>
-      </effect_group>
+    </effect_group>
     </perk>
   </append>
+
+  <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingFood']/effect_group/passive_effect[last()]">
+    <passive_effect name="RecipeTagUnlocked" operation="base_set" level="6,100" value="1" tags="foodGrilledMeatCarnivore,foodGrilledMeatHerbivore"/>
+    <passive_effect name="RecipeTagUnlocked" operation="base_set" level="8,100" value="1" tags="foodBoiledMeatCarnivore,foodBoiledMeatHerbivore"/>
+    <!-- <passive_effect name="RecipeTagUnlocked" operation="base_set" level="30,100" value="1" tags="drinkTeaParasiteCleanse,drinkColonCleanseTonic"/> -->
+  </insertAfter>
+  <!-- <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingFood']/display_entry[last()]">
+    <display_entry
+        icon="foodGrilledMeatHerbivore,foodBoiledMeatHerbivore,drinkTeaParasiteCleanse,drinkColonCleanseTonic"
+        name_key="foodT5-1,foodT5-2,foodT5-3,foodT5-4"
+        has_quality="false"
+        unlock_level="6,8,30,30">
+      <unlock_entry item="foodGrilledMeatHerbivore,foodGrilledMeatCarnivore" unlock_tier="1"/>
+      <unlock_entry item="foodBoiledMeatHerbivore,foodBoiledMeatCarnivore" unlock_tier="2"/>
+      <unlock_entry item="drinkTeaParasiteCleanse" unlock_tier="3"/>
+      <unlock_entry item="drinkColonCleanseTonic" unlock_tier="4"/>
+    </display_entry>
+  </insertAfter> -->
+
+  <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingMedical']/effect_group/passive_effect[last()]">
+    <passive_effect name="RecipeTagUnlocked" operation="base_set" level="50,100" value="1" tags="medicalAnthelminticTonic"/>
+  </insertAfter>
+  <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingMedical']/display_entry[last()]">
+    <display_entry
+        icon="medicalAnthelminticTonic"
+        name_key="medicalT5-1"
+        has_quality="false"
+        unlock_level="50">
+      <unlock_entry item="medicalAnthelminticTonic" unlock_tier="1"/>
+    </display_entry>
+  </insertAfter>
 
 </configs>
